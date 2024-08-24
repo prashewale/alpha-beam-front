@@ -1,5 +1,3 @@
-import React from "react";
-
 const BreadCrumbSection = () => {
   return (
     <div className="breacrumb-section breacrumb-section-product ">

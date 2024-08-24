@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Select from "react-select";
 
 const ProductShop = () => {
@@ -23,13 +23,13 @@ const ProductShop = () => {
                     <label className="btn btn-light">Filter</label>
                     <Select
                       defaultValue={selectedOption}
-                      onChange={(e) => setSelectedOption(undefined)}
+                      onChange={() => setSelectedOption(undefined)}
                       options={filterOptions}
                     />
                     <label className="btn btn-light">Brands</label>
                     <Select
                       defaultValue={selectedOption}
-                      onChange={(e) => setSelectedOption(undefined)}
+                      onChange={() => setSelectedOption(undefined)}
                       options={brandOptions}
                     />
                   </div>

@@ -1,5 +1,3 @@
-import React from "react";
-
 const BackgroundBanner = () => {
   return (
     <section className="bg-banner">

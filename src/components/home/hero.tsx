@@ -1,14 +1,7 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Hero = () => {
-  const options = {
-    loop: true,
-    margin: 10,
-    nav: true,
-    items: 1,
-  };
   return (
     <section className="hero-section" style={{ position: "relative" }}>
       <Carousel

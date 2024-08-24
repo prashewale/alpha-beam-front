@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../common/header";
 import FeedbackSection from "../common/feedback-section";
 import Footer from "../common/footer";

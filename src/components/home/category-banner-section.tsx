@@ -1,5 +1,3 @@
-import React from "react";
-
 const CategoryBannerSection = () => {
   return (
     <div className="banner-section spad">

@@ -1,5 +1,3 @@
-import React from "react";
-
 const FeedbackSection = () => {
   return (
     <div className="partner-logo mt-10">

@@ -1,5 +1,3 @@
-import React from "react";
-
 const FutureScope = () => {
   return (
     <section className="product-shop spad productDeatils bg-grey">

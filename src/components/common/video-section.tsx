@@ -1,6 +1,3 @@
-type VideoBannerProps = {
-  title: string | undefined;
-};
 const VideoBannerSection = () => {
   return (
     <div className="instagram-photo">

@@ -1,5 +1,3 @@
-import React from "react";
-
 const SolutionList = () => {
   return (
     <section className="product-shop spad productDeatils">

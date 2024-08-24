@@ -1,10 +1,8 @@
-import React from "react";
 import Header from "../common/header";
 import BackgroundBanner from "./background-banner";
 import FeedbackSection from "../common/feedback-section";
 import Footer from "../common/footer";
 import FutureScope from "./future-scope";
-import OurLeaders from "./our-leaders";
 import VideoBannerSection from "../common/video-section";
 
 const AboutUs = () => {
