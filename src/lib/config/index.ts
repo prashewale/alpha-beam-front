@@ -1,5 +1,5 @@
 // import dotenv from "dotenv";
-import { cleanEnv, str, num } from "envalid";
+import { cleanEnv, str } from "envalid";
 
 // const environment = import.meta.env.NODE_ENV || "dev";
 

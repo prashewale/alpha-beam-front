@@ -3,9 +3,7 @@ import FeedbackSection from "../common/feedback-section";
 import Footer from "../common/footer";
 import BreadCrumbSection from "./bread-crumb-section";
 import ProductShop from "./product-shop";
-import Pagination from "./pagination";
-import { useParams, useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Shop = () => {
   // let { category } = useParams();
