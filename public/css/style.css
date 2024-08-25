@@ -62,9 +62,15 @@ textarea:focus {
   outline: none;
 }
 
+a {
+  text-decoration: none !important;
+  outline: none;
+  color: #fff;
+}
+
 a:hover,
 a:focus {
-  text-decoration: none;
+  text-decoration: none !important;
   outline: none;
   color: #fff;
 }
@@ -977,6 +983,7 @@ ol {
   display: -ms-inline-flexbox;
   display: inline-flex;
   position: relative;
+  margin-top: 10px;
 }
 
 .nav-item .nav-menu li {
@@ -995,11 +1002,11 @@ ol {
   align-items: center;
 }
 .nav-item .nav-menu li a {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   display: block;
 
-  color: #303030;
+  color: #605f5f;
 
   text-transform: uppercase;
   padding: 10px;
@@ -1009,7 +1016,7 @@ ol {
 }
 
 .nav-item .nav-menu li:hover > a {
-  background: #1d8aca;
+  color: #1d8aca;
 }
 
 .nav-item .nav-menu li:hover .dropdown {

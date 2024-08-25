@@ -16,6 +16,7 @@ const Hero = () => {
         swipeable={true} // Enables swiping
         emulateTouch={true} // Enables touch swipe
         dynamicHeight={false} // Equivalent to `autoHeight: false`
+        showThumbs={false} // Hides the thumbnail images
         renderArrowPrev={(clickHandler, hasPrev) =>
           hasPrev && (
             <button
@@ -45,7 +46,6 @@ const Hero = () => {
             backgroundImage: `url("img/hero-1.jpg")`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            // height: "",
             position: "relative",
             display: "flex",
             alignItems: "center",
@@ -58,7 +58,6 @@ const Hero = () => {
             style={{
               position: "relative",
               zIndex: 2,
-              //   background: "rgba(255, 255, 255, 0.8)", // Temporary background to check visibility
               padding: "20px",
             }}
           >

@@ -15,7 +15,7 @@ import Footer from "../common/footer";
 const Home = () => {
   const bestSellerProducts = [
     {
-      imgSrc: "/img/garmine-1.jpg",
+      imgSrc: "/img/garmine-1.jpeg",
       title: "GPSMAP® 10x2 /12x2 Series",
     },
     {

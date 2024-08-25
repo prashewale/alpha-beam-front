@@ -1,4 +1,15 @@
-const ProductDetail = () => {
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../../hooks/useCart";
+import { Product } from "../../../types";
+
+type ProductDetailProps = {
+  product: Product;
+};
+const ProductDetail = ({ product }: ProductDetailProps) => {
+  const { addToCart } = useCart();
+
+  const navigate = useNavigate();
+
   return (
     <section className="product-shop spad productDeatils">
       <div className="container">
@@ -10,16 +21,16 @@ const ProductDetail = () => {
                   <div className="product-imgs">
                     <div className="img-display">
                       <div className="img-showcase">
-                        <img src="/img/garmine-1.jpg" alt="shoe image" />
+                        <img src={product.image} alt="shoe image" />
                         <img src="/img/garmine-2.jpeg" alt="shoe image" />
-                        <img src="/img/garmine-1.jpg" alt="shoe image" />
+                        <img src="/img/garmine-1.jpeg" alt="shoe image" />
                         <img src="/img/garmine-4.jpeg" alt="shoe image" />
                       </div>
                     </div>
                     <div className="img-select">
                       <div className="img-item">
                         <a href="#" data-id="1">
-                          <img src="/img/garmine-1.jpg" alt="shoe image" />
+                          <img src={product.image} alt="shoe image" />
                         </a>
                       </div>
                       <div className="img-item">
@@ -29,7 +40,7 @@ const ProductDetail = () => {
                       </div>
                       <div className="img-item">
                         <a href="#" data-id="3">
-                          <img src="/img/garmine-1.jpg" alt="shoe image" />
+                          <img src="/img/garmine-1.jpeg" alt="shoe image" />
                         </a>
                       </div>
                       <div className="img-item">
@@ -42,18 +53,13 @@ const ProductDetail = () => {
                 </div>
                 <div className="col-md-6">
                   <div className="product-content">
-                    <h2 className="product-title">GPSMAP® 10x2/12x2 Series</h2>
+                    <h2 className="product-title">{product.name}</h2>
 
                     <div className="product-detail">
-                      <p>
-                        Our GPSMAP 10×2 and 12×2 chartplotter series is designed
-                        for cruisers, sailors and captains who need an advanced
-                        all-in-one solution at the helm with keyed control.
-                        display 11 inches.
-                      </p>
+                      <p>{product.description}</p>
                     </div>
                     <div className="product-price">
-                      <p className="new-price">£581.63 ex-VAT</p>
+                      <p className="new-price">£{product.price} ex-VAT</p>
                     </div>
                     <div>
                       <div className="prod-list">
@@ -125,13 +131,13 @@ const ProductDetail = () => {
                     </div>
                     <div className="action">
                       <a
-                        href="#"
                         className="prodt-btn border-gradient border-gradient-purple"
+                        onClick={() => addToCart(product.id.toString(), 1)}
                       >
-                        Add to Cart{" "}
+                        Add to Cart
                       </a>
                       <a
-                        href="#"
+                        onClick={() => navigate(`/compare/${product.id}`)}
                         className="prodt-btn border-gradient border-gradient-purple"
                       >
                         Compare
@@ -141,7 +147,7 @@ const ProductDetail = () => {
                       </a>
                     </div>
                     <div className="purchase-info" style={{ display: "none" }}>
-                      <input type="number" min="0" value="1" />
+                      <input type="number" min="0" defaultValue="1" />
                       <button type="button" className="btn">
                         Add to Cart <i className="fas fa-shopping-cart"></i>
                       </button>

@@ -1,4 +1,15 @@
-const BreadCrumbSection = () => {
+import { categories } from "../../data/categories";
+
+type BreadCrumbSectionProps = {
+  category: string;
+};
+const BreadCrumbSection = ({ category }: BreadCrumbSectionProps) => {
+  const categoryInfo = categories.find(
+    (x) => x.value.toLowerCase() === category.toLowerCase()
+  );
+
+  if (!categoryInfo) return null;
+
   return (
     <div className="breacrumb-section breacrumb-section-product ">
       <div className="container bk-black">
@@ -11,12 +22,8 @@ const BreadCrumbSection = () => {
               <span>Shop</span>
             </div>
             <div className="content">
-              <h2>Chartplotters</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat
-              </p>
+              <h2>{categoryInfo.name}</h2>
+              <p>{categoryInfo.description}</p>
             </div>
           </div>
         </div>

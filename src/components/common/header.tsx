@@ -1,4 +1,44 @@
+import { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import { Cart, User } from "../../types";
+import { categories } from "../../data/categories";
+import { useCart } from "../../hooks/useCart";
+import { productsList } from "../../data/products";
+import { officeLocations } from "../../data/office-locations";
 const Header = () => {
+  const { getUser, logout } = useAuth();
+
+  const { cart, removeFromCart } = useCart();
+
+  const cartLines: Cart[] = Object.keys(cart).map((key) => {
+    return { productId: key, quantity: cart[key] };
+  });
+
+  const productsFromCart = cartLines.map((cartLine) => {
+    const product = productsList.find(
+      (p) => p.id.toString() === cartLine.productId
+    );
+    if (!product) {
+      throw new Error(`Product with id ${cartLine.productId} does not exist`);
+    }
+    return { ...product, quantity: cartLine.quantity };
+  });
+
+  const cartTotalPrice = productsFromCart.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
+
+  const [user, setUser] = useState<User | undefined>(undefined);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await getUser();
+      setUser(user);
+    };
+    fetchUser();
+  }, [getUser]);
+
   return (
     <header className="header-section">
       <div className="container">
@@ -19,25 +59,25 @@ const Header = () => {
                       <li>
                         <a href="/products">PRODUCTS</a>
                         <ul className="dropdown">
+                          {categories.map((c, index) => (
+                            <li key={index}>
+                              <a href={`/products?category=${c.value}`}>
+                                {c.name.toUpperCase()}
+                              </a>
+                            </li>
+                          ))}
                           <li>
-                            <a href="/products/filter/chartplotters">
-                              CHARTPLOTTERS
-                            </a>
+                            <a href={`/products`}>SEE ALL</a>
                           </li>
                           <li>
-                            <a href="/products/filter/fishfinders">
-                              FISHFINDERS
-                            </a>
+                            <a href={`/products`}>BEST SELLERS</a>
                           </li>
                           <li>
-                            <a href="/products/filter/autopilot">AUTOPILOTS</a>
-                          </li>
-                          <li>
-                            <a href="/products/filter/radar">RADAR</a>
+                            <a href={`/products`}>PACKAGE DEALS</a>
                           </li>
                         </ul>
                       </li>
-                      <li className="active">
+                      <li>
                         <a href="#"> SERVICE</a>
                       </li>
                       <li>
@@ -88,63 +128,145 @@ const Header = () => {
             </div>
             <div className="col-lg-2 text-right col-md-2">
               <ul className="nav-right">
-                <li className="heart-icon">
-                  <a href="#">
-                    <i className="fa fa-user"></i>
-                  </a>
-                </li>
                 <li className="cart-icon">
                   <a href="#">
-                    <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <span>3</span>
+                    <i className="fa fa-map-marker" aria-hidden="true"></i>
                   </a>
                   <div className="cart-hover">
                     <div className="select-items">
                       <table>
                         <tbody>
-                          <tr>
-                            <td className="si-pic">
-                              <img src="/img/select-product-1.jpg" />
-                            </td>
-                            <td className="si-text">
-                              <div className="product-selected">
-                                <p>60.00 x 1</p>
-                                <h6>FISHFINDERS</h6>
-                              </div>
-                            </td>
-                            <td className="si-close">
-                              <i className="ti-close"></i>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="si-pic">
-                              <img src="/img/select-product-2.jpg" />
-                            </td>
-                            <td className="si-text">
-                              <div className="product-selected">
-                                <p>60.00 x 1</p>
-                                <h6>AUTOPILOTS</h6>
-                              </div>
-                            </td>
-                            <td className="si-close">
-                              <i className="ti-close"></i>
-                            </td>
-                          </tr>
+                          {officeLocations.map((location) => (
+                            <tr>
+                              <td className="si-pic">
+                                <i
+                                  className={location.icon}
+                                  aria-hidden="true"
+                                ></i>
+                              </td>
+                              <td className="si-text">
+                                <div className="product-selected">
+                                  <p>{location.address}</p>
+                                  <h6>{location.city}</h6>
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
                         </tbody>
                       </table>
                     </div>
-                    <div className="select-total">
-                      <span>total:</span>
-                      <h5>120.00</h5>
-                    </div>
-                    <div className="select-button">
-                      <a href="#" className="primary-btn view-card">
-                        VIEW CARD
+                  </div>
+                </li>
+                <li className="cart-icon">
+                  {user ? (
+                    <>
+                      <a href="#">
+                        <i className="fa fa-user"></i>
                       </a>
-                      <a href="#" className="primary-btn checkout-btn">
-                        CHECK OUT
-                      </a>
+                      <div className="cart-hover">
+                        <div className="select-items">
+                          <table>
+                            <tbody>
+                              <tr>
+                                <td className="si-pic">
+                                  <img src="/img/select-product-1.jpg" />
+                                </td>
+                                <td className="si-text">
+                                  <div className="product-selected">
+                                    <span className="text-small text-muted">
+                                      Welcome
+                                    </span>
+                                    <h6>
+                                      {user.firstName + " " + user.lastName}{" "}
+                                    </h6>
+                                  </div>
+                                </td>
+                                <td className="si-close">
+                                  <button
+                                    onClick={logout}
+                                    className="btn btn-outline-danger btn-sm"
+                                  >
+                                    {" "}
+                                    Logout
+                                  </button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <a
+                      className="btn btn-outline-secondary btn-sm"
+                      href="/login"
+                      role="button"
+                    >
+                      Login
+                    </a>
+                  )}
+                </li>
+                <li className="cart-icon">
+                  <a href="#">
+                    <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                    {productsFromCart.length > 0 ? (
+                      <span>{productsFromCart.length}</span>
+                    ) : (
+                      ""
+                    )}
+                  </a>
+                  <div className="cart-hover">
+                    <div className="select-items">
+                      <table>
+                        <tbody>
+                          {productsFromCart.map((cartLine) => (
+                            <tr>
+                              <td className="si-pic" style={{ width: "60px" }}>
+                                <img src={cartLine.image} />
+                              </td>
+                              <td
+                                className="si-text"
+                                style={{ textWrap: "nowrap" }}
+                              >
+                                <div className="product-selected">
+                                  <p>
+                                    £{cartLine.price} x {cartLine.quantity}
+                                  </p>
+                                  <h6>{cartLine.name}</h6>
+                                </div>
+                              </td>
+                              <td
+                                className="si-close"
+                                onClick={() => {
+                                  removeFromCart(cartLine.id.toString());
+                                }}
+                              >
+                                <i className="ti-close"></i>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
+
+                    {productsFromCart.length > 0 ? (
+                      <>
+                        <div className="select-total">
+                          <span>total:</span>
+                          <h5>£{cartTotalPrice}</h5>
+                        </div>
+                        <div className="select-button">
+                          <a href="#" className="primary-btn view-card">
+                            VIEW CART
+                          </a>
+                          <a href="#" className="primary-btn checkout-btn">
+                            CHECK OUT
+                          </a>
+                        </div>
+                      </>
+                    ) : (
+                      <p>Cart is empty</p>
+                    )}
                   </div>
                 </li>
               </ul>

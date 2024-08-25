@@ -1,0 +1,291 @@
+import { Product } from "../types";
+
+export const productsList: Product[] = [
+  {
+    id: 1,
+    name: "GPSMAP 66i",
+    description:
+      "A premium handheld GPS with inReach satellite communication and topographic maps.",
+    price: 449.99,
+    image: "/img/garmine-1.jpeg",
+    category: "chartplotters",
+    rating: 4.5,
+    brand: "Garmin",
+  },
+  {
+    id: 2,
+    name: "GPSMAP 276Cx",
+    description:
+      "A versatile, all-terrain GPS navigator with a 5-inch screen and advanced features.",
+    price: 599.99,
+    image: "/img/garmine-2.jpeg",
+    category: "chartplotters",
+    rating: 4.2,
+    brand: "Garmin",
+  },
+  {
+    id: 3,
+    name: "eTrex 32x",
+    description:
+      "Compact and durable GPS with a 2.2-inch display, perfect for outdoor adventures.",
+    price: 199.99,
+    image: "/img/garmine-3.jpeg",
+    category: "chartplotters",
+    rating: 4.8,
+    brand: "Garmin",
+  },
+  {
+    id: 4,
+    name: "GPSMAP 64sx",
+    description:
+      "Reliable GPS with a quad-helix antenna and multi-GNSS support for precise navigation.",
+    price: 279.99,
+    image: "/img/garmine-4.jpeg",
+    category: "chartplotters",
+    rating: 4.6,
+    brand: "Garmin",
+  },
+  {
+    id: 5,
+    name: "Montana 700i",
+    description:
+      "Rugged GPS with inReach technology, large touchscreen, and preloaded maps.",
+    price: 649.99,
+    image: "/img/garmine-1.jpeg",
+    category: "chartplotters",
+    rating: 4.9,
+    brand: "Garmin",
+  },
+  {
+    id: 6,
+    name: "GPSMAP 86sci",
+    description:
+      "Marine handheld GPS with inReach satellite communication and blue chart g3 maps.",
+    price: 499.99,
+    image: "/img/garmine-2.jpeg",
+    category: "chartplotters",
+    rating: 4.7,
+    brand: "Garmin",
+  },
+  {
+    id: 7,
+    name: "GPSMAP 78s",
+    description:
+      "Waterproof handheld GPS with a high-sensitivity receiver and worldwide basemap.",
+    price: 169.99,
+    image: "/img/garmine-3.jpeg",
+    category: "chartplotters",
+    rating: 4.4,
+    brand: "Garmin",
+  },
+  {
+    id: 8,
+    name: "GPSMAP 86i",
+    description:
+      "Handheld GPS with inReach satellite communication, marine charts, and built-in Wi-Fi.",
+    price: 549.99,
+    image: "/img/garmine-4.jpeg",
+    category: "chartplotters",
+    rating: 4.5,
+    brand: "Garmin",
+  },
+  {
+    id: 9,
+    name: "GPSMAP 65",
+    description:
+      "Handheld GPS with multi-band technology and expanded satellite support.",
+    price: 329.99,
+    image: "/img/garmine-1.jpeg",
+    category: "chartplotters",
+    rating: 4.8,
+    brand: "Garmin",
+  },
+  {
+    id: 10,
+    name: "GPSMAP 923xsv",
+    description:
+      "9-inch touchscreen combo with built-in sonar, worldwide basemap, and BlueChart g3 charts.",
+    price: 1249.99,
+    image: "/img/garmine-2.jpeg",
+    category: "chartplotters",
+    rating: 4.6,
+    brand: "Garmin",
+  },
+  {
+    id: 11,
+    name: "GPSMAP 1223",
+    description:
+      "12-inch chartplotter with high-resolution touchscreen display and NMEA 2000 connectivity.",
+    price: 2099.99,
+    image: "/img/garmine-3.jpeg",
+    category: "chartplotters",
+    rating: 4.9,
+    brand: "Garmin",
+  },
+  {
+    id: 12,
+    name: "GPSMAP 1222",
+    description:
+      "12-inch combination GPS/Fishfinder with preloaded worldwide basemap and high-sensitivity receiver.",
+    price: 1399.99,
+    image: "/img/garmine-4.jpeg",
+    category: "chartplotters",
+    rating: 4.7,
+    brand: "Garmin",
+  },
+  {
+    id: 13,
+    name: "GPSMAP 723",
+    description:
+      "7-inch touchscreen chartplotter with high-resolution display and NMEA 2000 connectivity.",
+    price: 849.99,
+    image: "/img/garmine-1.jpeg",
+    category: "chartplotters",
+    rating: 4.8,
+    brand: "Garmin",
+  },
+  {
+    id: 14,
+    name: "GPSMAP 1042xsv",
+    description:
+      "10-inch keyed chartplotter with preloaded maps and built-in sonar.",
+    price: 1199.99,
+    image: "/img/garmine-2.jpeg",
+    category: "chartplotters",
+    rating: 4.6,
+    brand: "Garmin",
+  },
+  {
+    id: 15,
+    name: "GPSMAP 1242xsv",
+    description:
+      "12-inch keyed chartplotter with preloaded BlueChart g3 maps and built-in sonar.",
+    price: 1499.99,
+    image: "/img/garmine-3.jpeg",
+    category: "chartplotters",
+    rating: 4.9,
+    brand: "Garmin",
+  },
+  {
+    id: 16,
+    name: "GPSMAP 942xs",
+    description:
+      "9-inch chartplotter with preloaded maps, built-in sonar, and high-resolution display.",
+    price: 999.99,
+    image: "/img/garmine-4.jpeg",
+    category: "chartplotters",
+    rating: 4.7,
+    brand: "Garmin",
+  },
+  {
+    id: 17,
+    name: "GPSMAP 8410xsv",
+    description:
+      "10-inch touchscreen chartplotter with built-in sonar, preloaded BlueChart g3, and radar support.",
+    price: 1899.99,
+    image: "/img/garmine-1.jpeg",
+    category: "chartplotters",
+    rating: 4.8,
+    brand: "Garmin",
+  },
+  {
+    id: 18,
+    name: "GPSMAP 8610xsv",
+    description:
+      "10-inch chartplotter with full network support, built-in sonar, and preloaded maps.",
+    price: 2199.99,
+    image: "/img/garmine-2.jpeg",
+    category: "chartplotters",
+    rating: 4.9,
+    brand: "Garmin",
+  },
+  {
+    id: 19,
+    name: "GPSMAP 1022xsv",
+    description:
+      "10-inch chartplotter with preloaded worldwide basemap, sonar, and NMEA 2000 connectivity.",
+    price: 1299.99,
+    image: "/img/garmine-3.jpeg",
+    category: "chartplotters",
+    rating: 4.7,
+    brand: "Garmin",
+  },
+  {
+    id: 20,
+    name: "GPSMAP 1022",
+    description:
+      "10-inch chartplotter with high-resolution display, NMEA 2000, and built-in sonar.",
+    price: 999.99,
+    image: "/img/garmine-4.jpeg",
+    category: "chartplotters",
+    rating: 4.6,
+    brand: "Garmin",
+  },
+  {
+    id: 21,
+    name: "GPSMAP 723xsv",
+    description:
+      "7-inch chartplotter with sonar, preloaded BlueChart g3, and high-resolution display.",
+    price: 949.99,
+    image: "/img/garmine-1.jpeg",
+    category: "chartplotters",
+    rating: 4.8,
+    brand: "Garmin",
+  },
+  {
+    id: 22,
+    name: "GPSMAP 722",
+    description:
+      "7-inch chartplotter with preloaded worldwide basemap, NMEA 2000 connectivity, and built-in sonar.",
+    price: 799.99,
+    image: "/img/garmine-2.jpeg",
+    category: "chartplotters",
+    rating: 4.7,
+    brand: "Garmin",
+  },
+  {
+    id: 23,
+    name: "GPSMAP 8407xsv",
+    description:
+      "7-inch chartplotter with built-in sonar, radar support, and preloaded BlueChart g3.",
+    price: 1299.99,
+    image: "/img/garmine-3.jpeg",
+    category: "chartplotters",
+    rating: 4.9,
+    brand: "Garmin",
+  },
+  {
+    id: 24,
+    name: "Garmin GPSMAP 8407",
+    description:
+      "7-inch chartplotter with full network support, NMEA 2000 connectivity, and high-resolution display.",
+    price: 1199.99,
+    image: "/img/garmine-4.jpeg",
+    category: "chartplotters",
+    rating: 4.8,
+    brand: "Garmin",
+  },
+  {
+    id: 25,
+
+    name: "Garmin GPSMAP 8412xsv",
+    description:
+      "12-inch chartplotter with sonar, preloaded BlueChart g3, and radar support.",
+    price: 2599.99,
+    image: "/img/garmine-1.jpeg",
+    category: "chartplotters",
+    rating: 4.8,
+    brand: "Garmin",
+  },
+  {
+    id: 26,
+    name: "Garmin GPSMAP 8416xsv",
+    description:
+      "16-inch touchscreen chartplotter with built-in sonar, radar support, and preloaded BlueChart g3.",
+    price: 4499.99,
+    image: "/img/garmine-2.jpeg",
+    category: "chartplotters",
+    rating: 4.8,
+    brand: "Garmin",
+  },
+];
