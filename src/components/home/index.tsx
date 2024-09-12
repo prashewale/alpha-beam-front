@@ -11,6 +11,21 @@ import TestimonialSection from "./testimonial-section";
 import CounterClient from "./counter-client";
 import FeedbackSection from "../common/feedback-section";
 import Footer from "../common/footer";
+import { useState } from "react";
+import ModalPopup from "../common/modal-popup";
+import CouponModal from "./coupon-modal";
+
+/**
+ * The main entry point for the home page.
+ *
+ * This component renders all the major sections of the home page, including the
+ * hero section, banner section, spotlight section, logo carousel, category
+ * banner section, product best banner section, video banner section,
+ * testimonials section, testimonial section, counter client section, and the
+ * feedback section.
+ *
+ * @returns {JSX.Element} The JSX element representing the home page.
+ */
 
 const Home = () => {
   const bestSellerProducts = [
@@ -29,6 +44,7 @@ const Home = () => {
   ];
   return (
     <>
+      <CouponModal />
       <Header />
       {/* <Features /> */}
       <HeroSection />

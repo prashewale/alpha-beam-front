@@ -1,9 +1,9 @@
-import { useState } from "react";
-import Select from "react-select";
-import Pagination from "./pagination";
-import { productsList } from "../../data/products";
-import { Product } from "../../types";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import Select from 'react-select';
+import Pagination from './pagination';
+import { productsList } from '../../data/products';
+import { Product } from '../../types';
+import { useNavigate } from 'react-router-dom';
 
 type ProductShopProps = {
   category?: string | null;
@@ -13,29 +13,29 @@ const ProductShop = ({ category }: ProductShopProps) => {
   const navigate = useNavigate();
 
   const sortOptions = [
-    { value: "", label: "All" },
-    { value: "best-seller", label: "Best Seller" },
-    { value: "high-price", label: "High Price" },
-    { value: "low-price", label: "Low Price" },
+    { value: '', label: 'All' },
+    { value: 'best-seller', label: 'Best Seller' },
+    { value: 'high-price', label: 'High Price' },
+    { value: 'low-price', label: 'Low Price' },
   ];
   const [sortOption, setSortOption] = useState<{
     value: string;
     label: string;
-  } | null>({ value: "", label: "All" });
+  } | null>({ value: '', label: 'All' });
 
   const [brandFilter, setBrandFilter] = useState<{
     value: string;
     label: string;
-  } | null>({ value: "", label: "All" });
+  } | null>({ value: '', label: 'All' });
 
   const [products] = useState(productsList);
 
   const getProductsSorted = (productsList: Product[]) => {
-    if (sortOption?.value === "best-seller") {
+    if (sortOption?.value === 'best-seller') {
       return [...productsList].sort((a, b) => b.rating - a.rating);
-    } else if (sortOption?.value === "high-price") {
+    } else if (sortOption?.value === 'high-price') {
       return [...productsList].sort((a, b) => b.price - a.price);
-    } else if (sortOption?.value === "low-price") {
+    } else if (sortOption?.value === 'low-price') {
       return [...productsList].sort((a, b) => a.price - b.price);
     }
     return productsList;
@@ -65,7 +65,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
   const productsOnPage = productsToShow.slice(startIndex, endIndex);
 
   const brandFilters = [
-    { value: "", label: "All" },
+    { value: '', label: 'All' },
     ...Array.from(new Set(productsToShow.map((product) => product.brand))).map(
       (brand: string) => ({ value: brand.toLowerCase(), label: brand })
     ),
@@ -81,13 +81,13 @@ const ProductShop = ({ category }: ProductShopProps) => {
         <div className="container">
           <div className="row">
             <h2>Highlighted best-in-class search results</h2>
-            <div className="col-lg-12 order-1 order-lg-2">
+            <div className="col-lg-12 order-lg-2 order-1">
               <div className="product-show-option">
                 <div className="row">
                   <div className="col-lg-7 col-md-7">
                     <div className="select-option">
                       <label className="btn btn-light">Filter</label>
-                      <span style={{ minWidth: "150px" }}>
+                      <span style={{ minWidth: '150px' }}>
                         <Select
                           defaultValue={sortOption}
                           onChange={setSortOption}
@@ -96,7 +96,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
                       </span>
 
                       <label className="btn btn-light">Brands</label>
-                      <span style={{ minWidth: "150px" }}>
+                      <span style={{ minWidth: '150px' }}>
                         <Select
                           defaultValue={brandFilter}
                           onChange={setBrandFilter}
@@ -107,7 +107,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
                   </div>
                   <div className="col-lg-5 col-md-5 text-right">
                     <p>
-                      Show {startIndex + 1}-{endIndex} of{" "}
+                      Show {startIndex + 1}-{endIndex} of{' '}
                       {productsToShow.length} Products
                     </p>
                   </div>
@@ -116,13 +116,12 @@ const ProductShop = ({ category }: ProductShopProps) => {
               <div className="product-list shoplist">
                 <div className="row">
                   {productsOnPage.map((product) => (
-                    <div
-                      key={product.id}
-                      className="col-lg-6 col-sm-6"
-                      onClick={() => navigate(`/products/${product.id}`)}
-                    >
+                    <div key={product.id} className="col-lg-6 col-sm-6">
                       <div className="product-item">
-                        <div className="pi-pic">
+                        <div
+                          className="pi-pic"
+                          onClick={() => navigate(`/products/${product.id}`)}
+                        >
                           <img src={product.image} alt={product.name} />
                           <div className="sale pp-sale">Sale</div>
                           <div className="icon">
@@ -147,11 +146,11 @@ const ProductShop = ({ category }: ProductShopProps) => {
                           </ul>
                         </div>
                         <div className="pi-text">
-                          <a href="#">
+                          <a href={`/products/${product.id}`}>
                             <h5>{product.name}</h5>
                             <p>{product.description}</p>
                           </a>
-                          <div className="product-price">{product.price}</div>
+                          <div className="product-price">£{product.price}</div>
                           <div className="action">
                             <a
                               href="#"

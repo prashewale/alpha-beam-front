@@ -1,0 +1,66 @@
+.coupon-modal .modal-content {
+  background-color: #fff;
+}
+.coupon-modal .modal-body {
+  padding: 0;
+}
+.coupon-modal .modal-content .content-block {
+  padding: 10px 10px 10px 20px;
+  margin: auto;
+  display: table-cell;
+  vertical-align: middle;
+  height: 70vh;
+}
+.pl-0 {
+  padding-left: 0;
+}
+.coupon-modal .modal-content h2 {
+  color: #1d8aca;
+  font-size: 44px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.coupon-modal .modal-content h6 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.coupon-modal .modal-content p:last-child {
+  color: #171717;
+}
+.coupon-modal .modal-content .get-btn {
+  background-color: #1d8aca;
+  color: #fff;
+  margin: 10px;
+  width: 200px;
+}
+.coupon-modal .modal-header {
+  position: absolute;
+  /* left: 0; */
+  right: 1%;
+  top: 1%;
+}
+.coupon-modal .close {
+  background-color: #252525 !important;
+  color: #fff !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  font-size: 14px !important;
+  padding: 2px;
+  margin: 3px 0 0 5px !important;
+
+  z-index: 1000;
+}
+.coupon-modal .modal-content input {
+  text-align: center;
+  background-color: #f1f1f1;
+  border: 1px solid #f1f1f1;
+  padding: 10px;
+  width: 200px;
+}
+@media (min-width: 992px) {
+  .modal-lg,
+  .modal-xl {
+    max-width: 800px;
+  }
+}

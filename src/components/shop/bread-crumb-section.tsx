@@ -1,30 +1,39 @@
 import { categories } from "../../data/categories";
+import { BreadCrumbItem } from "../../types";
+import cn from "classnames";
 
 type BreadCrumbSectionProps = {
-  category: string;
+  children?: React.ReactNode;
+  breadCrumbItems: BreadCrumbItem[];
+  style?: React.CSSProperties;
+  className?: string;
 };
-const BreadCrumbSection = ({ category }: BreadCrumbSectionProps) => {
-  const categoryInfo = categories.find(
-    (x) => x.value.toLowerCase() === category.toLowerCase()
-  );
-
-  if (!categoryInfo) return null;
-
+const BreadCrumbSection = ({
+  children,
+  breadCrumbItems,
+  style,
+  className,
+}: BreadCrumbSectionProps) => {
   return (
-    <div className="breacrumb-section breacrumb-section-product ">
-      <div className="container bk-black">
+    <div className={cn("breacrumb-section", className)} style={style}>
+      <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="breadcrumb-text">
-              <a href="#">
-                <i className="fa fa-home"></i> Home{" "}
-              </a>
-              <span>Shop</span>
+              {breadCrumbItems.map((item, index) => {
+                if (index < breadCrumbItems.length - 1) {
+                  return (
+                    <a href={item.url} key={index}>
+                      <i className={item.icon}></i>
+                      <span className="pl-2">{item.title}</span>
+                    </a>
+                  );
+                } else {
+                  return <span key={index}>{item.title}</span>;
+                }
+              })}
             </div>
-            <div className="content">
-              <h2>{categoryInfo.name}</h2>
-              <p>{categoryInfo.description}</p>
-            </div>
+            {children}
           </div>
         </div>
       </div>

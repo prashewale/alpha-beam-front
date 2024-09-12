@@ -2780,7 +2780,7 @@ About us
 }
 
 .product-details .quantity .pro-qty {
-  width: 123px;
+  width: 80px;
   height: 46px;
   border: 2px solid #ebebeb;
   padding: 0 15px;
@@ -3209,11 +3209,12 @@ About us
 }
 
 .cart-table table tr td.qua-col .pro-qty {
-  width: 123px;
+  width: 80px;
   height: 46px;
   border: 2px solid #ebebeb;
   padding: 0 15px;
   float: left;
+  margin: 0 10px;
 }
 
 .cart-table table tr td.qua-col .pro-qty .qtybtn {
@@ -4786,4 +4787,19 @@ About us
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+
+.btn-link {
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+.btn-link:focus {
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+.btn-link:hover {
+  text-decoration: none !important;
+  box-shadow: none !important;
 }

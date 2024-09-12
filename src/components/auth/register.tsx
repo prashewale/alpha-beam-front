@@ -1,57 +1,129 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "../common/header";
-import useAuth from "../../hooks/useAuth";
-import { RegisterRequest } from "../../types";
+import { useNavigate } from 'react-router-dom';
+import Header from '@/components/common/header';
+import { LoginRequest, RegisterRequest, Status } from '@/types';
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+import { useToast } from '@/hooks/use-toast';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { SignupValidation } from '@/lib/validation';
+import {
+  useCreateUserAccount,
+  useSignInAccount,
+} from '@/lib/react-query/queries';
+import useSignIn from 'react-auth-kit/hooks/useSignIn';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form';
+import { Input } from '../ui/input';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select';
+import { Button } from '../ui/button';
+import Loader from '../common/Loader';
 
-export default function Register() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [gender, setGender] = useState("");
-  const [mobile, setMobile] = useState("");
+type RegisterProps = {
+  redirectPath?: string;
+};
 
-  const [errorMessage, setErrorMessage] = useState("");
-
+export default function Register({ redirectPath }: RegisterProps) {
+  const { toast } = useToast();
   const navigate = useNavigate();
-  const auth = useAuth();
-  if (!auth) return null;
+  const authUser = useAuthUser();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!password) {
-      setErrorMessage("Please enter a password");
-      return;
-    }
+  const form = useForm<z.infer<typeof SignupValidation>>({
+    resolver: zodResolver(SignupValidation),
+    defaultValues: {
+      username: '',
+      password: '',
+      confirmPassword: '',
+      email: '',
+      firstName: '',
+      lastName: '',
+      city: '',
+      country: '',
+      gender: '',
+      mobile: '',
+    },
+  });
 
-    if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match");
-      return;
-    }
+  // Queries
+  const { mutateAsync: createUserAccount, isPending: isCreatingAccount } =
+    useCreateUserAccount();
 
-    const registerRequest: RegisterRequest = {
-      username,
-      password,
-      confirmPassword,
-      email,
-      firstName,
-      lastName,
-      city,
-      country,
-      gender,
-      mobile,
-    };
+  const { mutateAsync: signInAccount, isPending: isSigningInUser } =
+    useSignInAccount();
 
-    const res = await auth.register(registerRequest);
-    if (res) {
-      navigate("/login");
-    } else {
-      alert("Registration failed");
+  const signIn = useSignIn();
+
+  const handleSignup = async (newUser: z.infer<typeof SignupValidation>) => {
+    try {
+      const request: RegisterRequest = {
+        ...newUser,
+      };
+      const res = await createUserAccount(request);
+
+      if (!res) {
+        toast({ title: 'Sign up failed. Please try again.' });
+        return;
+      }
+
+      if (res.status !== Status.SUCCESS) {
+        toast({ title: res.errors.join(', ') });
+        return;
+      }
+
+      const loginRequest: LoginRequest = {
+        username: newUser.username,
+        password: newUser.password,
+        rememberMe: true,
+      };
+      const signInResponse = await signInAccount(loginRequest);
+
+      if (
+        !signInResponse ||
+        signInResponse.status !== Status.SUCCESS ||
+        !signInResponse.data
+      ) {
+        toast({
+          title: 'Something went wrong. Please login your new account',
+        });
+
+        navigate('/login');
+
+        return;
+      }
+
+      const { accessToken, refreshToken, user } = signInResponse.data;
+
+      const isSignedIn = signIn({
+        auth: {
+          token: accessToken,
+        },
+        userState: user,
+        refresh: refreshToken,
+      });
+
+      if (!isSignedIn) {
+        toast({ title: 'Login failed. Please try again.' });
+        return;
+      }
+
+      form.reset();
+      const path = redirectPath || '/';
+      navigate(path);
+    } catch (error) {
+      console.log({ error });
     }
   };
 
@@ -60,10 +132,11 @@ export default function Register() {
       <Header />
       <div className="container">
         <br />
+        {/* 
         <div
           className={
-            "alert alert-danger alert-dismissible fade" +
-            (errorMessage ? " show" : "")
+            'alert alert-danger alert-dismissible fade' +
+            (errorMessage ? ' show' : '')
           }
           role="alert"
         >
@@ -76,169 +149,300 @@ export default function Register() {
           >
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>
+        </div> */}
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card">
               <header className="card-header">
                 <a
                   href="/login"
-                  className="float-right btn btn-outline-primary mt-1"
+                  className="btn btn-outline-primary float-right mt-1"
                 >
                   Log in
                 </a>
                 <h4 className="card-title mt-2">Sign up</h4>
               </header>
-              <article className="card-body">
-                <form data-bitwarden-watching="1" onSubmit={handleSubmit}>
-                  <div className="form-row">
-                    <div className="col form-group">
-                      <label>First name </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder=""
-                        name="first_name"
-                        onChange={(e) => setFirstName(e.target.value)}
-                        value={firstName}
-                      />
+              <Form {...form}>
+                <article className="card-body">
+                  <form
+                    data-bitwarden-watching="1"
+                    onSubmit={form.handleSubmit(handleSignup)}
+                  >
+                    <div className="form-row">
+                      <div className="col form-group">
+                        <FormField
+                          control={form.control}
+                          name="firstName"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="shad-form_label">
+                                First Name
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="text"
+                                  className="shad-input form-control"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      <div className="col form-group">
+                        <FormField
+                          control={form.control}
+                          name="lastName"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="shad-form_label">
+                                Last Name
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="text"
+                                  className="shad-input form-control"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
                     </div>
-                    <div className="col form-group">
-                      <label>Last name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder=" "
-                        name="last_name"
-                        onChange={(e) => setLastName(e.target.value)}
-                        value={lastName}
+                    <div className="form-group">
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="shad-form_label">
+                              Email
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                type="text"
+                                className="shad-input form-control"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
+                      <small className="form-text text-muted">
+                        We'll never share your email with anyone else.
+                      </small>
                     </div>
-                  </div>
-                  <div className="form-group">
-                    <label>Email address</label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder=""
-                      name="email"
-                      onChange={(e) => setEmail(e.target.value)}
-                      value={email}
-                    />
-                    <small className="form-text text-muted">
-                      We'll never share your email with anyone else.
-                    </small>
-                  </div>
 
-                  <div className="form-group">
-                    <label>Username</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder=""
-                      name="username"
-                      onChange={(e) => setUsername(e.target.value)}
-                      value={username}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label>Moblie</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder=""
-                      name="mobile"
-                      onChange={(e) => setMobile(e.target.value)}
-                      value={mobile}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-check form-check-inline">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="gender"
-                        onChange={(e) => setGender(e.target.value)}
-                        value="M"
-                        checked={gender === "M"}
-                      />
-                      <span className="form-check-label"> Male </span>
-                    </label>
-                    <label className="form-check form-check-inline">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="gender"
-                        value="F"
-                        onChange={(e) => setGender(e.target.value)}
-                        checked={gender === "F"}
-                      />
-                      <span className="form-check-label"> Female</span>
-                    </label>
-                  </div>
-                  <div className="form-row">
-                    <div className="form-group col-md-6">
-                      <label>City</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder=""
-                        name="city"
-                        onChange={(e) => setCity(e.target.value)}
-                        value={city}
+                    <div className="form-group">
+                      <FormField
+                        control={form.control}
+                        name="username"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="shad-form_label">
+                              Username
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                type="text"
+                                className="shad-input form-control"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
                     </div>
-                    <div className="form-group col-md-6">
-                      <label>Country</label>
-                      <select
-                        id="inputState"
-                        className="form-control"
-                        name="country"
-                        defaultValue={"in"}
-                        onChange={(e) => setCountry(e.target.value)}
-                        value={country}
+
+                    <div className="form-group">
+                      <FormField
+                        control={form.control}
+                        name="mobile"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="shad-form_label">
+                              Mobile
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                type="text"
+                                className="shad-input form-control"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <FormField
+                        control={form.control}
+                        name="gender"
+                        render={({ field }) => (
+                          <FormItem className="space-y-3">
+                            <FormLabel>Gender</FormLabel>
+                            <FormControl>
+                              <RadioGroup
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                                className="flex space-x-1"
+                              >
+                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                  <FormControl>
+                                    <RadioGroupItem value="M" />
+                                  </FormControl>
+                                  <FormLabel className="font-normal">
+                                    Male
+                                  </FormLabel>
+                                </FormItem>
+                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                  <FormControl>
+                                    <RadioGroupItem value="F" />
+                                  </FormControl>
+                                  <FormLabel className="font-normal">
+                                    Female
+                                  </FormLabel>
+                                </FormItem>
+                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                  <FormControl>
+                                    <RadioGroupItem value="O" />
+                                  </FormControl>
+                                  <FormLabel className="font-normal">
+                                    Other
+                                  </FormLabel>
+                                </FormItem>
+                              </RadioGroup>
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <div className="form-row">
+                      <div className="form-group col-md-6">
+                        <FormField
+                          control={form.control}
+                          name="city"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="shad-form_label">
+                                City
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="text"
+                                  className="shad-input"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      <div className="form-group col-md-6">
+                        <FormField
+                          control={form.control}
+                          name="country"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="shad-form_label">
+                                Country
+                              </FormLabel>
+                              <Select
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                              >
+                                <FormControl>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select a country" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  <SelectItem value="in">India</SelectItem>
+                                  <SelectItem value="us">
+                                    United States
+                                  </SelectItem>
+                                  <SelectItem value="uk">
+                                    United Kingdom
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <FormField
+                        control={form.control}
+                        name="password"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="shad-form_label">
+                              Password
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                type="password"
+                                className="shad-input"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <FormField
+                        control={form.control}
+                        name="confirmPassword"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="shad-form_label">
+                              Confirm Password
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                type="password"
+                                className="shad-input"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <Button
+                        type="submit"
+                        className="shad-button_primary w-full"
                       >
-                        <option> Choose...</option>
-                        <option value="uz">Uzbekistan</option>
-                        <option value="ru">Russia</option>
-                        <option value="us">United States</option>
-                        <option value="in">India</option>
-                        <option value="af">Afganistan</option>
-                      </select>
+                        {isCreatingAccount || isSigningInUser ? (
+                          <div className="flex-center gap-2">
+                            <Loader /> Loading...
+                          </div>
+                        ) : (
+                          'Sign Up'
+                        )}
+                      </Button>
                     </div>
-                  </div>
-                  <div className="form-group">
-                    <label>Create password</label>
-                    <input
-                      className="form-control"
-                      type="password"
-                      name="password"
-                      onChange={(e) => setPassword(e.target.value)}
-                      value={password}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Confirm password</label>
-                    <input
-                      className="form-control"
-                      type="password"
-                      name="confirm_password"
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      value={confirmPassword}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <button type="submit" className="btn btn-primary btn-block">
-                      Register
-                    </button>
-                  </div>
-                  <small className="text-muted">
-                    By clicking the 'Sign Up' button, you confirm that you
-                    accept our <br /> Terms of use and Privacy Policy.
-                  </small>
-                </form>
-              </article>
+                    <small className="text-muted">
+                      By clicking the 'Sign Up' button, you confirm that you
+                      accept our <br /> Terms of use and Privacy Policy.
+                    </small>
+                  </form>
+                </article>
+              </Form>
               <div className="border-top card-body text-center">
                 Have an account? <a href="/login">Log In</a>
               </div>

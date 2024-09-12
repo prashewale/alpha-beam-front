@@ -1,18 +1,18 @@
-import { configureLoginCookies, parseCookie } from "../utils";
-import axios from "axios";
+import { configureLoginCookies, parseCookie } from '@/lib/utilities';
+import axios from 'axios';
 
-import axiosRetry from "axios-retry";
-import env from "../config";
+import axiosRetry from 'axios-retry';
+import env from '../../config';
 
 // Create an Axios instance with default settings
 const axiosInstance = axios.create({
   timeout: 20000,
   headers: {
-    "User-Agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+    'User-Agent':
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
   },
   baseURL: env.VITE_SERVER_URL,
-  //withCredentials: true,
+  //   withCredentials: true,
 });
 
 axiosRetry(axiosInstance, {
@@ -30,7 +30,7 @@ let _cookies: string[] = [];
 axiosInstance.interceptors.request.use(
   (config) => {
     // Set the cookie in the header
-    config.headers["Cookie"] = _cookies.join(";");
+    config.headers['Cookie'] = _cookies.join(';');
 
     return config;
   },
@@ -42,7 +42,7 @@ axiosInstance.interceptors.request.use(
 // Response interceptor
 axiosInstance.interceptors.response.use(
   async (response) => {
-    const cookieHeader = response.headers["set-cookie"];
+    const cookieHeader = response.headers['set-cookie'];
     if (cookieHeader) {
       _cookies = [];
       cookieHeader.forEach((c) => {
@@ -58,11 +58,11 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     if (error.response) {
-      console.error("Backend error:", error.response.data);
+      console.error('Backend error:', error.response.data);
     } else if (error.request) {
-      console.error("No response from server:", error.request);
+      console.error('No response from server:', error.request);
     } else {
-      console.error("Request error:", error.message);
+      console.error('Request error:', error.message);
     }
     return Promise.reject(error);
   }

@@ -1,12 +1,22 @@
-import { useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth";
-import { Cart, User } from "../../types";
-import { categories } from "../../data/categories";
-import { useCart } from "../../hooks/useCart";
-import { productsList } from "../../data/products";
-import { officeLocations } from "../../data/office-locations";
+import { Cart, User } from '../../types';
+import { categories } from '../../data/categories';
+import { useCart } from '../../hooks/useCart';
+import { productsList } from '../../data/products';
+import { officeLocations } from '../../data/office-locations';
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+import useSignOut from 'react-auth-kit/hooks/useSignOut';
+import { useSignOutAccount } from '@/lib/react-query/queries';
+import { useNavigate } from 'react-router-dom';
+
 const Header = () => {
-  const { getUser, logout } = useAuth();
+  const authUser = useAuthUser<User>();
+  const signOut = useSignOut();
+
+  const navigate = useNavigate();
+
+  // Queries
+  const { mutateAsync: signOutAccount, isPending: isSigningOut } =
+    useSignOutAccount();
 
   const { cart, removeFromCart } = useCart();
 
@@ -28,16 +38,6 @@ const Header = () => {
     (total, product) => total + product.price * product.quantity,
     0
   );
-
-  const [user, setUser] = useState<User | undefined>(undefined);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const user = await getUser();
-      setUser(user);
-    };
-    fetchUser();
-  }, [getUser]);
 
   return (
     <header className="header-section">
@@ -92,7 +92,7 @@ const Header = () => {
                       </li>
                       <li>
                         <a href="#">SUBSIDARY</a>
-                        <ul className="dropdown" style={{ display: "none" }}>
+                        <ul className="dropdown" style={{ display: 'none' }}>
                           <li>
                             <a href="blog-details.html">Blog Details</a>
                           </li>
@@ -126,7 +126,7 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-2 text-right col-md-2">
+            <div className="col-lg-2 col-md-2 text-right">
               <ul className="nav-right">
                 <li className="cart-icon">
                   <a href="#">
@@ -136,8 +136,8 @@ const Header = () => {
                     <div className="select-items">
                       <table>
                         <tbody>
-                          {officeLocations.map((location) => (
-                            <tr>
+                          {officeLocations.map((location, index) => (
+                            <tr key={index}>
                               <td className="si-pic">
                                 <i
                                   className={location.icon}
@@ -158,7 +158,7 @@ const Header = () => {
                   </div>
                 </li>
                 <li className="cart-icon">
-                  {user ? (
+                  {authUser ? (
                     <>
                       <a href="#">
                         <i className="fa fa-user"></i>
@@ -167,7 +167,10 @@ const Header = () => {
                         <div className="select-items">
                           <table>
                             <tbody>
-                              <tr>
+                              <tr
+                                onClick={() => navigate('/admin/products')}
+                                className="cursor-pointer"
+                              >
                                 <td className="si-pic">
                                   <img src="/img/select-product-1.jpg" />
                                 </td>
@@ -177,16 +180,21 @@ const Header = () => {
                                       Welcome
                                     </span>
                                     <h6>
-                                      {user.firstName + " " + user.lastName}{" "}
+                                      {authUser.firstName +
+                                        ' ' +
+                                        authUser.lastName}{' '}
                                     </h6>
                                   </div>
                                 </td>
                                 <td className="si-close">
                                   <button
-                                    onClick={logout}
+                                    onClick={async () => {
+                                      signOut();
+                                      await signOutAccount();
+                                    }}
                                     className="btn btn-outline-danger btn-sm"
                                   >
-                                    {" "}
+                                    {' '}
                                     Logout
                                   </button>
                                 </td>
@@ -212,21 +220,28 @@ const Header = () => {
                     {productsFromCart.length > 0 ? (
                       <span>{productsFromCart.length}</span>
                     ) : (
-                      ""
+                      ''
                     )}
                   </a>
                   <div className="cart-hover">
                     <div className="select-items">
                       <table>
                         <tbody>
-                          {productsFromCart.map((cartLine) => (
-                            <tr>
-                              <td className="si-pic" style={{ width: "60px" }}>
+                          {productsFromCart.map((cartLine, index) => (
+                            <tr key={index}>
+                              <td
+                                className="si-pic"
+                                style={{
+                                  width: '60px',
+                                }}
+                              >
                                 <img src={cartLine.image} />
                               </td>
                               <td
                                 className="si-text"
-                                style={{ textWrap: "nowrap" }}
+                                style={{
+                                  textWrap: 'nowrap',
+                                }}
                               >
                                 <div className="product-selected">
                                   <p>
@@ -256,10 +271,13 @@ const Header = () => {
                           <h5>£{cartTotalPrice}</h5>
                         </div>
                         <div className="select-button">
-                          <a href="#" className="primary-btn view-card">
+                          <a href="/cart" className="primary-btn view-card">
                             VIEW CART
                           </a>
-                          <a href="#" className="primary-btn checkout-btn">
+                          <a
+                            href="/checkout"
+                            className="primary-btn checkout-btn"
+                          >
                             CHECK OUT
                           </a>
                         </div>
@@ -270,7 +288,7 @@ const Header = () => {
                   </div>
                 </li>
               </ul>
-              <div id="mobile-menu-wrap" style={{ display: "none" }}></div>
+              <div id="mobile-menu-wrap" style={{ display: 'none' }}></div>
             </div>
           </div>
         </div>
@@ -278,7 +296,7 @@ const Header = () => {
       <div className="header-top">
         <div className="container">
           <div className="ht-left">
-            Free Ground Installation On Orders Above $2500*
+            Free Ground Installation On Orders Above £2500*
           </div>
           <div className="ht-right">
             Call us on <span>+974 4418 8446</span>

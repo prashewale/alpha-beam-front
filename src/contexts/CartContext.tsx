@@ -10,8 +10,9 @@ export type CartState = {
 // Define the shape of the context value
 export interface CartContextType {
   cart: CartState;
-  addToCart: (id: string, quantity: number) => void;
-  removeFromCart: (id: string) => void;
+  addToCart: (id: string, quantity?: number) => void;
+  removeFromCart: (id: string, quantity?: number) => void;
+  changeCartQuantity: (id: string, quantity?: number) => void;
 }
 
 // Create the context
@@ -27,7 +28,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
     JSON.parse(localStorage.getItem("cart") || "{}")
   );
 
-  const addToCart = (id: string, quantity: number) => {
+  const addToCart = (id: string, quantity: number = 1) => {
     setCart((prevCart) => {
       const newCart = { ...prevCart };
       newCart[id] = (prevCart[id] || 0) + quantity;
@@ -36,17 +37,44 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
     });
   };
 
-  const removeFromCart = (id: string) => {
+  const removeFromCart = (id: string, quantity: number = 1) => {
     setCart((prevCart) => {
       const newCart = { ...prevCart };
-      delete newCart[id];
+
+      if (prevCart[id] < quantity) {
+        newCart[id] = 0;
+      } else {
+        newCart[id] = prevCart[id] - quantity;
+      }
+
+      if (newCart[id] === 0) delete newCart[id];
+
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      return newCart;
+    });
+  };
+
+  /**
+   * Update the quantity of a product in the cart, or remove it if quantity is 0.
+   * @param id The ID of the product to update.
+   * @param quantity The new quantity of the product. If not provided, the product will not be updated.
+   */
+  const changeCartQuantity = (id: string, quantity?: number) => {
+    setCart((prevCart) => {
+      const newCart = { ...prevCart };
+      newCart[id] = quantity || 0;
+
+      if (newCart[id] === 0) delete newCart[id];
+
       localStorage.setItem("cart", JSON.stringify(newCart));
       return newCart;
     });
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, changeCartQuantity }}
+    >
       {children}
     </CartContext.Provider>
   );
