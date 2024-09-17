@@ -24,6 +24,9 @@
   font-size: 20px;
   margin-bottom: 10px;
 }
+.coupon-modal .modal-content .img-pop{
+height:70vh;
+}
 .coupon-modal .modal-content p:last-child {
   color: #171717;
 }

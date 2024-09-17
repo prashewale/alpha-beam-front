@@ -5,12 +5,13 @@ const TestimonialsAboutUs = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="heading-section">
-              <h2>What clients say about us?</h2>
+              <h2>Why choose us?</h2>
               <p>
                 Professionals with decades of international expertise in the
                 marine business make up our group. We value our reputation and
-                take great satisfaction in delivering dependable, excellent work
-                that is finished on schedule and within budget. round-the-clock
+                take <br />
+                great satisfaction in delivering dependable, excellent work that
+                is finished on schedule and within budget. round-the-clock
                 assistance.
               </p>
             </div>

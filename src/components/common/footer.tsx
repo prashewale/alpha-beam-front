@@ -16,8 +16,12 @@ const Footer = () => {
                   <br />
                   Saturday Thursday (8:30am - 5:00pm)
                 </li>
-                <li>Phone: +974 4418 8446</li>
-                <li>Phone: +974 4418 8447</li>
+                <li>
+                  <i className="fa fa-phone"></i> +974 4418 8446
+                </li>
+                <li>
+                  <i className="fa fa-phone"></i> +974 4418 8447
+                </li>
               </ul>
             </div>
           </div>
@@ -43,17 +47,17 @@ const Footer = () => {
                 </li>
               </ul>
               <div className="footer-social">
-                <a href="#" style={{ marginRight: "5px" }}>
+                <a href="#" style={{ marginRight: '5px' }}>
                   <i className="fa fa-facebook"></i>
                 </a>
-                <a href="#" style={{ marginRight: "5px" }}>
+                <a href="#" style={{ marginRight: '5px' }}>
                   <i className="fa fa-instagram"></i>
                 </a>
-                <a href="#" style={{ marginRight: "5px" }}>
+                <a href="#" style={{ marginRight: '5px' }}>
                   <i className="fa fa-twitter"></i>
                 </a>
                 <a href="#">
-                  <i className="fa fa-pinterest"></i>
+                  <i className="fa fa-youtube"></i>
                 </a>
               </div>
             </div>

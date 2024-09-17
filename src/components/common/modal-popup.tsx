@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import { Modal as BootstrapModal, Button } from "react-bootstrap";
+import { cn } from '@/lib/utils';
+import React, { useEffect } from 'react';
+import { Modal as BootstrapModal, Button } from 'react-bootstrap';
 
 interface ModalPopupProps {
   isOpen: boolean;
@@ -7,8 +8,9 @@ interface ModalPopupProps {
   title?: string;
   children: React.ReactNode;
   showCloseButton?: boolean;
-  closeButtonPosition?: "left" | "right";
+  closeButtonPosition?: 'left' | 'right';
   closeButtonStyle?: React.CSSProperties;
+  closeButtonClassName?: string;
   className?: string;
 }
 
@@ -19,8 +21,9 @@ const ModalPopup: React.FC<ModalPopupProps> = ({
   children,
   showCloseButton,
   closeButtonStyle,
-  closeButtonPosition = "right",
+  closeButtonPosition = 'right',
   className,
+  closeButtonClassName,
 }) => {
   useEffect(() => {
     // Bootstrap modal-specific clean up when component unmounts
@@ -43,7 +46,7 @@ const ModalPopup: React.FC<ModalPopupProps> = ({
         {title ?? <BootstrapModal.Title>{title}</BootstrapModal.Title>}
         <button
           type="button"
-          className="close"
+          className={cn('close', closeButtonClassName)}
           aria-label="Close"
           onClick={onClose}
           style={closeButtonStyle}

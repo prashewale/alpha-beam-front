@@ -1,10 +1,10 @@
-import { Carousel } from "react-responsive-carousel";
+import { Carousel } from 'react-responsive-carousel';
 
 const SpotLightSection = () => {
   return (
     <section className="women-banner spad">
       <div className="container-fluid">
-        <div className="row">
+        <div className="row spotlight">
           <div className="col-lg-12 text-center">
             <div className="section-title">
               <h2>Spotlight</h2>
@@ -70,6 +70,7 @@ const SpotLightSection = () => {
                     Lowarance <br />
                     for your sea
                   </div>
+
                   <ul>
                     <li className="quick-view btn">
                       <a href="#">Shop Now</a>
