@@ -12,7 +12,7 @@ const FeedbackSection = () => {
                 <input type="text" placeholder="Sign up with your Email" />
                 <button type="button">Enter</button>
               </form>
-              <p>
+              <p className="firstPara">
                 Get product news and promotions based on your preferences and
                 registered devices.
               </p>

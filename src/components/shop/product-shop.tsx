@@ -116,7 +116,10 @@ const ProductShop = ({ category }: ProductShopProps) => {
               <div className="product-list shoplist">
                 <div className="row">
                   {productsOnPage.map((product) => (
-                    <div key={product.id} className="col-lg-6 col-sm-6">
+                    <div
+                      key={product.id}
+                      className="col-lg-4 col-md-4 col-sm-6"
+                    >
                       <div className="product-item">
                         <div
                           className="pi-pic"
@@ -127,23 +130,6 @@ const ProductShop = ({ category }: ProductShopProps) => {
                           <div className="icon">
                             <i className="icon_heart_alt"></i>
                           </div>
-                          <ul>
-                            <li className="w-icon active">
-                              <a href="#">
-                                <i className="icon_bag_alt"></i>
-                              </a>
-                            </li>
-                            <li className="quick-view">
-                              <a href={`/products/${product.id}`}>
-                                + Quick View
-                              </a>
-                            </li>
-                            <li className="w-icon">
-                              <a href="#">
-                                <i className="fa fa-random"></i>
-                              </a>
-                            </li>
-                          </ul>
                         </div>
                         <div className="pi-text">
                           <a href={`/products/${product.id}`}>
@@ -166,7 +152,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
                             </a>
                             <a
                               href="#"
-                              className="prodt-btn border-gradient border-gradient-purple"
+                              className="prodt-btn border-gradient border-gradient-purple enquiry-btn"
                             >
                               Enquire Now
                             </a>

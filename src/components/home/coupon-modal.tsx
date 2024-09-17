@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import ModalPopup from "../common/modal-popup";
-import "./coupon-modal.css";
+import { useEffect, useState } from 'react';
+import ModalPopup from '../common/modal-popup';
+import './coupon-modal.css';
 
 const CouponModal = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -20,14 +20,14 @@ const CouponModal = () => {
         onClose={closeModal}
         showCloseButton={true}
         className="coupon-modal"
-        closeButtonStyle={{ bottom: "20px", right: "20px" }}
+        closeButtonClassName="flex justify-center items-center"
       >
         <div className="row">
-          <div className="col-md-6 pl-0">
-            <img src="img/popup-img.webp" />
+          <div className="col-md-6">
+            <img src="img/popup-img.jpg" className="img-fluid img-pop" />
           </div>
           <div className="col-md-6">
-            <div className="content-block text-center mx-auto">
+            <div className="content-block mx-auto text-center">
               <h2>15% OFF</h2>
               <h6>Just for you!</h6>
               <p>Sign Up and get your first discount now!</p>

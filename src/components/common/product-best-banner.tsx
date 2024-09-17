@@ -1,5 +1,5 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
 
 type ProductBannerProps = {
   title: string;
@@ -8,7 +8,7 @@ type ProductBannerProps = {
 
 const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
   return (
-    <section className="product-best-banner spad">
+    <section className="product-best-banner spad bg-grey">
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-12">
@@ -39,7 +39,7 @@ const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
                 <div
                   className="product-item"
                   key={index}
-                  style={{ width: "436px" }}
+                  style={{ width: '436px' }}
                 >
                   <div className="pi-pic">
                     <img src={product.imgSrc} alt={product.title} />

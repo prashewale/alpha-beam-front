@@ -1250,6 +1250,7 @@ ol {
   width: 150px;
   height: 150px;
   padding: 20px;
+  margin:0 auto;
 }
 .single-banner {
   background-color: #f6f6f6;
@@ -1411,9 +1412,16 @@ ol {
   overflow: hidden;
   position: relative;
 }
-
+.spotlight .product-item .pi-pic img {
+  min-width: 100%;
+  height:400px;
+}
 .product-item .pi-pic img {
   min-width: 100%;
+  height:200px;
+}
+.product-item .pi-text a.enquiry-btn{
+  text-wrap: nowrap;
 }
 .product-item .pi-pic .pi-title {
   color: #000;
@@ -1459,13 +1467,11 @@ ol {
   position: absolute;
   left: 0;
   bottom: 5%;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
+ 
   text-align: center;
   width: 100%;
-  background: #1a1818;
-  opacity: 0.6;
+ 
+
 }
 
 /*.product-item .pi-pic ul li {
@@ -1568,8 +1574,8 @@ ol {
 .product-item .pi-text a {
   display: block;
 }
-.shoplist .product-item .pi-pic img {
-  min-width: 400px;
+.shoplist .product-item .pi-text p{
+height:100px;
 }
 .shoplist .product-item .pi-pic {
   margin: 0 auto;
@@ -1727,9 +1733,9 @@ ol {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(8, 8, 8, 0.3);
   content: "";
-  opacity: 0;
+  opacity: 0.8;
   -webkit-transition: all 0.3s;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
@@ -1764,10 +1770,18 @@ ol {
 /*---------------------
   Latest Blog
 -----------------------*/
-
+.bg-grey{
+  background-color: #fafafa;
+}
+.btn-primary.btn-watch, .btn-primary.btn-watch:hover{
+border:2px solid #dc3232;
+border-radius: 8px;
+background-color: transparent;
+padding:5px 20px;
+}
 .latest-blog {
-  padding-top: 72px;
-  padding-bottom: 80px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .latest-blog .section-title {
@@ -1852,6 +1866,7 @@ ol {
 -----------------------*/
 .counter {
   text-align: center;
+  padding:40px 0;
 }
 .plus {
   font-size: 50px;
@@ -1878,7 +1893,7 @@ ol {
 .brand-logo .logo-item {
   /* width: 224px; */
   background-color: #f5f6f6;
-  padding: 50px 50px;
+  padding: 10px 60px;
 }
 .logo-carousel .logo-item .tablecell-inner {
   display: table-cell;
@@ -1895,6 +1910,9 @@ About us
 -----------------------*/
 .about-us {
   background-color: #fafafa;
+}
+.about-us h2{
+margin-top:30px;
 }
 .about-us img.earphone {
   width: 250px;
@@ -1928,11 +1946,16 @@ About us
 .testimonial-box {
   display: block;
   position: relative;
-  padding: 30px 20px;
-  background: #fff;
+  padding: 40px 40px;
+  background: #f5f5f5;
   border: 1px solid rgba(0, 0, 0, 0.03);
   border-radius: 5px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  
+}
+.testimonial-box p{
+  text-align: left;
+  color: #111111;
+  font-size:14px;
 }
 .user-img {
   width: 80px;
@@ -2078,11 +2101,16 @@ About us
   color: #ffffff;
   font-weight: 700;
   margin-bottom: 30px;
+  font-size:24px;
 }
-
+.newslatter-item p.firstPara {
+  margin-top:20px
+}
 .newslatter-item p {
-  color: #b2b2b2;
+  color: #fff;
   line-height: 26px;
+  margin-bottom: 0;
+  font-size:12px;
 }
 
 .newslatter-item .subscribe-form {
@@ -2093,10 +2121,14 @@ About us
   color: #b2b2b2;
   background: #fff;
   width: 100%;
-  height: 46px;
+  height: 47px;
   font-size: 16px;
   border: none;
   padding-left: 20px;
+  border-top-left-radius: 8px; /* Top-left corner */
+  border-bottom-left-radius: 8px; /* Bottom-left corner */
+  border-top-right-radius: 8px; /* No top-right corner */
+  border-bottom-right-radius: 8px; /* No bottom-right corner */
 }
 
 .newslatter-item .subscribe-form input::-webkit-input-placeholder {
@@ -2118,22 +2150,40 @@ About us
 .newslatter-item .subscribe-form input::placeholder {
   color: #b2b2b2;
 }
+.footer-social a{
+  display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px; /* Vertically align the icon */
+    text-align: center;
+    color: white;
+    background-color: #1DA1F2; /* Blue background */
+    border-radius: 50%; /* Circular shape */
+   
+    transition: background-color 0.3s ease;;
+}
 
 .newslatter-item .subscribe-form button {
   display: inline-block;
-  color: #333333;
+  color: #fff;
   background: #eb6246;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  
   border: 1px solid #eb6246;
   position: absolute;
   right: 0;
   top: 0;
-  padding: 13px 20px 12px;
+  padding: 13px 45px 12px;
   cursor: pointer;
+  border-top-left-radius: 0px; /* Top-left corner */
+  border-bottom-left-radius: 0px; /* Bottom-left corner */
+  border-top-right-radius: 8px; /* No top-right corner */
+  border-bottom-right-radius: 8px; /* No bottom-right corner */
 }
-
+.button:focus{
+  outline: none;
+}
 .copyright-reserved {
   border-top: 1px solid #303030;
   padding: 15px 0;
