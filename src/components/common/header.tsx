@@ -1,4 +1,4 @@
-import { Cart, User } from '../../types';
+import { Cart, OfficeLocation, User } from '../../types';
 import { categories } from '../../data/categories';
 import { useCart } from '../../hooks/useCart';
 import { productsList } from '../../data/products';
@@ -7,6 +7,7 @@ import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import { useSignOutAccount } from '@/lib/react-query/queries';
 import { useNavigate } from 'react-router-dom';
+import { cn } from '@/lib/utils';
 
 const Header = () => {
   const authUser = useAuthUser<User>();
@@ -132,26 +133,49 @@ const Header = () => {
                   <a href="#">
                     <i className="fa fa-map-marker" aria-hidden="true"></i>
                   </a>
-                  <div className="cart-hover">
+                  <div className="cart-hover !w-[450px]">
                     <div className="select-items">
                       <table>
                         <tbody>
-                          {officeLocations.map((location, index) => (
-                            <tr key={index}>
-                              <td className="si-pic">
-                                <i
-                                  className={location.icon}
-                                  aria-hidden="true"
-                                ></i>
-                              </td>
-                              <td className="si-text">
-                                <div className="product-selected">
-                                  <p>{location.address}</p>
-                                  <h6>{location.city}</h6>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
+                          {officeLocations.map(
+                            (location: OfficeLocation, index) => (
+                              <tr key={index}>
+                                <td className="flex gap-5">
+                                  <div className="flex cursor-pointer items-start justify-center text-sky-500">
+                                    <i
+                                      className={cn(location.icon, '!text-4xl')}
+                                      aria-hidden="true"
+                                    ></i>
+                                  </div>
+                                  <div className="flex w-full flex-col">
+                                    <span className="text-2xl font-bold">
+                                      {location.officeName}
+                                    </span>
+                                    <span className="text-base font-bold">
+                                      {location.address}
+                                    </span>
+                                    <a
+                                      href={location.googleMapLocation}
+                                      className="mt-2 text-base italic !text-sky-500 !underline underline-offset-8"
+                                    >
+                                      click to see on maps
+                                    </a>
+                                    <div className="mt-4 flex items-center justify-between">
+                                      <span className="text-lg font-semibold italic">
+                                        24 hours service
+                                      </span>
+                                      <span className="flex items-center justify-end gap-2">
+                                        <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-sky-500">
+                                          <i className="fa fa-phone !text-sky-500"></i>
+                                        </span>
+                                        <span>{location.phone}</span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            )
+                          )}
                         </tbody>
                       </table>
                     </div>

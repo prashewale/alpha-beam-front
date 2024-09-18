@@ -32,7 +32,7 @@ const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
               emulateTouch={true} // Enables touch swipe
               dynamicHeight={false}
               centerMode={true} // Centers the active slide
-              centerSlidePercentage={40} // Controls how much of the slide is shown
+              centerSlidePercentage={30} // Controls how much of the slide is shown
               showThumbs={false} // Hides the thumbnail images
             >
               {products.map((product, index) => (

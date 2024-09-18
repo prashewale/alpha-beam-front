@@ -58,7 +58,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
   const productsToShow = getProductsToShow();
 
   const [page, setPage] = useState(1);
-  const perPage = 8;
+  const perPage = 9;
   const totalPages = Math.ceil(productsToShow.length / perPage);
   const startIndex = (page - 1) * perPage;
   const endIndex = page * perPage;

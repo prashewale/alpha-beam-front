@@ -1,19 +1,20 @@
-import BannerSection from "./banner-section";
-import LogoCarousel from "./logo-carousel";
-import Header from "../common/header";
-import HeroSection from "./hero";
-import SpotLightSection from "./spotlight-section";
-import CategoryBannerSection from "./category-banner-section";
-import ProductBestBanner from "../common/product-best-banner";
-import VideoBannerSection from "../common/video-section";
-import TestimonialsAboutUs from "./testimonials-about-us";
-import TestimonialSection from "./testimonial-section";
-import CounterClient from "./counter-client";
-import FeedbackSection from "../common/feedback-section";
-import Footer from "../common/footer";
-import { useState } from "react";
-import ModalPopup from "../common/modal-popup";
-import CouponModal from "./coupon-modal";
+import BannerSection from './banner-section';
+import LogoCarousel from './logo-carousel';
+import Header from '../common/header';
+import HeroSection from './hero';
+import SpotLightSection from './spotlight-section';
+import CategoryBannerSection from './category-banner-section';
+import ProductBestBanner from '../common/product-best-banner';
+import VideoBannerSection from '../common/video-section';
+import TestimonialsAboutUs from './testimonials-about-us';
+import TestimonialSection from './testimonial-section';
+import CounterClient from './counter-client';
+import FeedbackSection from '../common/feedback-section';
+import Footer from '../common/footer';
+import { useState } from 'react';
+import ModalPopup from '../common/modal-popup';
+import CouponModal from './coupon-modal';
+import EnquirySection from './enquiry-section';
 
 /**
  * The main entry point for the home page.
@@ -30,16 +31,16 @@ import CouponModal from "./coupon-modal";
 const Home = () => {
   const bestSellerProducts = [
     {
-      imgSrc: "/img/garmine-1.jpeg",
-      title: "GPSMAP® 10x2 /12x2 Series",
+      imgSrc: '/img/garmine-1.jpeg',
+      title: 'GPSMAP® 10x2 /12x2 Series',
     },
     {
-      imgSrc: "/img/garmine-2.jpeg",
-      title: "GPSMAP® 10x2 /12x2 Series",
+      imgSrc: '/img/garmine-2.jpeg',
+      title: 'GPSMAP® 10x2 /12x2 Series',
     },
     {
-      imgSrc: "/img/garmine-4.jpeg",
-      title: "GPSMAP® 10x2 /12x2 Series",
+      imgSrc: '/img/garmine-4.jpeg',
+      title: 'GPSMAP® 10x2 /12x2 Series',
     },
   ];
   return (
@@ -51,6 +52,7 @@ const Home = () => {
       <BannerSection />
       <SpotLightSection />
       <LogoCarousel />
+      <EnquirySection />
       <CategoryBannerSection />
       <ProductBestBanner
         title="Best seller of all times"

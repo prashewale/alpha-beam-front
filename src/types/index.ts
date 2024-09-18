@@ -159,3 +159,14 @@ export type NavMenuItem = {
   route: string;
   label: string;
 };
+
+export type OfficeLocation = {
+  officeName: string;
+  city: string;
+  state: string;
+  address: string;
+  phone: string;
+  email: string;
+  icon: string;
+  googleMapLocation: string;
+};
