@@ -11,9 +11,7 @@ import {
 import { Product } from '@/types';
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDown, Edit, Eye, MoreHorizontal, Trash2 } from 'lucide-react';
-import { Navigate } from 'react-router-dom';
 import CreateUpdateProductDialog from './create-update-product';
-import { Dialog } from '@/components/ui/dialog';
 import { useState } from 'react';
 
 export const columns: ColumnDef<Product>[] = [
@@ -39,6 +37,61 @@ export const columns: ColumnDef<Product>[] = [
   //     enableSorting: false,
   //     enableHiding: false,
   //   },
+
+  {
+    id: 'actions',
+    enableHiding: false,
+    cell: ({ row }) => {
+      const product = row.original;
+      const [openUpdateProduct, setOpenUpdateProduct] = useState(false);
+
+      return (
+        <>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => setOpenUpdateProduct(true)}
+              >
+                <Edit className="mr-2 h-3.5 w-3.5 text-slate-400" />
+                Edit
+              </DropdownMenuItem>
+
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => {
+                  window.location.href = `/products/${product.id}`;
+                }}
+              >
+                <Eye className="mr-2 h-3.5 w-3.5 text-slate-400" />
+                View
+              </DropdownMenuItem>
+
+              <DropdownMenuItem className="cursor-pointer text-red-500">
+                <Trash2 className="mr-2 h-3.5 w-3.5 text-red-500" />
+                Delete
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <CreateUpdateProductDialog
+            product={product}
+            action="Update"
+            setOpen={setOpenUpdateProduct}
+            open={openUpdateProduct}
+          />
+        </>
+      );
+    },
+  },
   {
     accessorKey: 'image',
     header: '',
@@ -144,58 +197,6 @@ export const columns: ColumnDef<Product>[] = [
     },
     cell: ({ row }) => {
       return <div className="text-center">{row.getValue('brand')}</div>;
-    },
-  },
-  {
-    id: 'actions',
-    enableHiding: false,
-    cell: ({ row }) => {
-      const product = row.original;
-      const [open, setOpen] = useState(false);
-
-      return (
-        <Dialog>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-
-              <DropdownMenuSeparator />
-              <CreateUpdateProductDialog
-                product={product}
-                action="Update"
-                // setOpen={setOpen}
-                triggerNode={
-                  <DropdownMenuItem className="cursor-pointer">
-                    <Edit className="mr-2 h-3.5 w-3.5 text-slate-400" />
-                    Edit
-                  </DropdownMenuItem>
-                }
-              />
-
-              <DropdownMenuItem
-                className="cursor-pointer"
-                onClick={() => {
-                  window.location.href = `/products/${product.id}`;
-                }}
-              >
-                <Eye className="mr-2 h-3.5 w-3.5 text-slate-400" />
-                View
-              </DropdownMenuItem>
-
-              <DropdownMenuItem className="cursor-pointer text-red-500">
-                <Trash2 className="mr-2 h-3.5 w-3.5 text-red-500" />
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </Dialog>
-      );
     },
   },
 ];

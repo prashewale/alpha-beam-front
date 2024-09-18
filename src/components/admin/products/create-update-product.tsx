@@ -41,15 +41,17 @@ type CreateUpdateProductDialogProps = {
   product?: Product;
   triggerNode?: React.ReactNode;
   action: 'Create' | 'Update';
-  //   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const CreateUpdateProductDialog = ({
   product,
   triggerNode,
   action,
-  //   setOpen,
+  setOpen,
+  open,
 }: CreateUpdateProductDialogProps) => {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof ProductValidation>>({
     resolver: zodResolver(ProductValidation),
@@ -101,156 +103,142 @@ const CreateUpdateProductDialog = ({
     setOpen(false);
   };
   return (
-    <>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{triggerNode}</DialogTrigger>
       <DialogContent>
+        <DialogTitle>{product ? 'Update Product' : 'New Product'}</DialogTitle>
+        <DialogDescription></DialogDescription>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleProductAddUpdate)}>
-            <DialogHeader>
-              <DialogTitle>
-                {product ? 'Update Product' : 'New Product'}
-              </DialogTitle>
-              <DialogDescription>
-                <div className="form-group">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="shad-form_label flex justify-start">
-                          Full Name
-                        </FormLabel>
+            <div className="form-group">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="shad-form_label flex justify-start">
+                      Full Name
+                    </FormLabel>
+                    <FormControl>
+                      <Input type="text" className="shad-input" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="form-group">
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="shad-form_label flex justify-start">
+                      Description
+                    </FormLabel>
+                    <FormControl>
+                      <Textarea className="shad-input" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="form-group">
+              <FormField
+                control={form.control}
+                name="price"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="shad-form_label flex justify-start">
+                      Price
+                    </FormLabel>
+                    <FormControl>
+                      <Input type="number" className="shad-input" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="form-group">
+              <FormField
+                control={form.control}
+                name="rating"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="shad-form_label flex justify-start">
+                      Rating
+                    </FormLabel>
+                    <FormControl>
+                      <Slider
+                        min={0}
+                        defaultValue={[field.value]}
+                        max={5}
+                        step={0.1}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="form-row">
+              <div className="col-md-6">
+                <FormField
+                  control={form.control}
+                  name="brand"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="shad-form_label flex justify-start">
+                        Brand
+                      </FormLabel>
+                      <FormControl>
+                        <Input type="text" className="shad-input" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="col-md-6">
+                <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="shad-form_label flex justify-start">
+                        Country
+                      </FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
                         <FormControl>
-                          <Input
-                            type="text"
-                            className="shad-input"
-                            {...field}
-                          />
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a category" />
+                          </SelectTrigger>
                         </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <div className="form-group">
-                  <FormField
-                    control={form.control}
-                    name="description"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="shad-form_label flex justify-start">
-                          Description
-                        </FormLabel>
-                        <FormControl>
-                          <Textarea className="shad-input" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <div className="form-group">
-                  <FormField
-                    control={form.control}
-                    name="price"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="shad-form_label flex justify-start">
-                          Price
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            type="number"
-                            className="shad-input"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <div className="form-group">
-                  <FormField
-                    control={form.control}
-                    name="rating"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="shad-form_label flex justify-start">
-                          Rating
-                        </FormLabel>
-                        <FormControl>
-                          <Slider
-                            min={0}
-                            defaultValue={[5]}
-                            max={5}
-                            step={0.1}
-                            value={[field.value]} // Wrap the value in an array                              {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <div className="form-row">
-                  <div className="col-md-6">
-                    <FormField
-                      control={form.control}
-                      name="brand"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="shad-form_label flex justify-start">
-                            Brand
-                          </FormLabel>
-                          <FormControl>
-                            <Input
-                              type="text"
-                              className="shad-input"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                  <div className="col-md-6">
-                    <FormField
-                      control={form.control}
-                      name="category"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="shad-form_label flex justify-start">
-                            Country
-                          </FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                          >
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select a category" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {categories.map((category, index) => (
-                                <SelectItem key={index} value={category.value}>
-                                  {category.name}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                </div>
-              </DialogDescription>
-            </DialogHeader>
-            <DialogFooter className="mt-4 flex justify-end">
-              <Button variant="destructive" onClick={() => setOpen(false)}>
+                        <SelectContent>
+                          {categories.map((category, index) => (
+                            <SelectItem key={index} value={category.value}>
+                              {category.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <div className="mt-4 flex justify-end">
+              <Button
+                variant="destructive"
+                onClick={() => setOpen(false)}
+                type="button"
+              >
                 Cancel
               </Button>
               <Button className="shad-button_primary" type="submit">
@@ -262,11 +250,11 @@ const CreateUpdateProductDialog = ({
                   'Save'
                 )}
               </Button>
-            </DialogFooter>
+            </div>
           </form>
         </Form>
       </DialogContent>
-    </>
+    </Dialog>
   );
 };
 

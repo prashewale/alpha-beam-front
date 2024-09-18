@@ -55,6 +55,10 @@ const TestimonialSection: React.FC = () => {
           <div className="heading-section">
             <h2>What clients say about us?</h2>
           </div>
+          <div className="relative z-10 mb-[-80px]">
+            {/* <i className="fa fa-quote-left"></i> */}
+            <img src="img/icon/inverted-comma.png" className="h-32 w-auto" />
+          </div>
           <Carousel
             showArrows={false}
             showStatus={false}
@@ -87,9 +91,6 @@ const TestimonialSection: React.FC = () => {
                     />
                   )} */}
                   <div className="text pl-4">
-                    <span className="quote">
-                      <i className="fa fa-quote-left"></i>
-                    </span>
                     <p>{testimonial.quote}</p>
                     <p className="name">{testimonial.name}</p>
                     <span className="position" style={{ display: 'none' }}>
@@ -100,6 +101,13 @@ const TestimonialSection: React.FC = () => {
               </div>
             ))}
           </Carousel>
+          <div className="relative z-10 mt-[-70px] flex justify-end">
+            {/* <i className="fa fa-quote-left"></i> */}
+            <img
+              src="img/icon/inverted-comma.png"
+              className="h-32 w-auto rotate-180"
+            />
+          </div>
         </div>
       </div>
     </section>

@@ -34,6 +34,8 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/admin" element={<AdminDashboard />}>
               <Route path="products" element={<AdminProducts />} />
+              <Route path="users" element={<AdminProducts />} />
+              <Route path="orders" element={<AdminProducts />} />
             </Route>
           </Route>
           <Route path="/compare/:id" element={<CompareProduct />} />

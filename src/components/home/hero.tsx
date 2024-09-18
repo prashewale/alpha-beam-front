@@ -11,7 +11,7 @@ const Hero = () => {
         infiniteLoop={true} // Equivalent to `loop: true`
         autoPlay={true} // Equivalent to `autoplay: true`
         interval={3000} // Controls the speed of autoplay transition
-        stopOnHover={true} // Stops autoplay on hover
+        stopOnHover={false} // Stops autoplay on hover
         transitionTime={1500} // Equivalent to `smartSpeed: 1200` (in half, since Owl Carousel uses double the value in ms)
         swipeable={true} // Enables swiping
         emulateTouch={true} // Enables touch swipe
@@ -41,54 +41,26 @@ const Hero = () => {
         }
       >
         <div
-          //   className="single-hero-items"
           style={{
-            backgroundImage: `url("img/hero-1.jpg")`,
+            backgroundImage: `url("img/banner-1.jpg")`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             position: 'relative',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            height: '80vh',
             padding: '80px',
           }}
-        >
-          <div
-            className="container"
-            style={{
-              position: 'relative',
-              zIndex: 2,
-              padding: '20px',
-            }}
-          >
-            <div className="row">
-              <div className="col-lg-5">
-                <h1>
-                  Transform Maritime
-                  <span>communications to enable smooth sailing.</span>
-                </h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore
-                </p>
-                <a href="#" className="primary-btn">
-                  Shop Now
-                </a>
-                <a href="#" className="primary-btn">
-                  Enquire Now
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        ></div>
 
         <div
           //   className="single-hero-items"
           style={{
-            backgroundImage: `url("img/hero-1.jpg")`,
+            backgroundImage: `url("img/banner-2.jpg")`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            // height: "100vh",
+            height: '80vh',
             position: 'relative',
             display: 'flex',
             alignItems: 'center',
@@ -96,7 +68,7 @@ const Hero = () => {
             padding: '80px',
           }}
         >
-          <div
+          {/* <div
             className="container"
             style={{
               position: 'relative',
@@ -119,9 +91,22 @@ const Hero = () => {
                   Know more
                 </a>
               </div>
-            </div>
-          </div>
+            </div> 
+          </div>*/}
         </div>
+        <div
+          style={{
+            backgroundImage: `url("img/banner-3.jpg")`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '80vh',
+            padding: '80px',
+          }}
+        ></div>
       </Carousel>
     </section>
   );
