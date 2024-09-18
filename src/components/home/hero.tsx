@@ -1,18 +1,18 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 const Hero = () => {
   return (
-    <section className="hero-section" style={{ position: "relative" }}>
+    <section className="hero-section" style={{ position: 'relative' }}>
       <Carousel
         showArrows={true} // Equivalent to `nav: true`
         showStatus={false} // Hides the slide number
         showIndicators={false} // Equivalent to `dots: false`
         infiniteLoop={true} // Equivalent to `loop: true`
         autoPlay={true} // Equivalent to `autoplay: true`
-        interval={1200} // Controls the speed of autoplay transition
+        interval={3000} // Controls the speed of autoplay transition
         stopOnHover={true} // Stops autoplay on hover
-        transitionTime={600} // Equivalent to `smartSpeed: 1200` (in half, since Owl Carousel uses double the value in ms)
+        transitionTime={1500} // Equivalent to `smartSpeed: 1200` (in half, since Owl Carousel uses double the value in ms)
         swipeable={true} // Enables swiping
         emulateTouch={true} // Enables touch swipe
         dynamicHeight={false} // Equivalent to `autoHeight: false`
@@ -44,21 +44,21 @@ const Hero = () => {
           //   className="single-hero-items"
           style={{
             backgroundImage: `url("img/hero-1.jpg")`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "80px",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '80px',
           }}
         >
           <div
             className="container"
             style={{
-              position: "relative",
+              position: 'relative',
               zIndex: 2,
-              padding: "20px",
+              padding: '20px',
             }}
           >
             <div className="row">
@@ -86,23 +86,23 @@ const Hero = () => {
           //   className="single-hero-items"
           style={{
             backgroundImage: `url("img/hero-1.jpg")`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             // height: "100vh",
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "80px",
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '80px',
           }}
         >
           <div
             className="container"
             style={{
-              position: "relative",
+              position: 'relative',
               zIndex: 2,
               //   background: "rgba(255, 255, 255, 0.8)", // Temporary background to check visibility
-              padding: "20px",
+              padding: '20px',
             }}
           >
             <div className="row">

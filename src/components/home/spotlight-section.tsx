@@ -14,18 +14,19 @@ const SpotLightSection = () => {
             <Carousel
               showArrows={false}
               showStatus={false}
-              showIndicators={true} // Display dots for indicators
+              showIndicators={false} // Display dots for indicators
               infiniteLoop={true} // Equivalent to `loop: true`
               autoPlay={true} // Equivalent to `autoplay: true`
-              interval={1200} // Controls the speed of autoplay transition
+              interval={2000} // Controls the speed of autoplay transition
               stopOnHover={true} // Stops autoplay on hover
-              transitionTime={600} // Equivalent to `smartSpeed: 1200` (in half, since Owl Carousel uses double the value in ms)
+              transitionTime={1000} // Equivalent to `smartSpeed: 1200` (in half, since Owl Carousel uses double the value in ms)
               swipeable={true} // Enables swiping
               emulateTouch={true} // Enables touch swipe
               dynamicHeight={false}
               centerMode={true} // Centers the active slide
               centerSlidePercentage={25} // Controls how much of the slide is shown
               showThumbs={false} // Hides the thumbnail images
+
               //   renderArrowPrev={(clickHandler, hasPrev) =>
               //     hasPrev && (
               //       <button

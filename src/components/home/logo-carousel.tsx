@@ -36,7 +36,7 @@ const LogoCarousel: React.FC = () => {
                 infiniteLoop={true}
                 autoPlay={true}
                 interval={3000}
-                stopOnHover={true}
+                stopOnHover={false}
                 swipeable={true}
                 emulateTouch={true}
                 centerMode={true}
@@ -84,7 +84,7 @@ const LogoCarousel: React.FC = () => {
                 showThumbs={false}
                 className="brand-logo"
               >
-                {logos.map((logo, index) => (
+                {logos.reverse().map((logo, index) => (
                   <div
                     key={index}
                     className="logo-item"
