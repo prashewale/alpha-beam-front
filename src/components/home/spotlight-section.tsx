@@ -1,4 +1,6 @@
 import { Carousel } from 'react-responsive-carousel';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation } from 'swiper/modules';
 
 const SpotLightSection = () => {
   return (
@@ -11,6 +13,104 @@ const SpotLightSection = () => {
             </div>
           </div>
           <div className="col-lg-12">
+            <Swiper
+              navigation={true}
+              modules={[Autoplay, Navigation]}
+              className=""
+              slidesPerView={4}
+              spaceBetween={30}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              loop
+            >
+              <SwiperSlide className="product-item">
+                <div className="pi-pic">
+                  <img src="/img/products/product-1.png" alt="Product 1" />
+                  <div className="pi-title">
+                    Lowarance <br />
+                    for your sea
+                  </div>
+                  <ul>
+                    <li className="quick-view btn">
+                      <a href="#">Shop Now</a>
+                    </li>
+                  </ul>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="product-item">
+                <div className="pi-pic">
+                  <img src="/img/products/product-1.png" alt="Product 2" />
+                  <div className="pi-title">
+                    Lowarance <br />
+                    for your sea
+                  </div>
+
+                  <ul>
+                    <li className="quick-view btn">
+                      <a href="#">Shop Now</a>
+                    </li>
+                  </ul>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="product-item">
+                <div className="pi-pic">
+                  <img src="/img/products/product-1.png" alt="Product 3" />
+                  <div className="pi-title">
+                    Lowarance <br />
+                    for your sea
+                  </div>
+                  <ul>
+                    <li className="quick-view btn">
+                      <a href="#">Shop Now</a>
+                    </li>
+                  </ul>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="product-item">
+                <div className="pi-pic">
+                  <img src="/img/products/product-1.png" alt="Product 4" />
+                  <div className="pi-title">
+                    Lowarance <br />
+                    for your sea
+                  </div>
+                  <ul>
+                    <li className="quick-view btn">
+                      <a href="#">Shop Now</a>
+                    </li>
+                  </ul>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="product-item">
+                <div className="pi-pic">
+                  <img src="/img/products/product-1.png" alt="Product 4" />
+                  <div className="pi-title">
+                    Lowarance <br />
+                    for your sea
+                  </div>
+                  <ul>
+                    <li className="quick-view btn">
+                      <a href="#">Shop Now</a>
+                    </li>
+                  </ul>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="product-item">
+                <div className="pi-pic">
+                  <img src="/img/products/product-1.png" alt="Product 4" />
+                  <div className="pi-title">
+                    Lowarance <br />
+                    for your sea
+                  </div>
+                  <ul>
+                    <li className="quick-view btn">
+                      <a href="#">Shop Now</a>
+                    </li>
+                  </ul>
+                </div>
+              </SwiperSlide>
+            </Swiper>
             <Carousel
               showArrows={false}
               showStatus={false}
@@ -49,93 +149,7 @@ const SpotLightSection = () => {
               //       </button>
               //     )
               //   }
-            >
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/products/product-1.png" alt="Product 1" />
-                  <div className="pi-title">
-                    Lowarance <br />
-                    for your sea
-                  </div>
-                  <ul>
-                    <li className="quick-view btn">
-                      <a href="#">Shop Now</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/products/product-1.png" alt="Product 2" />
-                  <div className="pi-title">
-                    Lowarance <br />
-                    for your sea
-                  </div>
-
-                  <ul>
-                    <li className="quick-view btn">
-                      <a href="#">Shop Now</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/products/product-1.png" alt="Product 3" />
-                  <div className="pi-title">
-                    Lowarance <br />
-                    for your sea
-                  </div>
-                  <ul>
-                    <li className="quick-view btn">
-                      <a href="#">Shop Now</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/products/product-1.png" alt="Product 4" />
-                  <div className="pi-title">
-                    Lowarance <br />
-                    for your sea
-                  </div>
-                  <ul>
-                    <li className="quick-view btn">
-                      <a href="#">Shop Now</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/products/product-1.png" alt="Product 4" />
-                  <div className="pi-title">
-                    Lowarance <br />
-                    for your sea
-                  </div>
-                  <ul>
-                    <li className="quick-view btn">
-                      <a href="#">Shop Now</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="product-item">
-                <div className="pi-pic">
-                  <img src="/img/products/product-1.png" alt="Product 4" />
-                  <div className="pi-title">
-                    Lowarance <br />
-                    for your sea
-                  </div>
-                  <ul>
-                    <li className="quick-view btn">
-                      <a href="#">Shop Now</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </Carousel>
+            ></Carousel>
           </div>
         </div>
       </div>

@@ -1,111 +1,77 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
+import { useNavigate } from 'react-router-dom';
 
 const LogoCarousel: React.FC = () => {
   const logos = [
-    'img/partner_logos/partner-1.png',
-    'img/partner_logos/patner-2.jpg',
-    'img/partner_logos/patner-3.png',
-    'img/partner_logos/patner-4.png',
-    'img/partner_logos/patner-5.png',
-    'img/partner_logos/patner-6.jpeg',
-    'img/partner_logos/patner-7.png',
-    'img/partner_logos/patner-8.png',
-    'img/partner_logos/patner-9.png',
-    'img/partner_logos/patner-10.jpg',
-    'img/partner_logos/patner-11.png',
+    {
+      brandName: 'plastimo',
+      imageUrl: 'img/partner_logos/partner-1.png',
+    },
+    {
+      brandName: 'sionix',
+      imageUrl: 'img/partner_logos/partner-2.png',
+    },
+    {
+      brandName: 'fusion',
+      imageUrl: 'img/partner_logos/partner-3.png',
+    },
+    {
+      brandName: 'germin',
+      imageUrl: 'img/partner_logos/partner-4.png',
+    },
+    {
+      brandName: 'mgnetron',
+      imageUrl: 'img/partner_logos/partner-5.png',
+    },
+    {
+      brandName: 'onwa',
+      imageUrl: 'img/partner_logos/partner-6.png',
+    },
+    {
+      brandName: 'inmarsat',
+      imageUrl: 'img/partner_logos/partner-7.png',
+    },
+    {
+      brandName: 'intellian',
+      imageUrl: 'img/partner_logos/partner-8.png',
+    },
+    {
+      brandName: 'lowrance',
+      imageUrl: 'img/partner_logos/partner-9.png',
+    },
+    {
+      brandName: 'shakesphere-global',
+      imageUrl: 'img/partner_logos/partner-10.png',
+    },
+    {
+      brandName: 'sailor',
+      imageUrl: 'img/partner_logos/partner-11.png',
+    },
   ];
 
+  const navigate = useNavigate();
+
   return (
-    <div className="latest-blog">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="section-title">
-              <h2>Choose by brands</h2>
-            </div>
-          </div>
-        </div>
-        <div className="container">
-          <div className="row" style={{ marginBottom: '10px' }}>
-            <div className="col-lg-12">
-              <Carousel
-                showArrows={false}
-                showStatus={false}
-                showIndicators={false} // Hide dots/indicators
-                infiniteLoop={true}
-                autoPlay={true}
-                interval={3000}
-                stopOnHover={false}
-                swipeable={true}
-                emulateTouch={true}
-                centerMode={true}
-                centerSlidePercentage={20} // Adjust percentage to fit logos
-                showThumbs={false}
-                className="brand-logo"
+    <div className="!container mx-auto mb-12 flex flex-col justify-center gap-6 px-4">
+      <div className="flex justify-center">
+        <span className="text-[36px] font-semibold text-gray-800">
+          Choose by brands
+        </span>
+      </div>
+      <div className="flex justify-center">
+        <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {logos.map((item, index) => {
+            return (
+              <div
+                className="flex w-48 cursor-pointer items-center justify-center bg-[#f5f6f6] px-3 py-2 transition ease-in-out hover:-translate-x-2 hover:-translate-y-2"
+                key={index}
+                onClick={() => navigate(`/products?brand=${item.brandName}`)}
               >
-                {logos.map((logo, index) => (
-                  <div
-                    key={index}
-                    className="logo-item"
-                    style={{
-                      marginRight: '10px',
-                      height: '100%',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <div style={{}}>
-                      <div className="tablecell-inner">
-                        <img src={logo} alt={`Brand logo ${index + 1}`} />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </Carousel>
-            </div>
-          </div>
-          <div className="row">
-            {/* Second Carousel if needed */}
-            <div className="col-lg-12">
-              <Carousel
-                showArrows={false}
-                showStatus={false}
-                showIndicators={false} // Hide dots/indicators
-                infiniteLoop={true}
-                autoPlay={true}
-                interval={3000}
-                stopOnHover={true}
-                swipeable={true}
-                emulateTouch={true}
-                centerMode={true}
-                centerSlidePercentage={20} // Adjust percentage to fit logos
-                showThumbs={false}
-                className="brand-logo"
-              >
-                {logos.reverse().map((logo, index) => (
-                  <div
-                    key={index}
-                    className="logo-item"
-                    style={{
-                      marginRight: '10px',
-                      height: '100%',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <div style={{}}>
-                      <div className="tablecell-inner">
-                        <img src={logo} alt={`Brand logo ${index + 1}`} />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </Carousel>
-            </div>
-          </div>
+                <img src={item.imageUrl} className="max-h-24" />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

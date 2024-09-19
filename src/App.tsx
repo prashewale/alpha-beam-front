@@ -20,6 +20,10 @@ import AuthGuard from './components/auth/auth-guard';
 import AdminDashboard from './components/admin';
 import AdminProducts from './components/admin/products';
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+
 function App() {
   return (
     <>

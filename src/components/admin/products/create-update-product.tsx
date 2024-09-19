@@ -75,7 +75,7 @@ const CreateUpdateProductDialog = ({
   const handleProductAddUpdate = async (
     values: z.infer<typeof ProductValidation>
   ) => {
-    console.log(values);
+    // console.log(values);
     if (product && action === 'Update') {
       const request: UpdateProductRequest = {
         ...values,
