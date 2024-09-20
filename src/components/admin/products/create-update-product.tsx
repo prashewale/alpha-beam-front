@@ -25,7 +25,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Slider } from '@/components/ui/slider';
 import { Textarea } from '@/components/ui/textarea';
 import { categories } from '@/data/categories';
 import { useToast } from '@/hooks/use-toast';
@@ -58,9 +57,9 @@ const CreateUpdateProductDialog = ({
     defaultValues: {
       name: product?.name || '',
       description: product?.description || '',
-      price: product?.price || 0,
-      rating: product?.rating || 0,
-      stock: product?.stock || 0,
+      price: product?.price.toString() || '0',
+      // rating: product?.rating.toString() || '0',
+      stock: product?.stock.toString() || '0',
       brand: product?.brand || '',
       category: product?.category || '',
     },
@@ -75,41 +74,43 @@ const CreateUpdateProductDialog = ({
   const handleProductAddUpdate = async (
     values: z.infer<typeof ProductValidation>
   ) => {
-    // console.log(values);
-    if (product && action === 'Update') {
-      const request: UpdateProductRequest = {
-        ...values,
-        id: product.id,
-      };
+    console.log(values);
+    // if (product && action === 'Update') {
+    //   const request: UpdateProductRequest = {
+    //     ...values,
+    //     id: product.id,
+    //   };
 
-      const res = await updateProduct(request);
-      if (!res || !res.data || res.status !== 'SUCCESS') {
-        toast({ title: 'Update failed. Please try again.' });
-        return;
-      }
+    //   const res = await updateProduct(request);
+    //   if (!res || !res.data || res.status !== 'SUCCESS') {
+    //     toast({ title: 'Update failed. Please try again.' });
+    //     return;
+    //   }
 
-      toast({ title: 'Product updated successfully.' });
-      setOpen(false);
-      return;
-    }
+    //   toast({ title: 'Product updated successfully.' });
+    //   setOpen(false);
+    //   return;
+    // }
 
-    const res = await createProduct(values);
-    if (!res || !res.data || res.status !== 'SUCCESS') {
-      toast({ title: 'Create failed. Please try again.' });
-      return;
-    }
+    // const res = await createProduct(values);
+    // if (!res || !res.data || res.status !== 'SUCCESS') {
+    //   toast({ title: 'Create failed. Please try again.' });
+    //   return;
+    // }
 
     toast({ title: 'Product created successfully.' });
     setOpen(false);
   };
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{triggerNode}</DialogTrigger>
-      <DialogContent>
-        <DialogTitle>{product ? 'Update Product' : 'New Product'}</DialogTitle>
-        <DialogDescription></DialogDescription>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleProductAddUpdate)}>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleProductAddUpdate)}>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>{triggerNode}</DialogTrigger>
+          <DialogContent>
+            <DialogTitle>
+              {product ? 'Update Product' : 'New Product'}
+            </DialogTitle>
+            <DialogDescription></DialogDescription>
             <div className="form-group">
               <FormField
                 control={form.control}
@@ -161,28 +162,7 @@ const CreateUpdateProductDialog = ({
                 )}
               />
             </div>
-            <div className="form-group">
-              <FormField
-                control={form.control}
-                name="rating"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="shad-form_label flex justify-start">
-                      Rating
-                    </FormLabel>
-                    <FormControl>
-                      <Slider
-                        min={0}
-                        defaultValue={[field.value]}
-                        max={5}
-                        step={0.1}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+
             <div className="form-row">
               <div className="col-md-6">
                 <FormField
@@ -208,7 +188,7 @@ const CreateUpdateProductDialog = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="shad-form_label flex justify-start">
-                        Country
+                        Category
                       </FormLabel>
                       <Select
                         onValueChange={field.onChange}
@@ -233,7 +213,7 @@ const CreateUpdateProductDialog = ({
                 />
               </div>
             </div>
-            <div className="mt-4 flex justify-end">
+            <DialogFooter className="mt-4 flex justify-end">
               <Button
                 variant="destructive"
                 onClick={() => setOpen(false)}
@@ -250,11 +230,11 @@ const CreateUpdateProductDialog = ({
                   'Save'
                 )}
               </Button>
-            </div>
-          </form>
-        </Form>
-      </DialogContent>
-    </Dialog>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      </form>
+    </Form>
   );
 };
 

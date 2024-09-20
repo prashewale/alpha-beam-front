@@ -5,14 +5,18 @@ import { BreadCrumbItem, Role, User } from '@/types';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { Outlet, useNavigate } from 'react-router-dom';
 import AdminSidebar from './admin-sidebar';
+import { useEffect } from 'react';
 
 const AdminDashboard = () => {
   const authUser = useAuthUser<User>();
   const navigate = useNavigate();
 
-  if (!authUser || !authUser.roles.includes(Role.admin)) {
-    navigate('/');
-  }
+  useEffect(() => {
+    console.log(authUser);
+    if (!authUser || !authUser.roles.includes(Role.admin)) {
+      navigate('/');
+    }
+  }, []);
 
   const breadCrumbItems: BreadCrumbItem[] = [
     {

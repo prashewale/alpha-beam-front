@@ -47,11 +47,25 @@ export const AddressValidation = z.object({
 export const ProductValidation = z.object({
   name: z.string().min(1, { message: 'Name is required.' }),
   description: z.string().min(1, { message: 'Description is required.' }),
-  price: z.number().min(1, { message: 'Price is required.' }),
+  price: z.string(),
+  // price: z.preprocess(
+  //   (a) => parseInt(z.string().parse(a), 10),
+  //   z.number().min(1, 'Price is required.').gte(0, 'Price should be positive')
+  // ),
   image: z.string().min(1, { message: 'Image is required.' }),
   category: z.string().min(1, { message: 'Category is required.' }),
-  rating: z.number().min(1, { message: 'Rating is required.' }),
-  brand: z.string(),
-  stock: z.number().min(1, { message: 'Stock is required.' }),
+  // rating: z.string({ message: 'rating should be string' }),
+
+  // rating: z.preprocess(
+  //   (a) => parseInt(z.string().parse(a), 10),
+  //   z.number().min(1, 'Rating is required.').gte(0, 'Rating should be positive')
+  // ),
+  brand: z.string({ message: 'Brand should be string' }),
+  stock: z.string({ message: 'Stock should be string' }),
+
+  // stock: z.preprocess(
+  //   (a) => parseInt(z.string().parse(a), 10),
+  //   z.number().min(1, 'Stock is required.').gte(0, 'Stock should be positive')
+  // ),
   userId: z.string().min(1, { message: 'User id is required.' }),
 });
