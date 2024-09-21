@@ -33,7 +33,6 @@ const TestimonialsAboutUs = () => {
               erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
               tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
             </p>
-            <img src="/img/wave.png" />
           </div>
         </div>
       </div>

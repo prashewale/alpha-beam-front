@@ -31,6 +31,7 @@ const CouponModal = () => {
               <h2>15% OFF</h2>
               <h6>Just for you!</h6>
               <p>Sign Up and get your first discount now!</p>
+              <input type="text" className="mb-2" placeholder="Mobile Number" />
               <input type="text" placeholder="Your email" />
               <br />
               <button type="button" className="btn btn-primary get-btn">

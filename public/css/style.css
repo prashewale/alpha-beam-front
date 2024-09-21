@@ -5,7 +5,9 @@ body {
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
 }
-
+.header-section ul{
+  margin-bottom: 0 !important;
+}
 h1,
 h2,
 h3,
@@ -1489,9 +1491,7 @@ ol {
   background: linear-gradient(79deg, #4cb8c4, #36c275 50%, #3cd3ad);
   -webkit-background-clip: text;
   background-clip: text;
-  transition:
-    background,
-    color 0.1s ease-in-out;
+  transition:color 0.1s ease-in-out;
   border-image-slice: 1;
   cursor: pointer;
   position: relative;
