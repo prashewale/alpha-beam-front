@@ -52,7 +52,7 @@ const Header = () => {
                 </a>
               </div>
             </div>
-            <div className="col-lg-8 col-md-8">
+            <div className="col-lg-8 col-md-8 pr-0">
               <div className="navbar-center">
                 <div className="nav-item">
                   <nav className="nav-menu mobile-menu">
@@ -117,7 +117,7 @@ const Header = () => {
                     </ul>
                   </nav>
                 </div>
-                <div className="advanced-search">
+                <div className="advanced-search ml-2">
                   <div className="input-group">
                     <input type="text" placeholder="Search product" />
                     <button type="button">
@@ -127,7 +127,7 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-2 col-md-2 text-right">
+            <div className="col-lg-2 col-md-2 pl-0 text-right">
               <ul className="nav-right">
                 <li className="cart-icon">
                   <a href="#">
