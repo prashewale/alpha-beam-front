@@ -320,7 +320,7 @@ const Header = () => {
       <div className="header-top">
         <div className="container">
           <div className="ht-left">
-            Free Ground Installation On Orders Above £2500*
+            Free Ground Installation On Orders Above QUR 2,500.00*
           </div>
           <div className="ht-right">
             Call us on <span>+974 4418 8446</span>

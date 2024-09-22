@@ -1,3 +1,7 @@
+import { testimonials } from '@/constants';
+import { Autoplay, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 const TestimonialsAboutUs = () => {
   return (
     <section className="about-us testimonials-wrap">
@@ -17,24 +21,32 @@ const TestimonialsAboutUs = () => {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-md-6 float-right">
-            <img src="/img/earphone.png" className="earphone" />
-          </div>
-          <div className="col-md-6">
-            <h2>
-              System Design
-              <br />
-              Services
-            </h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-              erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
-              tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
-            </p>
-          </div>
-        </div>
+
+        <Swiper
+          navigation={true}
+          modules={[Autoplay, Navigation]}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          loop
+        >
+          {testimonials.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="grid grid-cols-12">
+                <div className="col-span-2 col-start-4 flex items-center">
+                  <img src={item.iconUrl} className="earphone" />
+                </div>
+                <div className="col-span-5 col-start-6 flex items-center">
+                  <div>
+                    <h2>{item.title}</h2>
+                    <p>{item.description}</p>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </section>
   );
