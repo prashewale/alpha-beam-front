@@ -7,11 +7,12 @@ const BackgroundBannerSolutions = () => {
             <div className="solution-block">
               <h2>Solutions</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam
-                <br />
-                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                erat
+                we are committed to delivering innovative and customized
+                solutions that drive efficiency, performance, and success across
+                industries. Whether you're seeking cutting-edge technology,
+                expert services, or end-to-end systems, our solutions are
+                designed to address the complex challenges of today's dynamic
+                world.
               </p>
             </div>
           </div>

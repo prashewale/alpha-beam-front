@@ -82,7 +82,7 @@ export const solutionDetails = [
       'Airport Collaborative Decision Making(A-CDM)',
       'SWIM & ATM Grade Networks',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl: '/img/solution-page/air-traffic-management.webp',
   },
   {
     title: 'Communication',
@@ -98,7 +98,7 @@ export const solutionDetails = [
       'Message Handling & Aeronautical Information Systems',
       '(AFTN/AMHS/AIS/AIM)',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl: '/img/solution-page/information-communication-tech.jpg',
   },
   {
     title: 'Navigation',
@@ -112,7 +112,7 @@ export const solutionDetails = [
       'Satellite based Navigation Systems (GBAS/SBAS)',
       'Visual Guidance Docking System (VDGS)',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl: '/img/solution-page/location-symbol-seaside.jpg',
   },
   {
     title: 'Surveillance',
@@ -126,7 +126,7 @@ export const solutionDetails = [
       'Runway/Airside Surveillance(CCTV based)',
       'Drone Detection Systems',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl: '/img/solution-page/surveillance.jpg',
   },
   {
     title: 'Meteorological & Weather',
@@ -145,7 +145,7 @@ export const solutionDetails = [
       'Wind Profilers',
       'Weather Decision Support Systems',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl: '/img/solution-page/meteorological-and-weather.jpg',
   },
 
   {
@@ -163,7 +163,7 @@ export const solutionDetails = [
       'People Counting System',
       'Passenger Tracking System',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl: '/img/solution-page/passenger-and-terminal-operations.jpg',
   },
 
   {
@@ -180,7 +180,8 @@ export const solutionDetails = [
       'Car Park Management Systems(CPMS)',
       'Master Clocks Systems(MCS)',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl:
+      '/img/solution-page/extra-low-voltage-and-low-current-systems.jpg',
   },
 
   {
@@ -195,7 +196,7 @@ export const solutionDetails = [
       'Lighting Control & Monitoring (ALCMS / ILCMS)',
       'Lighting Photometry & Calibration (MALMS)',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl: '/img/solution-page/specialized-lighting-and-signage.jpg',
   },
   {
     title: 'Information Communication Technologies',
@@ -211,7 +212,7 @@ export const solutionDetails = [
       'IP Telephony (IPT)',
       'IP Television(IPTV)',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl: '/img/solution-page/information-communication-tech.jpg',
   },
   {
     title: 'Professional Services',
@@ -224,7 +225,7 @@ export const solutionDetails = [
       'Maintenance',
       'Servicing',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl: '/img/solution-page/professional-services.jpg',
   },
 
   {
@@ -245,7 +246,7 @@ export const solutionDetails = [
       'Ecosystem Restoration',
       'Policy and Regulation',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl: '/img/solution-page/environmental-solutions.jpg',
   },
 
   {
@@ -261,6 +262,6 @@ export const solutionDetails = [
       'Maritime Security',
       'Defense Innovation and Technological Advancement',
     ],
-    imageUrl: '/img/solution.jpeg',
+    imageUrl: '/img/solution-page/defense-solution.jpg',
   },
 ];
