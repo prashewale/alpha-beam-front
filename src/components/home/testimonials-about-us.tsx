@@ -23,21 +23,21 @@ const TestimonialsAboutUs = () => {
         </div>
 
         <Swiper
-          navigation={true}
-          modules={[Autoplay, Navigation]}
+          modules={[Autoplay]}
           autoplay={{
             delay: 5000,
             disableOnInteraction: false,
           }}
+          slidesPerView={1}
           loop
         >
           {testimonials.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="grid grid-cols-12">
-                <div className="col-span-2 col-start-4 flex items-center">
+                <div className="col-span-3 col-start-3 flex items-center">
                   <img src={item.iconUrl} className="earphone" />
                 </div>
-                <div className="col-span-5 col-start-6 flex items-center">
+                <div className="col-span-6 col-start-6 flex items-center">
                   <div>
                     <h2>{item.title}</h2>
                     <p>{item.description}</p>

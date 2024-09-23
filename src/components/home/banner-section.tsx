@@ -1,102 +1,53 @@
 const BannerSection = () => {
   const categoriesInfo = [
     {
-      title: 'BOAT FLEET MANAGEMENT',
+      title: 'BOAT FLEET \n MANAGEMENT',
       url: '/products',
-      icon: '/img/icon/icon-1.png',
+      icon: '/img/icon/1.svg',
     },
     {
-      title: 'BOAT FLEET MANAGEMENT',
+      title: 'SERVICES ASSISTANCE',
       url: '/products',
-      icon: '/img/icon/icon-1.png',
+      icon: '/img/icon/2.svg',
     },
     {
-      title: 'BOAT FLEET MANAGEMENT',
+      title: 'COMMANDO RADARS',
       url: '/products',
-      icon: '/img/icon/icon-1.png',
+      icon: '/img/icon/3.svg',
     },
     {
-      title: 'BOAT FLEET MANAGEMENT',
+      title: 'SATELLITE PRODUCTS',
       url: '/products',
-      icon: '/img/icon/icon-1.png',
+      icon: '/img/icon/4.svg',
     },
     {
-      title: 'BOAT FLEET MANAGEMENT',
+      title: 'BEST \n BRANDS',
       url: '/products',
-      icon: '/img/icon/icon-1.png',
+      icon: '/img/icon/5-1.svg',
+    },
+    {
+      title: 'TRUSTED PRODUCTS',
+      url: '/products',
+      icon: '/img/icon/6.svg',
     },
   ];
   return (
-    <div className="banner-section spad">
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-2">
-            <div className="single-banner">
-              <img src="/img/icon/icon-1.png" />
+    <div className="mx-28 mt-20">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+        {categoriesInfo.map((item, index) => (
+          <div className="flex flex-col items-center justify-center gap-3">
+            <div className="flex h-36 w-36 items-center justify-center rounded-xl bg-[#f6f6f6] p-4">
+              <img src={item.icon} alt="" />
             </div>
-            <div className="inner-text icon-color text-center">
-              <h4>
-                BOAT FLEET <br />
-                MANAGEMENT
+            <div className="flex w-full justify-center">
+              <h4 className="flex max-w-36 flex-col text-center text-base font-bold text-[#4287c4]">
+                {item.title.split('\n').map((t, i) => (
+                  <span key={i}>{t}</span>
+                ))}
               </h4>
             </div>
           </div>
-          <div className="col-lg-2">
-            <div className="single-banner">
-              <img src="/img/icon/icon-2.png" />
-              <div className="inner-text">
-                <h4>
-                  SERVICES <br />
-                  ASSISTANCE
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-2">
-            <div className="single-banner">
-              <img src="/img/icon/icon-3.png" />
-              <div className="inner-text">
-                <h4>
-                  COMMANDO <br />
-                  RADARS
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-2">
-            <div className="single-banner">
-              <img src="/img/icon/icon-4.png" />
-              <div className="inner-text">
-                <h4>
-                  SATELLITE <br />
-                  PRODUCTS
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-2">
-            <div className="single-banner">
-              <img src="/img/icon/icon-5.png" />
-              <div className="inner-text">
-                <h4>
-                  BEST <br />
-                  BRANDS
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-2">
-            <div className="single-banner">
-              <img src="/img/icon/icon-6.png" />
-              <div className="inner-text">
-                <h4>
-                  TRUSTED <br />
-                  PRODUCTS
-                </h4>
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

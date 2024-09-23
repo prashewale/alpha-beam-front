@@ -31,15 +31,27 @@ import EnquirySection from './enquiry-section';
 const Home = () => {
   const bestSellerProducts = [
     {
-      imgSrc: '/img/garmine-1.jpeg',
+      imgSrc: '/img/garmine-1.png',
       title: 'GPSMAP® 10x2 /12x2 Series',
     },
     {
-      imgSrc: '/img/garmine-2.jpeg',
+      imgSrc: '/img/garmine-3.png',
       title: 'GPSMAP® 10x2 /12x2 Series',
     },
     {
-      imgSrc: '/img/garmine-4.jpeg',
+      imgSrc: '/img/garmine-1.png',
+      title: 'GPSMAP® 10x2 /12x2 Series',
+    },
+    {
+      imgSrc: '/img/garmine-3.png',
+      title: 'GPSMAP® 10x2 /12x2 Series',
+    },
+    {
+      imgSrc: '/img/garmine-1.png',
+      title: 'GPSMAP® 10x2 /12x2 Series',
+    },
+    {
+      imgSrc: '/img/garmine-3.png',
       title: 'GPSMAP® 10x2 /12x2 Series',
     },
   ];

@@ -6,7 +6,9 @@ const FeedbackSection = () => {
           <div className="col-md-3 text-center"></div>
           <div className="col-md-6 text-center">
             <div className="newslatter-item">
-              <h5>Let us keep you Updated!</h5>
+              <h2 className="mb-4 !text-3xl font-bold text-white">
+                Let us keep you Updated!
+              </h2>
 
               <form action="#" className="subscribe-form">
                 <input type="text" placeholder="Sign up with your Email" />

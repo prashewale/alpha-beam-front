@@ -1,5 +1,8 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { useEffect, useState } from 'react';
 
 const TestimonialSection: React.FC = () => {
   const testimonials = [
@@ -47,7 +50,33 @@ const TestimonialSection: React.FC = () => {
       position: 'Father',
     },
   ];
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
 
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  let slidesPerView = 3;
+
+  if (windowWidth >= 1400) {
+    slidesPerView = 3;
+  } else if (windowWidth >= 1068) {
+    slidesPerView = 2;
+  } else if (windowWidth >= 768) {
+    slidesPerView = 1;
+  } else {
+    slidesPerView = 1;
+  }
+
+  const sliderPagination = {
+    clickable: true,
+  };
   return (
     <section className="testimonal">
       <div className="testimonials-wrap">
@@ -56,51 +85,37 @@ const TestimonialSection: React.FC = () => {
             <h2>What clients say about us?</h2>
           </div>
           <div className="relative z-10 mb-[-80px]">
-            {/* <i className="fa fa-quote-left"></i> */}
             <img src="img/icon/inverted-comma.png" className="h-32 w-auto" />
           </div>
-          <Carousel
-            showArrows={false}
-            showStatus={false}
-            showIndicators={false} // Display dots for indicators
-            infiniteLoop={true} // Equivalent to `loop: true`
-            autoPlay={true} // Equivalent to `autoplay: true`
-            interval={2000} // Controls the speed of autoplay transition
-            stopOnHover={true} // Stops autoplay on hover
-            transitionTime={1000} // Equivalent to `smartSpeed: 1200` (in half, since Owl Carousel uses double the value in ms)
-            swipeable={true} // Enables swiping
-            emulateTouch={true} // Enables touch swipe
-            dynamicHeight={false}
-            centerMode={true} // Centers the active slide
-            centerSlidePercentage={35} // Controls how much of the slide is shown
-            showThumbs={false} // Hides the thumbnail images
+          <Swiper
+            modules={[Autoplay]}
+            // pagination={sliderPagination}
+            slidesPerView={slidesPerView}
+            spaceBetween={30}
+            className="w-full"
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            loop
           >
             {testimonials.map((testimonial, index) => (
-              <div
+              <SwiperSlide
                 className="item"
                 key={index}
                 style={{ width: '350px', paddingTop: '20px' }}
               >
                 <div className="testimonial-box d-flex">
-                  {/* {testimonial.imgUrl && (
-                    <div
-                      className="user-img"
-                      style={{
-                        backgroundImage: `url(${testimonial.imgUrl})`,
-                      }}
-                    />
-                  )} */}
                   <div className="text pl-4">
-                    <p>{testimonial.quote}</p>
-                    <p className="name">{testimonial.name}</p>
-                    <span className="position" style={{ display: 'none' }}>
-                      {testimonial.position}
-                    </span>
+                    <p className="!text-sm">{testimonial.quote}</p>
+                    <p className="!text-base !text-[#868686]">
+                      {testimonial.name}
+                    </p>
                   </div>
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </Carousel>
+          </Swiper>
           <div className="relative z-10 mt-[-70px] flex justify-end">
             {/* <i className="fa fa-quote-left"></i> */}
             <img

@@ -1,6 +1,6 @@
 const EnquirySection = () => {
   return (
-    <section className="bg-[#f1f2f2] py-12">
+    <section className="mt-20 bg-[#f1f2f2] py-12">
       <div className="container-fluid contact-form">
         <div className="row">
           <div className="col-lg-12">

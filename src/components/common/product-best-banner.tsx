@@ -1,5 +1,8 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { useEffect, useState } from 'react';
 
 type ProductBannerProps = {
   title: string;
@@ -7,63 +10,79 @@ type ProductBannerProps = {
 };
 
 const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  let slidesPerView = 4;
+
+  if (windowWidth >= 1400) {
+    slidesPerView = 4;
+  } else if (windowWidth >= 1068) {
+    slidesPerView = 3;
+  } else if (windowWidth >= 768) {
+    slidesPerView = 2;
+  } else {
+    slidesPerView = 1;
+  }
+
+  const sliderPagination = {
+    clickable: true,
+  };
   return (
-    <section className="product-best-banner spad bg-grey">
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="section-title">
-              <h2>{title}</h2>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-12">
-            <Carousel
-              showArrows={false}
-              showStatus={false}
-              showIndicators={false} // Display dots for indicators
-              infiniteLoop={true} // Equivalent to `loop: true`
-              autoPlay={true} // Equivalent to `autoplay: true`
-              interval={2000} // Controls the speed of autoplay transition
-              stopOnHover={true} // Stops autoplay on hover
-              transitionTime={1000} // Equivalent to `smartSpeed: 1200` (in half, since Owl Carousel uses double the value in ms)
-              swipeable={true} // Enables swiping
-              emulateTouch={true} // Enables touch swipe
-              dynamicHeight={false}
-              centerMode={true} // Centers the active slide
-              centerSlidePercentage={30} // Controls how much of the slide is shown
-              showThumbs={false} // Hides the thumbnail images
-            >
-              {products.map((product, index) => (
-                <div
-                  className="product-item"
-                  key={index}
-                  style={{ width: '436px' }}
-                >
-                  <div className="pi-pic">
-                    <img src={product.imgSrc} alt={product.title} />
-                    <div className="sale">Sale</div>
-                    <div className="icon">
-                      <i className="icon_heart_alt"></i>
-                    </div>
-                    <ul>
+    <section className="mx-28 mt-20 flex flex-col gap-8">
+      <h2 className="text-center text-3xl font-bold">{title}</h2>
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        pagination={sliderPagination}
+        slidesPerView={slidesPerView}
+        spaceBetween={30}
+        className="w-full"
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        loop
+      >
+        {products.map((product, index) => (
+          <SwiperSlide className="product-item" key={index}>
+            <div className="flex items-center justify-center">
+              <div className="pi-pic !max-w-60">
+                <div className="flex h-auto items-center justify-center">
+                  <img
+                    src={product.imgSrc}
+                    alt={product.title}
+                    className="h-auto w-auto"
+                  />
+                </div>
+
+                <div className="sale">Sale</div>
+                <div className="icon">
+                  <i className="icon_heart_alt"></i>
+                </div>
+                {/* <ul>
                       <li className="quick-view">
                         <a href="#">+ Quick View</a>
                       </li>
-                    </ul>
-                  </div>
-                  <div className="pi-text">
-                    <a href="#">
-                      <h5>{product.title}</h5>
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </Carousel>
-          </div>
-        </div>
-      </div>
+                    </ul> */}
+              </div>
+            </div>
+            <div className="pi-text">
+              <a href="#">
+                <h5>{product.title}</h5>
+              </a>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 };
