@@ -1,6 +1,6 @@
 const EnquirySection = () => {
   return (
-    <section className="product-best-banner bg-[#f1f2f2]">
+    <section className="bg-[#f1f2f2] py-12">
       <div className="container-fluid contact-form">
         <div className="row">
           <div className="col-lg-12">
@@ -10,44 +10,38 @@ const EnquirySection = () => {
             </div>
           </div>
         </div>
-        <div className="row leave-comment">
-          <div className="col-lg-2"></div>
-          <div className="col-lg-8">
-            <div className="row comment-form text-center">
-              <div className="col-lg-4">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="!border !border-gray-400 bg-[#f1f2f2] !text-gray-400"
-                />
-              </div>
-              <div className="col-lg-4">
-                <input
-                  type="text"
-                  placeholder="+974"
-                  className="!border !border-gray-400 bg-[#f1f2f2] !text-gray-400"
-                />
-              </div>
-              <div className="col-lg-4">
-                <input
-                  type="text"
-                  placeholder="Email"
-                  className="!border !border-gray-400 bg-[#f1f2f2] !text-gray-400"
-                />
-              </div>
-              <div className="col-lg-12">
-                <input
-                  type="text"
-                  placeholder="Enquiry"
-                  className="!border !border-gray-400 bg-[#f1f2f2] !text-gray-400"
-                />
-                <button type="submit" className="site-btn w-[400px] rounded-xl">
-                  Call Now
-                </button>
-              </div>
+        <div className="flex w-full justify-center">
+          <div className="flex flex-col gap-3">
+            <div className="flex space-x-3">
+              <input
+                type="text"
+                placeholder="Name"
+                className="rounded-lg !border !border-gray-400 bg-[#f1f2f2] p-2 !text-gray-400"
+              />
+              <input
+                type="text"
+                placeholder="+974"
+                className="rounded-lg !border !border-gray-400 bg-[#f1f2f2] p-2 !text-gray-400"
+              />
+              <input
+                type="text"
+                placeholder="Email"
+                className="rounded-lg !border !border-gray-400 bg-[#f1f2f2] p-2 !text-gray-400"
+              />
             </div>
+            <input
+              type="text"
+              placeholder="Enquiry"
+              className="rounded-lg !border !border-gray-400 bg-[#f1f2f2] p-2 !text-gray-400"
+            />
+
+            <button
+              type="submit"
+              className="mx-auto mt-2 w-[330px] rounded-lg bg-[#1d8aca] py-2 text-sm text-white"
+            >
+              Call Now
+            </button>
           </div>
-          <div className="col-lg-2"></div>
         </div>
       </div>
     </section>

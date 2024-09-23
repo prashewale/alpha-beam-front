@@ -24,8 +24,8 @@
   font-size: 20px;
   margin-bottom: 10px;
 }
-.coupon-modal .modal-content .img-pop{
-height:70vh;
+.coupon-modal .modal-content .img-pop {
+  height: 70vh;
 }
 .coupon-modal .modal-content p:last-child {
   color: #171717;
@@ -61,9 +61,9 @@ height:70vh;
   padding: 10px;
   width: 240px;
 }
-@media (min-width: 992px) {
-  .modal-lg,
-  .modal-xl {
-    max-width: 800px;
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    max-width: 900px !important;
   }
 }

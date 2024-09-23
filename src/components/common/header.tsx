@@ -93,26 +93,6 @@ const Header = () => {
                       </li>
                       <li>
                         <a href="#">SUBSIDARY</a>
-                        <ul className="dropdown" style={{ display: 'none' }}>
-                          <li>
-                            <a href="blog-details.html">Blog Details</a>
-                          </li>
-                          <li>
-                            <a href="shopping-cart.html">Shopping Cart</a>
-                          </li>
-                          <li>
-                            <a href="check-out.html">Checkout</a>
-                          </li>
-                          <li>
-                            <a href="faq.html">Faq</a>
-                          </li>
-                          <li>
-                            <a href="register.html">Register</a>
-                          </li>
-                          <li>
-                            <a href="login.html">Login</a>
-                          </li>
-                        </ul>
                       </li>
                     </ul>
                   </nav>
@@ -320,7 +300,7 @@ const Header = () => {
       <div className="header-top">
         <div className="container">
           <div className="ht-left">
-            Free Ground Installation On Orders Above QUR 2,500.00*
+            Free Ground Installation On Orders Above QAR 2,500.00*
           </div>
           <div className="ht-right">
             Call us on <span>+974 4418 8446</span>

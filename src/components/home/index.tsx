@@ -53,7 +53,7 @@ const Home = () => {
       <SpotLightSection />
       <LogoCarousel />
       <EnquirySection />
-      <CategoryBannerSection />
+      {/* <CategoryBannerSection /> */}
       <ProductBestBanner
         title="Best seller of all times"
         products={bestSellerProducts}

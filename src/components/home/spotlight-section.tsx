@@ -1,8 +1,14 @@
 import { Carousel } from 'react-responsive-carousel';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
 const SpotLightSection = () => {
+  const sliderPagination = {
+    clickable: true,
+    // renderBullet: (index: number, className: string) => {
+    //   return '<span class="' + className + ' !bg-white' + '">' + '</span>';
+    // },
+  };
   return (
     <section className="women-banner spad">
       <div className="container-fluid">
@@ -14,9 +20,8 @@ const SpotLightSection = () => {
           </div>
           <div className="col-lg-12">
             <Swiper
-              navigation={true}
-              modules={[Autoplay, Navigation]}
-              className=""
+              modules={[Autoplay, Pagination]}
+              pagination={sliderPagination}
               slidesPerView={4}
               spaceBetween={30}
               autoplay={{

@@ -23,16 +23,23 @@ const CouponModal = () => {
         closeButtonClassName="flex justify-center items-center"
       >
         <div className="row">
-          <div className="col-md-6">
-            <img src="img/popup-img.jpg" className="img-fluid img-pop" />
+          <div className="col-md-6 flex overflow-hidden pr-0">
+            <img
+              src="img/popup-img.jpg"
+              className="h-full w-full object-cover"
+            />
           </div>
-          <div className="col-md-6">
-            <div className="content-block mx-auto text-center">
+          <div className="col-md-6 flex items-center justify-center pl-0">
+            <div className="text-center">
               <h2>15% OFF</h2>
               <h6>Just for you!</h6>
               <p>Sign Up and get your first discount now!</p>
-              <input type="text" className="mb-2" placeholder="Mobile Number" />
-              <input type="text" placeholder="Your email" />
+              <div className="mb-2">
+                <input type="text" placeholder="Mobile Number" />
+              </div>
+              <div className="mb-2">
+                <input type="text" placeholder="Your email" />
+              </div>
               <br />
               <button type="button" className="btn btn-primary get-btn">
                 Get My 15%
