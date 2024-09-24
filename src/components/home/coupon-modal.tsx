@@ -31,7 +31,7 @@ const CouponModal = () => {
           </div>
           <div className="col-md-6 flex items-center justify-center pl-0">
             <div className="text-center">
-              <h2>15% OFF</h2>
+              <h2 className="mb-4">15% OFF</h2>
               <h6>Just for you!</h6>
               <p>Sign Up and get your first discount now!</p>
               <div className="mb-2">
@@ -40,8 +40,10 @@ const CouponModal = () => {
               <div className="mb-2">
                 <input type="text" placeholder="Your email" />
               </div>
-              <br />
-              <button type="button" className="btn btn-primary get-btn">
+              <button
+                type="button"
+                className="btn btn-primary w-[240px] !bg-[#1d8aca]"
+              >
                 Get My 15%
               </button>
               <p>No thanks, I am not into savings</p>
