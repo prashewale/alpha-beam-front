@@ -93,10 +93,14 @@ const Header = () => {
                 </ul>
               </nav>
             </div>
-            <div className="advanced-search !w-[450px]">
-              <div className="input-group">
-                <input type="text" placeholder="Search product" />
-                <button type="button" className="mx-2">
+            <div className="advanced-search flex items-center border border-[#ebebeb]">
+              <div className="flex items-center">
+                <input
+                  type="text"
+                  placeholder="Search product"
+                  className="h-full !w-[300px] px-5 py-2 text-[#d1d1d1]"
+                />
+                <button type="button" className="mx-3">
                   <i className="ti-search"></i>
                 </button>
               </div>

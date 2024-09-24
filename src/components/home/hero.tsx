@@ -23,21 +23,21 @@ const Hero = () => {
       >
         <SwiperSlide className="flex items-center justify-center overflow-hidden">
           <img
-            src="img/banner-1.jpg"
+            src="img/banner-1-1.jpg"
             alt=""
             className="h-full w-full object-cover"
           />
         </SwiperSlide>
         <SwiperSlide className="flex items-center justify-center overflow-hidden">
           <img
-            src="img/banner-2.jpg"
+            src="img/banner-2-1.jpg"
             alt=""
             className="h-full w-full object-cover"
           />
         </SwiperSlide>
         <SwiperSlide className="flex items-center justify-center overflow-hidden">
           <img
-            src="img/banner-3.jpg"
+            src="img/banner-3-1.jpg"
             alt=""
             className="h-full w-full object-cover"
           />

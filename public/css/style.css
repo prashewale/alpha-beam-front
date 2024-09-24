@@ -5,7 +5,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
 }
-.header-section ul{
+.header-section ul {
   margin-bottom: 0 !important;
 }
 h1,
@@ -624,8 +624,6 @@ ol {
 
 .inner-header .advanced-search {
   height: 50px;
-  border: 1px solid #ebebeb;
-  flex: 4;
 }
 
 .inner-header .advanced-search .category-btn {
@@ -1491,7 +1489,7 @@ ol {
   background: linear-gradient(79deg, #4cb8c4, #36c275 50%, #3cd3ad);
   -webkit-background-clip: text;
   background-clip: text;
-  transition:color 0.1s ease-in-out;
+  transition: color 0.1s ease-in-out;
   border-image-slice: 1;
   cursor: pointer;
   position: relative;
