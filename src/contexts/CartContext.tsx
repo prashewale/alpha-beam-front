@@ -1,6 +1,7 @@
 // CartContext.tsx
 
-import React, { createContext, useState, ReactNode } from "react";
+import { useToast } from '@/hooks/use-toast';
+import React, { createContext, useState, ReactNode } from 'react';
 
 // Define the shape of the cart state
 export type CartState = {
@@ -24,15 +25,21 @@ export const CartContext = createContext<CartContextType | undefined>(
 export const CartProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const { toast } = useToast();
+
   const [cart, setCart] = useState<CartState>(() =>
-    JSON.parse(localStorage.getItem("cart") || "{}")
+    JSON.parse(localStorage.getItem('cart') || '{}')
   );
 
   const addToCart = (id: string, quantity: number = 1) => {
     setCart((prevCart) => {
       const newCart = { ...prevCart };
       newCart[id] = (prevCart[id] || 0) + quantity;
-      localStorage.setItem("cart", JSON.stringify(newCart));
+      localStorage.setItem('cart', JSON.stringify(newCart));
+      toast({
+        title: 'Success',
+        description: 'Product added to cart successfully.',
+      });
       return newCart;
     });
   };
@@ -49,7 +56,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
 
       if (newCart[id] === 0) delete newCart[id];
 
-      localStorage.setItem("cart", JSON.stringify(newCart));
+      localStorage.setItem('cart', JSON.stringify(newCart));
       return newCart;
     });
   };
@@ -66,7 +73,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
 
       if (newCart[id] === 0) delete newCart[id];
 
-      localStorage.setItem("cart", JSON.stringify(newCart));
+      localStorage.setItem('cart', JSON.stringify(newCart));
       return newCart;
     });
   };

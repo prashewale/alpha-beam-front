@@ -43,7 +43,7 @@ const Header = () => {
   return (
     <header className="flex flex-col">
       <div className="inner-header flex justify-center">
-        <div className="flex items-center gap-8">
+        <div className="flex items-end gap-8">
           <div className="logo">
             <a href="/">
               <img src="/img/logo.png" className="max-w-36" />
@@ -54,51 +54,49 @@ const Header = () => {
               <nav className="nav-menu mobile-menu mt-0">
                 <ul className="mb-0">
                   <li>
-                    <a href="/products">PRODUCTS</a>
+                    <a href="/products">Products</a>
                     <ul className="dropdown">
                       {categories.map((c, index) => (
                         <li key={index}>
-                          <a href={`/products?category=${c.value}`}>
-                            {c.name.toUpperCase()}
-                          </a>
+                          <a href={`/products?category=${c.value}`}>{c.name}</a>
                         </li>
                       ))}
                       <li>
-                        <a href={`/products`}>SEE ALL</a>
+                        <a href={`/products`}>See All</a>
                       </li>
                       <li>
-                        <a href={`/products`}>BEST SELLERS</a>
+                        <a href={`/products`}>Best Sellers</a>
                       </li>
                       <li>
-                        <a href={`/products`}>PACKAGE DEALS</a>
+                        <a href={`/products`}>Package Deals</a>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <a href="#"> SERVICE</a>
+                    <a href="#"> Services</a>
                   </li>
                   <li>
-                    <a href="#"> BRANDS</a>
+                    <a href="#"> Brands</a>
                   </li>
 
                   <li>
-                    <a href="/solutions"> SOLUTIONS</a>
+                    <a href="/solutions"> Solutions</a>
                   </li>
                   <li>
-                    <a href="/about-us">ABOUT</a>
+                    <a href="/about-us">About</a>
                   </li>
                   <li>
-                    <a href="#">SUBSIDARY</a>
+                    <a href="#">Subsidary</a>
                   </li>
                 </ul>
               </nav>
             </div>
-            <div className="advanced-search flex items-center border border-[#ebebeb]">
+            <div className="advanced-search flex items-center border-b border-b-gray-700 pb-1">
               <div className="flex items-center">
                 <input
                   type="text"
                   placeholder="Search product"
-                  className="h-full !w-[300px] px-5 py-2 text-[#d1d1d1]"
+                  className="h-full !w-[200px] py-0 text-[#d1d1d1]"
                 />
                 <button type="button" className="mx-3">
                   <i className="ti-search"></i>
@@ -106,19 +104,26 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <ul className="nav-right">
+          <ul className="nav-right !mb-0">
             <li className="cart-icon">
               <a href="#">
                 <i className="fa fa-map-marker" aria-hidden="true"></i>
               </a>
-              <div className="cart-hover !w-[450px]">
+              <div className="cart-hover !w-[370px] rounded-xl !p-5">
                 <div className="select-items">
                   <table>
                     <tbody>
                       {officeLocations.map(
                         (location: OfficeLocation, index) => (
                           <tr key={index}>
-                            <td className="flex gap-5">
+                            <td
+                              className={cn(
+                                'mt-2 flex gap-5',
+                                index !== officeLocations.length - 1
+                                  ? 'border-b pb-3'
+                                  : '!pb-1'
+                              )}
+                            >
                               <div className="flex cursor-pointer items-start justify-center text-sky-500">
                                 <i
                                   className={cn(location.icon, '!text-4xl')}
@@ -126,27 +131,32 @@ const Header = () => {
                                 ></i>
                               </div>
                               <div className="flex w-full flex-col">
-                                <span className="text-2xl font-bold">
+                                <span className="font-semi bold text-lg">
                                   {location.officeName}
                                 </span>
-                                <span className="text-base font-bold">
+                                <span className="text-sm">
                                   {location.address}
                                 </span>
                                 <a
                                   href={location.googleMapLocation}
-                                  className="mt-2 text-base italic !text-sky-500 !underline underline-offset-8"
+                                  className="mt-2 text-[12px] italic !text-sky-500 !underline underline-offset-8"
                                 >
                                   click to see on maps
                                 </a>
-                                <div className="mt-4 flex items-center justify-between">
-                                  <span className="text-lg font-semibold italic">
+                                <div className="mt-2 flex items-center justify-between">
+                                  <span className="text-[12px] font-semibold italic">
                                     24 hours service
                                   </span>
-                                  <span className="flex items-center justify-end gap-2">
-                                    <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-sky-500">
-                                      <i className="fa fa-phone !text-sky-500"></i>
+                                  <span className="flex flex-nowrap items-center justify-end gap-2">
+                                    <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-sky-500 p-1">
+                                      <img
+                                        src="img/icon/phone.svg"
+                                        // className="fill-sky-500"
+                                      />
                                     </span>
-                                    <span>{location.phone}</span>
+                                    <span className="flex-nowrap text-[12px] font-semibold">
+                                      {location.phone}
+                                    </span>
                                   </span>
                                 </div>
                               </div>
@@ -287,13 +297,14 @@ const Header = () => {
           </ul>
         </div>
       </div>
-      <div className="header-top">
+      <div className="header-top bg-[#053349]">
         <div className="container">
           <div className="ht-left">
             Free Ground Installation On Orders Above QAR 2,500.00*
           </div>
           <div className="ht-right">
-            Call us on <span>+974 4418 8446</span>
+            Call us on{' '}
+            <span className="!font-normal text-white">+974 4418 8446</span>
           </div>
         </div>
       </div>

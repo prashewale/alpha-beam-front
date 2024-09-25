@@ -24,6 +24,7 @@ import AdminProducts from './components/admin/products';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { Toaster } from './components/ui/toaster';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
+        <Toaster />
       </CartProvider>
     </>
   );

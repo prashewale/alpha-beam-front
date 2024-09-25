@@ -4,6 +4,7 @@ import Pagination from './pagination';
 import { productsList } from '../../data/products';
 import { Product } from '../../types';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '@/hooks/useCart';
 
 type ProductShopProps = {
   category?: string | null;
@@ -11,6 +12,7 @@ type ProductShopProps = {
 
 const ProductShop = ({ category }: ProductShopProps) => {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   const sortOptions = [
     { value: '', label: 'All' },
@@ -78,9 +80,11 @@ const ProductShop = ({ category }: ProductShopProps) => {
   return (
     <>
       <section className="product-shop spad">
-        <div className="container">
+        <div className="mx-40">
           <div className="row">
-            <h2>Highlighted best-in-class search results</h2>
+            <div className="col-lg-12 order-lg-2 order-1">
+              <h2>Highlighted best-in-class search results</h2>
+            </div>
             <div className="col-lg-12 order-lg-2 order-1">
               <div className="product-show-option">
                 <div className="row">
@@ -122,10 +126,14 @@ const ProductShop = ({ category }: ProductShopProps) => {
                     >
                       <div className="product-item">
                         <div
-                          className="pi-pic"
+                          className="pi-pic flex h-36 justify-center"
                           onClick={() => navigate(`/products/${product.id}`)}
                         >
-                          <img src={product.image} alt={product.name} />
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="h-36"
+                          />
                           <div className="sale pp-sale">Sale</div>
                           <div className="icon">
                             <i className="icon_heart_alt"></i>
@@ -133,29 +141,30 @@ const ProductShop = ({ category }: ProductShopProps) => {
                         </div>
                         <div className="pi-text">
                           <a href={`/products/${product.id}`}>
-                            <h5>{product.name}</h5>
-                            <p>{product.description}</p>
+                            <h5 className="!text-start">{product.name}</h5>
+                            <p className="h-[150px] text-sm">
+                              {product.description}
+                            </p>
                           </a>
                           <div className="product-price">£{product.price}</div>
-                          <div className="action">
-                            <a
-                              href="#"
-                              className="prodt-btn border-gradient border-gradient-purple"
+                          <div className="action flex w-full items-center justify-between gap-2">
+                            <button
+                              className="gradient-btn p-2 text-sm"
+                              onClick={() =>
+                                addToCart(product.id.toString(), 1)
+                              }
                             >
-                              Shop Now
-                            </a>
-                            <a
+                              ADD TO CART
+                            </button>
+                            <button
+                              className="gradient-btn p-2 text-sm"
                               onClick={() => navigate(`/compare/${product.id}`)}
-                              className="prodt-btn border-gradient border-gradient-purple"
                             >
-                              Compare
-                            </a>
-                            <a
-                              href="#"
-                              className="prodt-btn border-gradient border-gradient-purple enquiry-btn"
-                            >
-                              Enquire Now
-                            </a>
+                              COMPARE
+                            </button>
+                            <button className="gradient-btn p-2 text-sm">
+                              ENQUIRE NOW
+                            </button>
                           </div>
                         </div>
                       </div>
