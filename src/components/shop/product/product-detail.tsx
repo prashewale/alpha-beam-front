@@ -27,15 +27,19 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                         <img src="/img/garmine-4.png" alt="shoe image" />
                       </div>
                     </div>
-                    <div className="img-select">
+                    <div className="grid grid-cols-4 items-center gap-2">
                       <div className="img-item">
                         <a href="#" data-id="1">
-                          <img src={product.image} alt="shoe image" />
+                          <img
+                            src={product.image}
+                            alt="shoe image"
+                            className=""
+                          />
                         </a>
                       </div>
                       <div className="img-item">
                         <a href="#" data-id="2">
-                          <img src="/img/garmine-2.png" alt="shoe image" />
+                          <img src="/img/garmine-3.png" alt="shoe image" />
                         </a>
                       </div>
                       <div className="img-item">
