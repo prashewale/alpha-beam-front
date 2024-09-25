@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import { useCart } from "../../../hooks/useCart";
-import { Product } from "../../../types";
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../../../hooks/useCart';
+import { Product } from '../../../types';
 
 type ProductDetailProps = {
   product: Product;
@@ -15,16 +15,16 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       <div className="container">
         <div className="row">
           <div className="card-wrapper">
-            <div className="card">
+            <div className="card !border-none">
               <div className="row">
                 <div className="col-md-6 prod-deat">
                   <div className="product-imgs">
                     <div className="img-display">
                       <div className="img-showcase">
                         <img src={product.image} alt="shoe image" />
-                        <img src="/img/garmine-2.jpeg" alt="shoe image" />
-                        <img src="/img/garmine-1.jpeg" alt="shoe image" />
-                        <img src="/img/garmine-4.jpeg" alt="shoe image" />
+                        <img src="/img/garmine-3.png" alt="shoe image" />
+                        <img src="/img/garmine-2.png" alt="shoe image" />
+                        <img src="/img/garmine-4.png" alt="shoe image" />
                       </div>
                     </div>
                     <div className="img-select">
@@ -35,17 +35,17 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                       </div>
                       <div className="img-item">
                         <a href="#" data-id="2">
-                          <img src="/img/garmine-2.jpeg" alt="shoe image" />
+                          <img src="/img/garmine-2.png" alt="shoe image" />
                         </a>
                       </div>
                       <div className="img-item">
                         <a href="#" data-id="3">
-                          <img src="/img/garmine-1.jpeg" alt="shoe image" />
+                          <img src="/img/garmine-1.png" alt="shoe image" />
                         </a>
                       </div>
                       <div className="img-item">
                         <a href="#" data-id="4">
-                          <img src="/img/garmine-4.jpeg" alt="shoe image" />
+                          <img src="/img/garmine-4.png" alt="shoe image" />
                         </a>
                       </div>
                     </div>
@@ -129,24 +129,24 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                         </label>
                       </div>
                     </div>
-                    <div className="action">
-                      <a
-                        className="prodt-btn border-gradient border-gradient-purple"
+                    <div className="action flex gap-2">
+                      <button
+                        className="gradient-btn p-2 text-sm"
                         onClick={() => addToCart(product.id.toString(), 1)}
                       >
                         Add to Cart
-                      </a>
-                      <a
+                      </button>
+                      <button
+                        className="gradient-btn p-2 text-sm"
                         onClick={() => navigate(`/compare/${product.id}`)}
-                        className="prodt-btn border-gradient border-gradient-purple"
                       >
                         Compare
-                      </a>
-                      <a href="#" className="prodt-btn btn-red">
+                      </button>
+                      <button className="w-[440px] rounded-xl border-none bg-[#FE5639] px-[2px] py-[5px] text-sm text-white outline-none">
                         Enquire Now
-                      </a>
+                      </button>
                     </div>
-                    <div className="purchase-info" style={{ display: "none" }}>
+                    <div className="purchase-info" style={{ display: 'none' }}>
                       <input type="number" min="0" defaultValue="1" />
                       <button type="button" className="btn">
                         Add to Cart <i className="fas fa-shopping-cart"></i>

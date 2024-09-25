@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import { productsList } from "../../../data/products";
-import { Product } from "../../../types";
+import { useNavigate } from 'react-router-dom';
+import { productsList } from '../../../data/products';
+import { Product } from '../../../types';
 
 type CompareProductProps = {
   product: Product;
@@ -18,7 +18,7 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
       <div className="container">
         <div className="row">
           <div className="card-wrapper">
-            <div className="card">
+            <div className="card !border-none">
               <div className="row mt-10">
                 <div className="col-md-6 prod-deat borderRight">
                   <div className="product-imgs">
@@ -75,7 +75,7 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
                 </div>
                 <div className="col-md-6">
                   <div className="row">
-                    <div className="col-md-12 mr-auto mb20">
+                    <div className="col-md-12 mb20 mr-auto">
                       <h4 className="text-center">
                         Compare best similar products
                       </h4>

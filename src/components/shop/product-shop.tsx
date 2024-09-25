@@ -149,7 +149,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
                           <div className="product-price">£{product.price}</div>
                           <div className="action flex w-full items-center justify-between gap-2">
                             <button
-                              className="gradient-btn p-2 text-sm"
+                              className="gradient-btn p-2 text-[12px] font-semibold"
                               onClick={() =>
                                 addToCart(product.id.toString(), 1)
                               }
@@ -157,12 +157,12 @@ const ProductShop = ({ category }: ProductShopProps) => {
                               ADD TO CART
                             </button>
                             <button
-                              className="gradient-btn p-2 text-sm"
+                              className="gradient-btn p-2 text-[12px] font-semibold"
                               onClick={() => navigate(`/compare/${product.id}`)}
                             >
                               COMPARE
                             </button>
-                            <button className="gradient-btn p-2 text-sm">
+                            <button className="w-[440px] rounded-xl border-2 border-[#FE5639] bg-[#FE5639] p-2 text-[12px] font-semibold text-white outline-none">
                               ENQUIRE NOW
                             </button>
                           </div>

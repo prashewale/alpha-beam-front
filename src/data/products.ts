@@ -7,7 +7,7 @@ export const productsList: Product[] = [
     description:
       'A premium handheld GPS with inReach satellite communication and topographic maps.',
     price: 449.99,
-    image: '/img/garmine-1.jpeg',
+    image: '/img/garmine-1.png',
     category: 'chartplotters',
     rating: 4.5,
     brand: 'Garmin',
@@ -19,7 +19,7 @@ export const productsList: Product[] = [
     description:
       'A versatile, all-terrain GPS navigator with a 5-inch screen and advanced features.',
     price: 599.99,
-    image: '/img/garmine-2.jpeg',
+    image: '/img/garmine-2.png',
     category: 'chartplotters',
     rating: 4.2,
     brand: 'Garmin',
@@ -31,7 +31,7 @@ export const productsList: Product[] = [
     description:
       'Compact and durable GPS with a 2.2-inch display, perfect for outdoor adventures.',
     price: 199.99,
-    image: '/img/garmine-3.jpeg',
+    image: '/img/garmine-3.png',
     category: 'chartplotters',
     rating: 4.8,
     brand: 'Garmin',
@@ -43,7 +43,7 @@ export const productsList: Product[] = [
     description:
       'Reliable GPS with a quad-helix antenna and multi-GNSS support for precise navigation.',
     price: 279.99,
-    image: '/img/garmine-4.jpeg',
+    image: '/img/garmine-4.png',
     category: 'chartplotters',
     rating: 4.6,
     brand: 'Garmin',
@@ -55,7 +55,7 @@ export const productsList: Product[] = [
     description:
       'Rugged GPS with inReach technology, large touchscreen, and preloaded maps.',
     price: 649.99,
-    image: '/img/garmine-1.jpeg',
+    image: '/img/garmine-1.png',
     category: 'chartplotters',
     rating: 4.9,
     brand: 'Garmin',
@@ -67,7 +67,7 @@ export const productsList: Product[] = [
     description:
       'Marine handheld GPS with inReach satellite communication and blue chart g3 maps.',
     price: 499.99,
-    image: '/img/garmine-2.jpeg',
+    image: '/img/garmine-2.png',
     category: 'chartplotters',
     rating: 4.7,
     brand: 'Garmin',
@@ -79,7 +79,7 @@ export const productsList: Product[] = [
     description:
       'Waterproof handheld GPS with a high-sensitivity receiver and worldwide basemap.',
     price: 169.99,
-    image: '/img/garmine-3.jpeg',
+    image: '/img/garmine-3.png',
     category: 'chartplotters',
     rating: 4.4,
     brand: 'Garmin',
@@ -91,7 +91,7 @@ export const productsList: Product[] = [
     description:
       'Handheld GPS with inReach satellite communication, marine charts, and built-in Wi-Fi.',
     price: 549.99,
-    image: '/img/garmine-4.jpeg',
+    image: '/img/garmine-4.png',
     category: 'chartplotters',
     rating: 4.5,
     brand: 'Garmin',
@@ -103,7 +103,7 @@ export const productsList: Product[] = [
     description:
       'Handheld GPS with multi-band technology and expanded satellite support.',
     price: 329.99,
-    image: '/img/garmine-1.jpeg',
+    image: '/img/garmine-1.png',
     category: 'chartplotters',
     rating: 4.8,
     brand: 'Garmin',
@@ -115,7 +115,7 @@ export const productsList: Product[] = [
     description:
       '9-inch touchscreen combo with built-in sonar, worldwide basemap, and BlueChart g3 charts.',
     price: 1249.99,
-    image: '/img/garmine-2.jpeg',
+    image: '/img/garmine-2.png',
     category: 'chartplotters',
     rating: 4.6,
     brand: 'Garmin',
@@ -127,7 +127,7 @@ export const productsList: Product[] = [
     description:
       '12-inch chartplotter with high-resolution touchscreen display and NMEA 2000 connectivity.',
     price: 2099.99,
-    image: '/img/garmine-3.jpeg',
+    image: '/img/garmine-3.png',
     category: 'chartplotters',
     rating: 4.9,
     brand: 'Garmin',
@@ -139,7 +139,7 @@ export const productsList: Product[] = [
     description:
       '12-inch combination GPS/Fishfinder with preloaded worldwide basemap and high-sensitivity receiver.',
     price: 1399.99,
-    image: '/img/garmine-4.jpeg',
+    image: '/img/garmine-4.png',
     category: 'chartplotters',
     rating: 4.7,
     brand: 'Garmin',
@@ -151,7 +151,7 @@ export const productsList: Product[] = [
     description:
       '7-inch touchscreen chartplotter with high-resolution display and NMEA 2000 connectivity.',
     price: 849.99,
-    image: '/img/garmine-1.jpeg',
+    image: '/img/garmine-1.png',
     category: 'chartplotters',
     rating: 4.8,
     brand: 'Garmin',
@@ -163,7 +163,7 @@ export const productsList: Product[] = [
     description:
       '10-inch keyed chartplotter with preloaded maps and built-in sonar.',
     price: 1199.99,
-    image: '/img/garmine-2.jpeg',
+    image: '/img/garmine-2.png',
     category: 'chartplotters',
     rating: 4.6,
     brand: 'Garmin',
@@ -175,7 +175,7 @@ export const productsList: Product[] = [
     description:
       '12-inch keyed chartplotter with preloaded BlueChart g3 maps and built-in sonar.',
     price: 1499.99,
-    image: '/img/garmine-3.jpeg',
+    image: '/img/garmine-3.png',
     category: 'chartplotters',
     rating: 4.9,
     brand: 'Garmin',
@@ -187,7 +187,7 @@ export const productsList: Product[] = [
     description:
       '9-inch chartplotter with preloaded maps, built-in sonar, and high-resolution display.',
     price: 999.99,
-    image: '/img/garmine-4.jpeg',
+    image: '/img/garmine-4.png',
     category: 'chartplotters',
     rating: 4.7,
     brand: 'Garmin',
@@ -199,7 +199,7 @@ export const productsList: Product[] = [
     description:
       '10-inch touchscreen chartplotter with built-in sonar, preloaded BlueChart g3, and radar support.',
     price: 1899.99,
-    image: '/img/garmine-1.jpeg',
+    image: '/img/garmine-1.png',
     category: 'chartplotters',
     rating: 4.8,
     brand: 'Garmin',
@@ -211,7 +211,7 @@ export const productsList: Product[] = [
     description:
       '10-inch chartplotter with full network support, built-in sonar, and preloaded maps.',
     price: 2199.99,
-    image: '/img/garmine-2.jpeg',
+    image: '/img/garmine-2.png',
     category: 'chartplotters',
     rating: 4.9,
     brand: 'Garmin',
@@ -223,7 +223,7 @@ export const productsList: Product[] = [
     description:
       '10-inch chartplotter with preloaded worldwide basemap, sonar, and NMEA 2000 connectivity.',
     price: 1299.99,
-    image: '/img/garmine-3.jpeg',
+    image: '/img/garmine-3.png',
     category: 'chartplotters',
     rating: 4.7,
     brand: 'Garmin',
@@ -235,7 +235,7 @@ export const productsList: Product[] = [
     description:
       '10-inch chartplotter with high-resolution display, NMEA 2000, and built-in sonar.',
     price: 999.99,
-    image: '/img/garmine-4.jpeg',
+    image: '/img/garmine-4.png',
     category: 'chartplotters',
     rating: 4.6,
     brand: 'Garmin',
@@ -247,7 +247,7 @@ export const productsList: Product[] = [
     description:
       '7-inch chartplotter with sonar, preloaded BlueChart g3, and high-resolution display.',
     price: 949.99,
-    image: '/img/garmine-1.jpeg',
+    image: '/img/garmine-1.png',
     category: 'chartplotters',
     rating: 4.8,
     brand: 'Garmin',
@@ -259,7 +259,7 @@ export const productsList: Product[] = [
     description:
       '7-inch chartplotter with preloaded worldwide basemap, NMEA 2000 connectivity, and built-in sonar.',
     price: 799.99,
-    image: '/img/garmine-2.jpeg',
+    image: '/img/garmine-2.png',
     category: 'chartplotters',
     rating: 4.7,
     brand: 'Garmin',
@@ -271,7 +271,7 @@ export const productsList: Product[] = [
     description:
       '7-inch chartplotter with built-in sonar, radar support, and preloaded BlueChart g3.',
     price: 1299.99,
-    image: '/img/garmine-3.jpeg',
+    image: '/img/garmine-3.png',
     category: 'chartplotters',
     rating: 4.9,
     brand: 'Garmin',
@@ -283,7 +283,7 @@ export const productsList: Product[] = [
     description:
       '7-inch chartplotter with full network support, NMEA 2000 connectivity, and high-resolution display.',
     price: 1199.99,
-    image: '/img/garmine-4.jpeg',
+    image: '/img/garmine-4.png',
     category: 'chartplotters',
     rating: 4.8,
     brand: 'Garmin',
@@ -296,7 +296,7 @@ export const productsList: Product[] = [
     description:
       '12-inch chartplotter with sonar, preloaded BlueChart g3, and radar support.',
     price: 2599.99,
-    image: '/img/garmine-1.jpeg',
+    image: '/img/garmine-1.png',
     category: 'chartplotters',
     rating: 4.8,
     brand: 'Garmin',
@@ -308,7 +308,7 @@ export const productsList: Product[] = [
     description:
       '16-inch touchscreen chartplotter with built-in sonar, radar support, and preloaded BlueChart g3.',
     price: 4499.99,
-    image: '/img/garmine-2.jpeg',
+    image: '/img/garmine-2.png',
     category: 'chartplotters',
     rating: 4.8,
     brand: 'Garmin',

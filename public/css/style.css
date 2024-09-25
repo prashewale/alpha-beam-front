@@ -270,6 +270,9 @@ ol {
   border-color: transparent;
   color: #fff;
 }
+.product-imgs {
+  padding: 2rem 1rem;
+}
 
 /*@media screen and (min-width: 992px){
     .productDeatils .card{
@@ -283,11 +286,7 @@ ol {
         justify-content: center;
         align-items: center;
     }
-    .productDeatils .product-imgs{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+    
     .productDeatils .product-content{
         padding-top: 0;
     }
