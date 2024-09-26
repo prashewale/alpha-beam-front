@@ -245,7 +245,7 @@ const Header = () => {
                               width: '60px',
                             }}
                           >
-                            <img src={cartLine.image} />
+                            <img src={cartLine.images[0]} />
                           </td>
                           <td
                             className="si-text"

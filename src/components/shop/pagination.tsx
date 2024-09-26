@@ -13,7 +13,7 @@ const Pagination = ({
   return (
     <nav
       aria-label="Page navigation example"
-      style={{ display: "flex", justifyContent: "center" }}
+      style={{ display: 'flex', justifyContent: 'center' }}
     >
       <ul className="pagination">
         <li className="page-item">
@@ -29,7 +29,7 @@ const Pagination = ({
         {pages.map((page) => (
           <li
             key={page}
-            className={`page-item ${page === currentPage ? "active" : ""}`}
+            className={`page-item ${page === currentPage ? 'active' : ''}`}
           >
             <a
               className="page-link"
