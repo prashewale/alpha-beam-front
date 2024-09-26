@@ -4,7 +4,7 @@ export const categories: Category[] = [
   {
     name: "Chartplotters",
     value: "chartplotters",
-    backgroundImage: "/img/banner-chart.jpeg",
+    backgroundImage: "/img/banner-chart.jpeg", 
     description:
       "GPS, Fishfinder, 12-inch chartplotter, 7-inch touchscreen chartplotter, etc. Perfect for sailing, fishing, cruising, racing, and more. Get the best deals on Garmin chartplotters today.",
   },
