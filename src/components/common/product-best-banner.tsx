@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { useEffect, useState } from 'react';
 import { Product } from '@/types';
+import { useNavigate } from 'react-router-dom';
 
 type ProductBannerProps = {
   title: string;
@@ -12,6 +13,7 @@ type ProductBannerProps = {
 
 const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const navigate = useNavigate();
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
@@ -55,7 +57,10 @@ const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
       >
         {products.map((product, index) => (
           <SwiperSlide className="product-item" key={index}>
-            <div className="flex items-center justify-center">
+            <div
+              className="flex items-center justify-center"
+              onClick={() => navigate(`/products/${product.id}`)}
+            >
               <div className="pi-pic !max-w-60">
                 <div className="flex h-auto items-center justify-center">
                   <img
@@ -77,7 +82,7 @@ const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
               </div>
             </div>
             <div className="pi-text">
-              <a href="#">
+              <a href={`/products/${product.id}`}>
                 <h5>{product.name}</h5>
               </a>
             </div>
