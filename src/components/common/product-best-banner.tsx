@@ -3,10 +3,11 @@ import { Carousel } from 'react-responsive-carousel';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { useEffect, useState } from 'react';
+import { Product } from '@/types';
 
 type ProductBannerProps = {
   title: string;
-  products: { imgSrc: string; title: string }[];
+  products: Product[];
 };
 
 const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
@@ -58,8 +59,8 @@ const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
               <div className="pi-pic !max-w-60">
                 <div className="flex h-auto items-center justify-center">
                   <img
-                    src={product.imgSrc}
-                    alt={product.title}
+                    src={product.images[0]}
+                    alt={product.name}
                     className="h-auto w-auto"
                   />
                 </div>
@@ -77,7 +78,7 @@ const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
             </div>
             <div className="pi-text">
               <a href="#">
-                <h5>{product.title}</h5>
+                <h5>{product.name}</h5>
               </a>
             </div>
           </SwiperSlide>

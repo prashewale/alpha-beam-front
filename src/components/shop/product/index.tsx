@@ -10,36 +10,10 @@ const Product = () => {
   const { id } = useParams();
 
   const product = productsList.find((x) => x.id.toString() === id);
-  const similarProducts = [
-    {
-      imgSrc: '/img/garmine-1.jpeg',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-    {
-      imgSrc: '/img/garmine-2.jpeg',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-    {
-      imgSrc: '/img/garmine-4.jpeg',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-    {
-      imgSrc: '/img/garmine-1.jpeg',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-    {
-      imgSrc: '/img/garmine-2.jpeg',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-    {
-      imgSrc: '/img/garmine-1.jpeg',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-    {
-      imgSrc: '/img/garmine-2.jpeg',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-  ];
+  const similarProducts = productsList
+    .filter((x) => x.id !== product?.id)
+    .filter((x) => x.category === product?.category)
+    .slice(0, 7);
 
   return (
     <>

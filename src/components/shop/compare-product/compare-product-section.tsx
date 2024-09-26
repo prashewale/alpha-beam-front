@@ -7,12 +7,9 @@ type CompareProductProps = {
 };
 const CompareProductSection = ({ product }: CompareProductProps) => {
   const navigate = useNavigate();
-  const similarProducts = productsList.filter(
-    (p) => p.category === product.category && p.id !== product.id
-  );
-
-  const firstFourSimilarProducts = similarProducts.slice(0, 4);
-
+  const similarProducts = productsList
+    .filter((p) => p.category === product.category && p.id !== product.id)
+    .slice(0, 7);
   return (
     <section className="product-shop spad productDeatils">
       <div className="container">
@@ -24,33 +21,19 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
                   <div className="product-imgs">
                     <div className="img-display">
                       <div className="img-showcase">
-                        <img src={product.image} alt="product img" />
-                        <img src="img/garmine-2.jpeg" alt="product img" />
-                        <img src="img/garmine-1.jpeg" alt="product img" />
-                        <img src="img/garmine-4.jpeg" alt="product img" />
+                        {product.images.map((image, i) => (
+                          <img src={image} alt="product img" />
+                        ))}
                       </div>
                     </div>
                     <div className="img-select">
-                      <div className="img-item">
-                        <a href="#" data-id="1">
-                          <img src={product.image} alt="product img" />
-                        </a>
-                      </div>
-                      <div className="img-item">
-                        <a href="#" data-id="2">
-                          <img src="/img/garmine-2.jpeg" alt="product img" />
-                        </a>
-                      </div>
-                      <div className="img-item">
-                        <a href="#" data-id="3">
-                          <img src="/img/garmine-1.jpeg" alt="product img" />
-                        </a>
-                      </div>
-                      <div className="img-item">
-                        <a href="#" data-id="4">
-                          <img src="/img/garmine-4.jpeg" alt="product img" />
-                        </a>
-                      </div>
+                      {product.images.map((image, i) => (
+                        <div className="img-item" key={i}>
+                          <a href={image} data-id={i} target="_blank">
+                            <img src={image} alt="product img" />
+                          </a>
+                        </div>
+                      ))}
                     </div>
                   </div>
                   <div className="product-content">
@@ -66,7 +49,15 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
                     </div>
                     <h2 className="product-title">{product.name}</h2>
                     <div className="product-detail">
-                      <p>{product.description}</p>
+                      <p>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: product.description
+                              .replace('\n', '')
+                              .replace('\r', ''),
+                          }}
+                        />
+                      </p>
                     </div>
                     <div className="product-price">
                       <p className="new-price">£{product.price} ex-VAT</p>
@@ -80,7 +71,7 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
                         Compare best similar products
                       </h4>
                     </div>
-                    {firstFourSimilarProducts.map((product, index) => (
+                    {similarProducts.map((product, index) => (
                       <div
                         className="col-md-6 mt-10"
                         key={index}
@@ -88,7 +79,7 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
                       >
                         <div className="product-item">
                           <div className="pi-pic">
-                            <img src={product.image} alt="" />
+                            <img src={product.images[0]} alt="" />
 
                             <div className="icon">
                               <i className="icon_heart_alt"></i>

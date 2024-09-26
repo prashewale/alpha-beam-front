@@ -35,7 +35,10 @@ const BannerSection = () => {
     <div className="mx-28 mt-20">
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 lg:grid-cols-6">
         {categoriesInfo.map((item, index) => (
-          <div className="flex flex-col items-center justify-center gap-3">
+          <div
+            className="flex flex-col items-center justify-center gap-3"
+            key={index}
+          >
             <div className="flex h-36 w-36 items-center justify-center rounded-xl bg-[#E6E7E8] p-4">
               <img src={item.icon} alt="" />
             </div>

@@ -15,6 +15,7 @@ import { useState } from 'react';
 import ModalPopup from '../common/modal-popup';
 import CouponModal from './coupon-modal';
 import EnquirySection from './enquiry-section';
+import { productsList } from '@/data/products';
 
 /**
  * The main entry point for the home page.
@@ -29,32 +30,8 @@ import EnquirySection from './enquiry-section';
  */
 
 const Home = () => {
-  const bestSellerProducts = [
-    {
-      imgSrc: '/img/garmine-1.png',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-    {
-      imgSrc: '/img/garmine-3.png',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-    {
-      imgSrc: '/img/garmine-1.png',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-    {
-      imgSrc: '/img/garmine-3.png',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-    {
-      imgSrc: '/img/garmine-1.png',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-    {
-      imgSrc: '/img/garmine-3.png',
-      title: 'GPSMAP® 10x2 /12x2 Series',
-    },
-  ];
+  const similarProducts = productsList.slice(0, 7);
+
   return (
     <>
       <CouponModal />
@@ -68,7 +45,7 @@ const Home = () => {
       {/* <CategoryBannerSection /> */}
       <ProductBestBanner
         title="Best seller of all times"
-        products={bestSellerProducts}
+        products={similarProducts}
       />
       <VideoBannerSection />
       <TestimonialsAboutUs />

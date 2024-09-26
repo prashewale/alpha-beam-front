@@ -5,6 +5,7 @@ import { productsList } from '../../data/products';
 import { Product } from '../../types';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '@/hooks/useCart';
+import { formatPrice } from '@/lib/utilities';
 
 type ProductShopProps = {
   category?: string | null;
@@ -77,10 +78,17 @@ const ProductShop = ({ category }: ProductShopProps) => {
     setPage(newPage);
   };
 
+  const getShortDescription = (description: string) => {
+    if (description.length > 100) {
+      return description.substring(0, 100) + '...';
+    }
+    return description;
+  };
+
   return (
     <>
       <section className="product-shop spad">
-        <div className="mx-40">
+        <div className="mx-52">
           <div className="row">
             <div className="col-lg-12 order-lg-2 order-1">
               <h2>Highlighted best-in-class search results</h2>
@@ -130,7 +138,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
                           onClick={() => navigate(`/products/${product.id}`)}
                         >
                           <img
-                            src={product.image}
+                            src={product.images[0]}
                             alt={product.name}
                             className="h-36"
                           />
@@ -141,12 +149,17 @@ const ProductShop = ({ category }: ProductShopProps) => {
                         </div>
                         <div className="pi-text">
                           <a href={`/products/${product.id}`}>
-                            <h5 className="!text-start">{product.name}</h5>
+                            <h5 className="h-[100px] !text-start">
+                              {product.name}
+                            </h5>
                             <p className="h-[150px] text-sm">
-                              {product.description}
+                              {!!product.shortDescription &&
+                                getShortDescription(product.shortDescription)}
                             </p>
                           </a>
-                          <div className="product-price">£{product.price}</div>
+                          <div className="product-price">
+                            £{formatPrice(product.price)}
+                          </div>
                           <div className="action flex w-full items-center justify-between gap-2">
                             <button
                               className="gradient-btn p-2 text-[12px] font-semibold"

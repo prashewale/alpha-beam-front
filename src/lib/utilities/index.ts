@@ -323,3 +323,11 @@ export function toSnakeCase(str: string): string {
   str = str[0].toLowerCase() + str.slice(1);
   return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
 }
+
+// format price as comma seperated string
+export const formatPrice = (price: number) => {
+  return price
+    .toFixed(2)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};

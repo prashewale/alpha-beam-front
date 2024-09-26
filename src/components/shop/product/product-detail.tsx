@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../../hooks/useCart';
 import { Product } from '../../../types';
+import { formatPrice } from '@/lib/utilities';
 
 type ProductDetailProps = {
   product: Product;
@@ -21,37 +22,17 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                   <div className="product-imgs">
                     <div className="img-display">
                       <div className="img-showcase">
-                        <img src={product.image} alt="shoe image" />
-                        <img src="/img/garmine-3.png" alt="shoe image" />
-                        <img src="/img/garmine-2.png" alt="shoe image" />
-                        <img src="/img/garmine-4.png" alt="shoe image" />
+                        <img src={product.images[0]} alt="shoe image" />
                       </div>
                     </div>
                     <div className="grid grid-cols-4 items-center gap-2">
-                      <div className="img-item">
-                        <a href="#" data-id="1">
-                          <img
-                            src={product.image}
-                            alt="shoe image"
-                            className=""
-                          />
-                        </a>
-                      </div>
-                      <div className="img-item">
-                        <a href="#" data-id="2">
-                          <img src="/img/garmine-3.png" alt="shoe image" />
-                        </a>
-                      </div>
-                      <div className="img-item">
-                        <a href="#" data-id="3">
-                          <img src="/img/garmine-1.png" alt="shoe image" />
-                        </a>
-                      </div>
-                      <div className="img-item">
-                        <a href="#" data-id="4">
-                          <img src="/img/garmine-4.png" alt="shoe image" />
-                        </a>
-                      </div>
+                      {product.images.map((image, index) => (
+                        <div className="img-item">
+                          <a href={image} data-id={index} target={'_blank'}>
+                            <img src={image} alt="shoe image" className="" />
+                          </a>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -60,12 +41,22 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                     <h2 className="product-title">{product.name}</h2>
 
                     <div className="product-detail">
-                      <p>{product.description}</p>
+                      <p>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: product.description
+                              .replace('\n', '')
+                              .replace('\r', ''),
+                          }}
+                        />
+                      </p>
                     </div>
                     <div className="product-price">
-                      <p className="new-price">£{product.price} ex-VAT</p>
+                      <p className="new-price">
+                        £{formatPrice(product.price)} ex-VAT
+                      </p>
                     </div>
-                    <div>
+                    <div className="hidden">
                       <div className="prod-list">
                         <label>Display</label>
                         <br />

@@ -57,11 +57,13 @@ export type Product = {
   name: string;
   description: string;
   price: number;
-  image: string;
+  images: string[];
   category: string;
   rating: number;
   brand: string;
   stock: number;
+  url?: string;
+  shortDescription?: string;
 };
 
 export type NewProductRequest = {
