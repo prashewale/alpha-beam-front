@@ -6,6 +6,7 @@ import { Product } from '../../types';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '@/hooks/useCart';
 import { formatPrice } from '@/lib/utilities';
+import PaginationUI from './pagination-ui';
 
 type ProductShopProps = {
   category?: string | null;
@@ -118,10 +119,11 @@ const ProductShop = ({ category }: ProductShopProps) => {
                     </div>
                   </div>
                   <div className="col-lg-5 col-md-5 text-right">
-                    <p>
-                      Show {startIndex + 1}-{endIndex} of{' '}
-                      {productsToShow.length} Products
-                    </p>
+                    <PaginationUI
+                      totalPages={totalPages}
+                      currentPage={page}
+                      onPageChange={handlePageChange}
+                    />
                   </div>
                 </div>
               </div>
@@ -193,7 +195,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
           </div>
         </div>
       </section>
-      <Pagination
+      <PaginationUI
         totalPages={totalPages}
         currentPage={page}
         onPageChange={handlePageChange}
