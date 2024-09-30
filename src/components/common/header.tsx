@@ -9,6 +9,7 @@ import { useSignOutAccount } from '@/lib/react-query/queries';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { formatPrice } from '@/lib/utilities';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
   const authUser = useAuthUser<User>();
@@ -40,17 +41,16 @@ const Header = () => {
     (total, product) => total + product.price * product.quantity,
     0
   );
-
   return (
     <header className="flex flex-col">
-      <div className="inner-header flex justify-center">
-        <div className="flex items-end gap-8">
-          <div className="logo">
-            <a href="/">
-              <img src="/img/logo.png" className="max-w-36" />
-            </a>
-          </div>
-          <div className="navbar-center flex items-center gap-8">
+      <div className="inner-header flex flex-col justify-center md:flex-row md:gap-8">
+        <div className="logo">
+          <a href="/">
+            <img src="/img/logo.png" className="max-w-36" />
+          </a>
+        </div>
+        <div className="flex flex-col-reverse items-center md:flex-row md:items-end md:gap-8">
+          <div className="flex flex-col items-center md:flex-row">
             <div className="nav-item">
               <nav className="nav-menu mobile-menu mt-0">
                 <ul className="mb-0">
@@ -97,7 +97,7 @@ const Header = () => {
                 <input
                   type="text"
                   placeholder="Search product"
-                  className="h-full !w-[200px] py-0 text-[#d1d1d1]"
+                  className="!md:w-[200px] h-full w-full py-0 text-[#d1d1d1]"
                 />
                 <button type="button" className="mx-3">
                   <i className="ti-search"></i>
@@ -106,7 +106,7 @@ const Header = () => {
             </div>
           </div>
           <ul className="nav-right !mb-0">
-            <li className="cart-icon">
+            {/* <li className="cart-icon">
               <a href="#">
                 <i className="fa fa-map-marker" aria-hidden="true"></i>
               </a>
@@ -169,8 +169,8 @@ const Header = () => {
                   </table>
                 </div>
               </div>
-            </li>
-            <li className="cart-icon">
+            </li> */}
+            {/* <li className="cart-icon">
               {authUser ? (
                 <>
                   <a href="#">
@@ -311,7 +311,7 @@ const Header = () => {
                   <p>Cart is empty</p>
                 )}
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
