@@ -70,7 +70,7 @@ const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
                   />
                 </div>
 
-                <div className="sale">Sale</div>
+                {/* <div className="sale">Sale</div> */}
                 <div className="icon">
                   <i className="icon_heart_alt"></i>
                 </div>

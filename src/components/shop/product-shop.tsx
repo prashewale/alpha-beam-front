@@ -147,7 +147,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
                             alt={product.name}
                             className="h-36"
                           />
-                          <div className="sale pp-sale">Sale</div>
+                          {/* <div className="sale pp-sale">Sale</div> */}
                           <div className="icon">
                             <i className="icon_heart_alt"></i>
                           </div>
