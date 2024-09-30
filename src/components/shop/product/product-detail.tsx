@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../../hooks/useCart';
 import { Product } from '../../../types';
 import { formatPrice } from '@/lib/utilities';
-
+import { useState } from 'react';
 type ProductDetailProps = {
   product: Product;
 };
@@ -10,6 +10,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   const { addToCart } = useCart();
 
   const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
   return (
     <section className="product-shop spad productDeatils">
@@ -22,13 +23,20 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                   <div className="product-imgs">
                     <div className="img-display">
                       <div className="img-showcase">
-                        <img src={product.images[0]} alt="shoe image" />
+                        <img
+                          src={selectedImage}
+                          alt="shoe image"
+                          className="px-20 md:px-0"
+                        />
                       </div>
                     </div>
                     <div className="grid grid-cols-4 items-center gap-2">
                       {product.images.map((image, index) => (
                         <div className="img-item">
-                          <a href={image} data-id={index} target={'_blank'}>
+                          <a
+                            data-id={index}
+                            onClick={() => setSelectedImage(image)}
+                          >
                             <img src={image} alt="shoe image" className="" />
                           </a>
                         </div>
@@ -40,13 +48,34 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                   <div className="product-content">
                     <h2 className="product-title">{product.name}</h2>
 
+                    <div className="action mb-4 mt-4 flex gap-2">
+                      <button
+                        className="gradient-btn p-2 text-sm"
+                        onClick={() => addToCart(product.id.toString(), 1)}
+                      >
+                        Add to Cart
+                      </button>
+                      <button
+                        className="gradient-btn p-2 text-sm"
+                        onClick={() => navigate(`/compare/${product.id}`)}
+                      >
+                        Compare
+                      </button>
+                      <button className="rounded-xl border-none bg-[#FE5639] p-2 px-[2px] py-[5px] text-sm text-white outline-none">
+                        Enquire Now
+                      </button>
+                    </div>
+
                     <div className="product-detail">
                       <p>
                         <div
                           dangerouslySetInnerHTML={{
-                            __html: product.description
-                              .replace('\n', '')
-                              .replace('\r', ''),
+                            __html: !!product.shortDescription
+                              ? product.shortDescription
+                                  .replace('\n', '')
+                                  .replace('\r', '')
+                                  .slice(0, 200) + '...'
+                              : '',
                           }}
                         />
                       </p>
@@ -56,7 +85,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                         £{formatPrice(product.price)} ex-VAT
                       </p>
                     </div>
-                    <div className="hidden">
+                    <div className="">
                       <div className="prod-list">
                         <label>Display</label>
                         <br />
@@ -111,44 +140,14 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                           No
                         </button>
                       </div>
-                      <div className="prod-list">
-                        <label className="mt-10">
-                          Available to ship
-                          <br />
-                          in 1–3 business days
+                      <div className="flex flex-col">
+                        <label className="mt-10 text-red-700">
+                          *Available to ship in 1–3 business days
                         </label>
-                        <label>
-                          Ground Installation
-                          <br />
-                          Available.
+                        <label className="text-red-700">
+                          *Ground Installation Available.
                         </label>
                       </div>
-                    </div>
-                    <div className="action flex gap-2">
-                      <button
-                        className="gradient-btn p-2 text-sm"
-                        onClick={() => addToCart(product.id.toString(), 1)}
-                      >
-                        Add to Cart
-                      </button>
-                      <button
-                        className="gradient-btn p-2 text-sm"
-                        onClick={() => navigate(`/compare/${product.id}`)}
-                      >
-                        Compare
-                      </button>
-                      <button className="w-[440px] rounded-xl border-none bg-[#FE5639] px-[2px] py-[5px] text-sm text-white outline-none">
-                        Enquire Now
-                      </button>
-                    </div>
-                    <div className="purchase-info" style={{ display: 'none' }}>
-                      <input type="number" min="0" defaultValue="1" />
-                      <button type="button" className="btn">
-                        Add to Cart <i className="fas fa-shopping-cart"></i>
-                      </button>
-                      <button type="button" className="btn">
-                        Compare
-                      </button>
                     </div>
                   </div>
                 </div>

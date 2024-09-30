@@ -111,7 +111,7 @@ ol {
   transition: all 0.5s ease;
 }
 .productDeatils .img-showcase img {
-  min-width: 100%;
+  /* min-width: 100%; */
 }
 .productDeatils .img-select {
   display: flex;
@@ -128,7 +128,7 @@ ol {
   opacity: 0.8;
 }
 .productDeatils .product-content {
-  padding: 2rem 1rem;
+  /* padding: 2rem 1rem; */
 }
 .prod-list label {
   font-weight: 600;
@@ -271,7 +271,7 @@ ol {
   color: #fff;
 }
 .product-imgs {
-  padding: 2rem 1rem;
+  /* padding: 2rem 1rem; */
 }
 
 /*@media screen and (min-width: 992px){
@@ -2980,7 +2980,7 @@ About us
 }
 
 .product-content {
-  padding-top: 40px;
+  /* padding-top: 40px; */
 }
 
 .product-content h5 {

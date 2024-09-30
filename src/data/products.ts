@@ -2,24 +2,6 @@ import { Product } from '../types';
 
 export const productsList: Product[] = [
   {
-    id: 1,
-    name: 'ACR AISLink CA2 Class A AIS Tranciever',
-    description:
-      '<h1><span style="color: #003163;">ACR AISLink CA2 Class A AIS Transceiver</span></h1>\n<p><b><span style="color: #ff0000;">**Offer price includes AIS programming with vessel details**</span></b></p>\n<p>The AISLink CA2 AIS Transponder is a fully compliant Class A transceiver designed to complement the existing range of maritime safety equipment from ACR Electronics. This compact, single-unit solution is capable of exchanging dynamic and static ship data with other AIS systems. Real-time marine traffic information is continuously interpreted using a powerful internal processing engine and displayed on a 7” full-colour, rapid-response LCD. The coastline map view and radar view have various orientation display options allowing for user preference whilst a standard target list display gives immediate detailed listings of nearby vessels which can be sorted to the owner’s desire.</p>\n<p><span style="color: #003163;"><span>Key Features</span></span></p>\n<ul>\n<li>Compact single unit solution with full colour display</li>\n<li>Colour coastline map</li>\n<li>Compliant with EU Inland Waterways standard</li>\n<li>Radar and Target list displays</li>\n<li>Selectable chart orientation</li>\n<li>Incoming message &amp; alarm display</li>\n<li>Alarm output for AIS SART, MOB and EPIRB detection</li>\n<li>Surface mount and bracket mount options</li>\n<li>Supplied with GPS antenna</li>\n<li>Continuous self-testing with alarm notifications</li>\n<li>Simple to use</li>\n<li>Message sending functionality</li>\n<li>Compliant to regulations</li>\n<li>Wi-Fi and USB interfaces for PC &amp; tablet connection</li>\n<li>Pilot plug</li>\n<li>Waterproof to IPx7</li>\n<li>Isolated alarm relay contacts</li>\n<li>Programmable for up to 30 MOB units</li>\n<li>Simple installation</li>\n</ul>',
-    images: [
-      'https://cdn.shopify.com/s/files/1/0901/6514/9979/files/AISLink_CA2_-_Front-800x800.png?v=1726296551',
-      'https://cdn.shopify.com/s/files/1/0901/6514/9979/files/AISLink_CA2_-_Detail_-_Click_Wheel-800x800.jpg?v=1726296558',
-    ],
-    price: 12500,
-    url: 'acr-aislink-ca2-class-a-ais-tranciever',
-    category: 'Electronics > Marine Electronics',
-    brand: 'My Store',
-    rating: 0,
-    stock: 0,
-    shortDescription:
-      'The AISLink CA2 AIS Transponder is a fully compliant Class A transceiver designed to complement the existing range of maritime safety equipment from ACR Electronics. This compact, single-unit solution is capable of exchanging dynamic and static ship data with other AIS systems. Real-time marine traffic information is continuously interpreted using a powerful internal processing engine and displayed on a 7” full-colour, rapid-response LCD. The coastline map view and radar view have various orientation display options allowing for user preference whilst a standard target list display gives immediate detailed listings of nearby vessels which can be sorted to the owner’s desire.',
-  },
-  {
     id: 2,
     name: 'AMEC Camino-108 Class B AIS System with External GPS Antenna',
     description:
@@ -462,6 +444,24 @@ export const productsList: Product[] = [
     stock: 0,
     shortDescription:
       '\nCompatible with a wide range of iOS and Android Apps including Calypso Anemotracker, iRegatta, eStela, Sail Racer, EDO Sailing Instruments, Sailgrib, qtVLm Navigation and Routing, Tactiqs and more\nBluetooth 5.1 connectivity, 50m line of sight\nNMEA0183 & NMEA2000 signal conversion via Calypso NMEA Gateway\n\nDurable &amp; IPX8 waterproof rated\nWind speed and direction sensor\nSolid-state ultrasonic sensor, maintenance free, no moving parts\nVaried and easy mounting options, standard 16 mm (M16X2) female attachment thread\n29 days of continuous operation with no daylight\nWireless solar powered, internal battery\nNominated for the Dame Design Awards 2017\n',
+  },
+  {
+    id: 1,
+    name: 'ACR AISLink CA2 Class A AIS Tranciever',
+    description:
+      '<h1><span style="color: #003163;">ACR AISLink CA2 Class A AIS Transceiver</span></h1>\n<p><b><span style="color: #ff0000;">**Offer price includes AIS programming with vessel details**</span></b></p>\n<p>The AISLink CA2 AIS Transponder is a fully compliant Class A transceiver designed to complement the existing range of maritime safety equipment from ACR Electronics. This compact, single-unit solution is capable of exchanging dynamic and static ship data with other AIS systems. Real-time marine traffic information is continuously interpreted using a powerful internal processing engine and displayed on a 7” full-colour, rapid-response LCD. The coastline map view and radar view have various orientation display options allowing for user preference whilst a standard target list display gives immediate detailed listings of nearby vessels which can be sorted to the owner’s desire.</p>\n<p><span style="color: #003163;"><span>Key Features</span></span></p>\n<ul>\n<li>Compact single unit solution with full colour display</li>\n<li>Colour coastline map</li>\n<li>Compliant with EU Inland Waterways standard</li>\n<li>Radar and Target list displays</li>\n<li>Selectable chart orientation</li>\n<li>Incoming message &amp; alarm display</li>\n<li>Alarm output for AIS SART, MOB and EPIRB detection</li>\n<li>Surface mount and bracket mount options</li>\n<li>Supplied with GPS antenna</li>\n<li>Continuous self-testing with alarm notifications</li>\n<li>Simple to use</li>\n<li>Message sending functionality</li>\n<li>Compliant to regulations</li>\n<li>Wi-Fi and USB interfaces for PC &amp; tablet connection</li>\n<li>Pilot plug</li>\n<li>Waterproof to IPx7</li>\n<li>Isolated alarm relay contacts</li>\n<li>Programmable for up to 30 MOB units</li>\n<li>Simple installation</li>\n</ul>',
+    images: [
+      'https://cdn.shopify.com/s/files/1/0901/6514/9979/files/AISLink_CA2_-_Front-800x800.png?v=1726296551',
+      'https://cdn.shopify.com/s/files/1/0901/6514/9979/files/AISLink_CA2_-_Detail_-_Click_Wheel-800x800.jpg?v=1726296558',
+    ],
+    price: 12500,
+    url: 'acr-aislink-ca2-class-a-ais-tranciever',
+    category: 'Electronics > Marine Electronics',
+    brand: 'My Store',
+    rating: 0,
+    stock: 0,
+    shortDescription:
+      'The AISLink CA2 AIS Transponder is a fully compliant Class A transceiver designed to complement the existing range of maritime safety equipment from ACR Electronics. This compact, single-unit solution is capable of exchanging dynamic and static ship data with other AIS systems. Real-time marine traffic information is continuously interpreted using a powerful internal processing engine and displayed on a 7” full-colour, rapid-response LCD. The coastline map view and radar view have various orientation display options allowing for user preference whilst a standard target list display gives immediate detailed listings of nearby vessels which can be sorted to the owner’s desire.',
   },
   {
     id: 26,
