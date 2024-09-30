@@ -32,7 +32,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                     </div>
                     <div className="grid grid-cols-4 items-center gap-2">
                       {product.images.map((image, index) => (
-                        <div className="img-item">
+                        <div className="img-item" key={index}>
                           <a
                             data-id={index}
                             onClick={() => setSelectedImage(image)}
@@ -67,18 +67,16 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                     </div>
 
                     <div className="product-detail">
-                      <p>
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: !!product.shortDescription
-                              ? product.shortDescription
-                                  .replace('\n', '')
-                                  .replace('\r', '')
-                                  .slice(0, 200) + '...'
-                              : '',
-                          }}
-                        />
-                      </p>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: !!product.shortDescription
+                            ? product.shortDescription
+                                .replace('\n', '')
+                                .replace('\r', '')
+                                .slice(0, 200) + '...'
+                            : '',
+                        }}
+                      />
                     </div>
                     <div className="product-price">
                       <p className="new-price">
