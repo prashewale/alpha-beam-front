@@ -4711,9 +4711,7 @@ About us
   .nav-item .nav-depart {
     display: none;
   }
-  .inner-header .nav-right li.cart-icon .cart-hover {
-    left: -50px;
-  }
+
   .product-show-option p {
     text-align: left;
   }
@@ -4797,8 +4795,9 @@ About us
     max-width: 100%;
   }
   .inner-header .nav-right li.cart-icon .cart-hover {
-    width: 270px;
+    /* width: 270px; */
     padding: 20px;
+    right: 0px;
   }
   .countdown-timer .cd-item {
     margin-right: 5px;
