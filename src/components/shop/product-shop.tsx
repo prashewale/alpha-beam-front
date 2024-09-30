@@ -88,7 +88,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
   return (
     <>
       <section className="product-shop">
-        <div className="mx-10 md:mx-52">
+        <div className="mx-10 lg:mx-52">
           <div className="row">
             <div className="col-lg-12 order-lg-2 order-1 mb-2">
               <h2>Highlighted best-in-class search results</h2>
@@ -124,7 +124,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-5 col-md-5 text-right">
+                  <div className="col-lg-5 col-lg-5 text-right">
                     <PaginationUI
                       totalPages={totalPages}
                       currentPage={page}
@@ -136,10 +136,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
               <div className="product-list shoplist">
                 <div className="row">
                   {productsOnPage.map((product) => (
-                    <div
-                      key={product.id}
-                      className="col-lg-4 col-md-4 col-sm-6"
-                    >
+                    <div key={product.id} className="col-lg-4 col-md-6">
                       <div className="product-item">
                         <div
                           className="pi-pic flex h-36 justify-center"
@@ -157,18 +154,18 @@ const ProductShop = ({ category }: ProductShopProps) => {
                         </div>
                         <div className="pi-text">
                           <a href={`/products/${product.id}`}>
-                            <h5 className="h-[100px] !text-start">
+                            <h5 className="!text-start md:h-[100px]">
                               {product.name}
                             </h5>
-                            <p className="h-[150px] text-sm">
+                            <p className="text-sm md:h-[150px]">
                               {!!product.shortDescription &&
                                 getShortDescription(product.shortDescription)}
                             </p>
                           </a>
-                          <div className="product-price">
+                          <div className="product-price pt-2 md:pt-0">
                             £{formatPrice(product.price)}
                           </div>
-                          <div className="action flex w-full items-center justify-between gap-2">
+                          <div className="action grid grid-cols-1 gap-2 md:grid-cols-3">
                             <button
                               className="gradient-btn p-2 text-[12px] font-semibold"
                               onClick={() =>
@@ -183,7 +180,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
                             >
                               COMPARE
                             </button>
-                            <button className="w-[440px] rounded-xl border-2 border-[#FE5639] bg-[#FE5639] p-2 text-[12px] font-semibold text-white outline-none">
+                            <button className="rounded-xl border-2 border-[#FE5639] bg-[#FE5639] p-2 text-[12px] font-semibold text-white outline-none">
                               ENQUIRE NOW
                             </button>
                           </div>

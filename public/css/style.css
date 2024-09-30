@@ -1473,7 +1473,7 @@ ol {
 
 .gradient-btn {
   padding: 2px 5px;
-  width: 440px;
+  /* width: 440px; */
   border: none;
   outline: none;
   position: relative;
