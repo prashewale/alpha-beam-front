@@ -20,14 +20,14 @@ const SolutionList = () => {
                       ))}
                     </ul>
                   </p>
-                  <div className="action">
-                    <a
-                      href="#"
-                      className="prodt-btn border-gradient border-gradient-purple"
-                    >
+                  <div className="flex gap-2">
+                    <a href="#" className="gradient-btn px-3 py-2 text-sm">
                       Know More
                     </a>
-                    <a href="#" className="prodt-btn btn-red">
+                    <a
+                      href="#"
+                      className="rounded-xl border-none bg-[#FE5639] p-2 px-3 py-[5px] text-sm text-white outline-none"
+                    >
                       Enquire Now
                     </a>
                   </div>

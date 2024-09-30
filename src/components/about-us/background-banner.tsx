@@ -1,10 +1,11 @@
 const BackgroundBanner = () => {
   return (
-    <section className="bg-banner">
+    <section className="">
+      <div className="bg-banner"></div>
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <div className="solution-block">
+            <div className="mt-10">
               <h2>About Us</h2>
               <p>
                 <span className="mb-2 block">
