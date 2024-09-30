@@ -106,7 +106,7 @@ const LogoCarousel: React.FC = () => {
   };
 
   return (
-    <div className="mx-20 mt-10 flex flex-col justify-center gap-16 md:mx-32">
+    <div className="mx-10 mt-10 flex flex-col justify-center gap-16 md:mx-32">
       <div className="flex justify-center">
         <span className="w-full flex-nowrap text-center text-[36px] font-bold text-gray-800">
           Choose by brands

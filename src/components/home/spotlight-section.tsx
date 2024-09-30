@@ -33,7 +33,7 @@ const SpotLightSection = () => {
 
   return (
     <section className="bg-[#FAFAFA]">
-      <div className="mx-28 mt-10 pt-10">
+      <div className="mx-10 mt-10 pt-10 md:mx-28">
         <div className="spotlight">
           <div className="text-center">
             <div className="section-title">
