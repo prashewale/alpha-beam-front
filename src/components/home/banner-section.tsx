@@ -32,8 +32,8 @@ const BannerSection = () => {
     },
   ];
   return (
-    <div className="mx-28 mt-20">
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+    <div className="mx-10 mt-20 md:mx-28">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
         {categoriesInfo.map((item, index) => (
           <div
             className="flex flex-col items-center justify-center gap-3"

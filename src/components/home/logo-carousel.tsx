@@ -3,6 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
+import { useEffect, useState } from 'react';
 
 const LogoCarousel: React.FC = () => {
   const logos = [
@@ -76,10 +77,38 @@ const LogoCarousel: React.FC = () => {
 
   const navigate = useNavigate();
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  let slidesPerView = 4;
+
+  if (windowWidth >= 1400) {
+    slidesPerView = 4;
+  } else if (windowWidth >= 1068) {
+    slidesPerView = 3;
+  } else if (windowWidth >= 768) {
+    slidesPerView = 2;
+  } else {
+    slidesPerView = 1;
+  }
+
+  const sliderPagination = {
+    clickable: true,
+  };
+
   return (
-    <div className="mx-32 mt-10 flex flex-col justify-center gap-16">
+    <div className="mx-20 mt-10 flex flex-col justify-center gap-16 md:mx-32">
       <div className="flex justify-center">
-        <span className="text-[36px] font-bold text-gray-800">
+        <span className="w-full flex-nowrap text-center text-[36px] font-bold text-gray-800">
           Choose by brands
         </span>
       </div>
@@ -88,7 +117,7 @@ const LogoCarousel: React.FC = () => {
           <Swiper
             key={spIndex}
             spaceBetween={8}
-            slidesPerView={5}
+            slidesPerView={slidesPerView}
             modules={[Autoplay]}
             autoplay={{
               delay: 5000,

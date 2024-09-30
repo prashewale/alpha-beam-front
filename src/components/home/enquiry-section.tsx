@@ -12,7 +12,7 @@ const EnquirySection = () => {
         </div>
         <div className="flex w-full justify-center">
           <div className="flex flex-col gap-3">
-            <div className="flex space-x-3">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
               <input
                 type="text"
                 placeholder="Name"

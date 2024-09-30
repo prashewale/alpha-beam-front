@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Select from 'react-select';
-import Pagination from './pagination';
 import { productsList } from '../../data/products';
 import { Product } from '../../types';
 import { useNavigate } from 'react-router-dom';

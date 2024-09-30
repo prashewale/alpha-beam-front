@@ -8,6 +8,7 @@ import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import { useSignOutAccount } from '@/lib/react-query/queries';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { formatPrice } from '@/lib/utilities';
 
 const Header = () => {
   const authUser = useAuthUser<User>();
@@ -237,48 +238,65 @@ const Header = () => {
                 <div className="select-items">
                   <table>
                     <tbody>
-                      {productsFromCart.map((cartLine, index) => (
-                        <tr key={index}>
-                          <td
-                            className="si-pic"
-                            style={{
-                              width: '60px',
-                            }}
-                          >
-                            <img src={cartLine.images[0]} />
-                          </td>
-                          <td
-                            className="si-text"
-                            style={{
-                              textWrap: 'nowrap',
-                            }}
-                          >
-                            <div className="product-selected">
-                              <p>
-                                £{cartLine.price} x {cartLine.quantity}
-                              </p>
-                              <h6>{cartLine.name}</h6>
-                            </div>
-                          </td>
-                          <td
-                            className="si-close"
-                            onClick={() => {
-                              removeFromCart(cartLine.id.toString());
-                            }}
-                          >
-                            <i className="ti-close"></i>
-                          </td>
-                        </tr>
-                      ))}
+                      {productsFromCart
+                        .filter((_, i) => i < 3)
+                        .map((cartLine, index) => (
+                          <tr key={index}>
+                            <td
+                              className="si-pic"
+                              style={{
+                                width: '60px',
+                              }}
+                            >
+                              <img src={cartLine.images[0]} />
+                            </td>
+                            <td
+                              className="si-text"
+                              style={{
+                                textWrap: 'nowrap',
+                              }}
+                            >
+                              <div className="product-selected">
+                                <p>
+                                  £{formatPrice(cartLine.price)} x{' '}
+                                  {cartLine.quantity}
+                                </p>
+                                <h6>
+                                  {cartLine.name.length > 20
+                                    ? cartLine.name.slice(0, 20) + '...'
+                                    : cartLine.name}
+                                </h6>
+                              </div>
+                            </td>
+                            <td
+                              className="si-close"
+                              onClick={() => {
+                                removeFromCart(cartLine.id.toString());
+                              }}
+                            >
+                              <i className="ti-close"></i>
+                            </td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
+                  {productsFromCart.length > 3 && (
+                    <div className="flex items-center justify-center">
+                      <span
+                        className="cursor-pointer rounded-full border px-3 py-1 text-sm font-semibold"
+                        onClick={() => navigate('/cart')}
+                      >
+                        and {productsFromCart.length - 3} more
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {productsFromCart.length > 0 ? (
                   <>
-                    <div className="select-total">
+                    <div className="select-total mt-2">
                       <span>total:</span>
-                      <h5>£{cartTotalPrice}</h5>
+                      <h5>£{formatPrice(cartTotalPrice)}</h5>
                     </div>
                     <div className="select-button">
                       <a href="/cart" className="primary-btn view-card">

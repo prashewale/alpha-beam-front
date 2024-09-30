@@ -46,7 +46,7 @@ const CouponModal = () => {
               >
                 Get My 15%
               </button>
-              <p>No thanks, I am not into savings</p>
+              <p className="mt-4">No thanks, I am not into savings</p>
             </div>
           </div>
         </div>

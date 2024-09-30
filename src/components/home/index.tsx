@@ -35,7 +35,7 @@ const Home = () => {
   return (
     <>
       <CouponModal />
-      <Header />
+      {/* <Header /> */}
       {/* <Features /> */}
       <HeroSection />
       <BannerSection />
