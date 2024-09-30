@@ -41,7 +41,7 @@ const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
     clickable: true,
   };
   return (
-    <section className="mx-28 mt-20 flex flex-col gap-8">
+    <section className="mx-10 mt-20 flex flex-col gap-8 md:mx-28">
       <h2 className="text-center text-3xl font-bold">{title}</h2>
       <Swiper
         modules={[Autoplay, Pagination]}
