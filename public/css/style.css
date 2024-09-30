@@ -4780,6 +4780,10 @@ About us
   .checkout-content input {
     margin-top: 50px;
   }
+  .inner-header .nav-right li.cart-icon .cart-hover {
+    /* width: 270px; */
+    right: 0px;
+  }
 }
 
 /* Small Device: 320px */
@@ -4797,7 +4801,6 @@ About us
   .inner-header .nav-right li.cart-icon .cart-hover {
     /* width: 270px; */
     padding: 20px;
-    right: 0px;
   }
   .countdown-timer .cd-item {
     margin-right: 5px;
