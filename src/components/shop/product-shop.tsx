@@ -87,34 +87,41 @@ const ProductShop = ({ category }: ProductShopProps) => {
 
   return (
     <>
-      <section className="product-shop spad">
-        <div className="mx-52">
+      <section className="product-shop">
+        <div className="mx-10 md:mx-52">
           <div className="row">
-            <div className="col-lg-12 order-lg-2 order-1">
+            <div className="col-lg-12 order-lg-2 order-1 mb-2">
               <h2>Highlighted best-in-class search results</h2>
             </div>
             <div className="col-lg-12 order-lg-2 order-1">
               <div className="product-show-option">
                 <div className="row">
-                  <div className="col-lg-7 col-md-7">
-                    <div className="select-option">
-                      <label className="btn btn-light">Filter</label>
-                      <span style={{ minWidth: '150px' }}>
-                        <Select
-                          defaultValue={sortOption}
-                          onChange={setSortOption}
-                          options={sortOptions}
-                        />
-                      </span>
-
-                      <label className="btn btn-light">Brands</label>
-                      <span style={{ minWidth: '150px' }}>
-                        <Select
-                          defaultValue={brandFilter}
-                          onChange={setBrandFilter}
-                          options={brandFilters}
-                        />
-                      </span>
+                  <div className="col-lg-7 col-md-7 !mb-4 md:mb-0">
+                    <div className="flex justify-between gap-5 md:justify-start">
+                      <div className="flex flex-col items-center gap-2 md:flex-row">
+                        <label className="font-semibold text-gray-500">
+                          Filter By
+                        </label>
+                        <span style={{ minWidth: '150px' }}>
+                          <Select
+                            defaultValue={sortOption}
+                            onChange={setSortOption}
+                            options={sortOptions}
+                          />
+                        </span>
+                      </div>
+                      <div className="flex flex-col items-center gap-2 md:flex-row">
+                        <label className="font-semibold text-gray-500">
+                          Brands
+                        </label>{' '}
+                        <span style={{ minWidth: '150px' }}>
+                          <Select
+                            defaultValue={brandFilter}
+                            onChange={setBrandFilter}
+                            options={brandFilters}
+                          />
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div className="col-lg-5 col-md-5 text-right">

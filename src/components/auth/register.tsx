@@ -156,7 +156,7 @@ export default function Register({ redirectPath }: RegisterProps) {
               <header className="card-header">
                 <a
                   href="/login"
-                  className="btn btn-outline-primary float-right mt-1"
+                  className="float-right mt-1 rounded-md border-2 border-[#053349] p-2 text-[#053349] hover:bg-[#053349] hover:text-white"
                 >
                   Log in
                 </a>
@@ -425,7 +425,7 @@ export default function Register({ redirectPath }: RegisterProps) {
                     <div className="form-group">
                       <Button
                         type="submit"
-                        className="shad-button_primary w-full"
+                        className="w-full rounded-md border-2 border-[#053349] bg-[#053349] p-2 text-white"
                       >
                         {isCreatingAccount || isSigningInUser ? (
                           <div className="flex-center gap-2">
@@ -444,7 +444,10 @@ export default function Register({ redirectPath }: RegisterProps) {
                 </article>
               </Form>
               <div className="border-top card-body text-center">
-                Have an account? <a href="/login">Log In</a>
+                Have an account?{' '}
+                <a href="/login">
+                  <span className="!text-[#053349]">Log In</span>
+                </a>
               </div>
             </div>
           </div>

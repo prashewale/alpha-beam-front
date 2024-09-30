@@ -80,7 +80,7 @@ export default function Login({ redirectPath }: LoginProps) {
               <header className="card-header">
                 <a
                   href="/register"
-                  className="btn btn-outline-primary float-right mt-1"
+                  className="float-right mt-1 rounded-md border-2 border-[#053349] p-2 text-[#053349] hover:bg-[#053349] hover:text-white"
                 >
                   Sign up
                 </a>
@@ -134,9 +134,9 @@ export default function Login({ redirectPath }: LoginProps) {
                       />
                     </div>
                     <div className="form-group">
-                      <Button
+                      <button
                         type="submit"
-                        className="shad-button_primary w-full"
+                        className="w-full rounded-md border-2 border-[#053349] bg-[#053349] p-2 text-white"
                       >
                         {isSignInPending ? (
                           <div className="flex items-center justify-center gap-2">
@@ -145,13 +145,16 @@ export default function Login({ redirectPath }: LoginProps) {
                         ) : (
                           'Log in'
                         )}
-                      </Button>
+                      </button>
                     </div>
                   </form>
                 </article>
               </Form>
               <div className="border-top card-body text-center">
-                Don't have a account? <a href="/register">Sign Up</a>
+                Don't have a account?{' '}
+                <a href="/register ">
+                  <span className="!text-[#053349]">Sign Up</span>
+                </a>
               </div>
             </div>
           </div>
