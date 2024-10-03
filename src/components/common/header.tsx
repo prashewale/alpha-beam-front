@@ -368,7 +368,7 @@ const Header = () => {
                                         : subsidary.description}
                                     </span>
                                     <button
-                                      onClick={() => navigate(subsidary.url)}
+                                      onClick={() => window.open(subsidary.url)}
                                       className="mt-2 !text-[12px] italic !text-sky-500 !underline underline-offset-8"
                                     >
                                       click to visit the website
