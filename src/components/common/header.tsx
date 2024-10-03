@@ -268,6 +268,22 @@ const Header = () => {
     );
   };
 
+  const subsidaries = [
+    {
+      name: 'Alfa Telecom',
+      url: 'https://www.alfatelecom.com.qa/telecom/Home',
+      icon: '/img/alpha-telecom-icon.png',
+      description: `Qatar's Largest  Amateur Radio Dealer`,
+    },
+    {
+      name: 'Techno Qatar',
+      url: 'https://technoqatar.com/',
+      icon: '/img/techno-qatar-icon.png',
+      description:
+        'Techno Qatar is actively involved in Design and build various and completed a numbers of Contracts with a challenging projects in many aspects of the engineering and construction sector requirement',
+    },
+  ];
+
   return (
     <header className="flex flex-col">
       <div className="inner-header flex flex-col md:flex-row md:justify-center md:gap-8">
@@ -318,6 +334,53 @@ const Header = () => {
                   </li>
                   <li>
                     <a href="#">Subsidary</a>
+                    <ul className="dropdown !right-[-70px] !w-[370px] rounded-xl !bg-white !p-5">
+                      <div className="select-items">
+                        <table>
+                          <tbody>
+                            {subsidaries.map((subsidary, index) => (
+                              <tr key={index}>
+                                <td
+                                  className={cn(
+                                    'mt-2 flex gap-5',
+                                    index !== officeLocations.length - 1
+                                      ? 'border-b pb-3'
+                                      : '!pb-1'
+                                  )}
+                                >
+                                  <div className="flex cursor-pointer items-start justify-center text-sky-500">
+                                    <img
+                                      className={cn(
+                                        'mt-2 h-auto w-10 !text-4xl'
+                                      )}
+                                      aria-hidden="true"
+                                      src={subsidary.icon}
+                                    />
+                                  </div>
+                                  <div className="flex w-full flex-col items-start">
+                                    <span className="font-semi bold text-lg">
+                                      {subsidary.name}
+                                    </span>
+                                    <span className="text-sm">
+                                      {subsidary.description.length > 70
+                                        ? subsidary.description.slice(0, 70) +
+                                          '...'
+                                        : subsidary.description}
+                                    </span>
+                                    <button
+                                      onClick={() => navigate(subsidary.url)}
+                                      className="mt-2 !text-[12px] italic !text-sky-500 !underline underline-offset-8"
+                                    >
+                                      click to visit the website
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </ul>
                   </li>
                 </ul>
               </nav>

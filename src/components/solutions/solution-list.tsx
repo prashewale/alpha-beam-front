@@ -21,13 +21,10 @@ const SolutionList = () => {
                     </ul>
                   </p>
                   <div className="flex gap-2">
-                    <a href="#" className="gradient-btn px-3 py-2 text-sm">
+                    <a className="gradient-btn cursor-pointer px-3 py-2 text-sm font-semibold">
                       Know More
                     </a>
-                    <a
-                      href="#"
-                      className="rounded-xl border-none bg-[#FE5639] p-2 px-3 py-[5px] text-sm text-white outline-none"
-                    >
+                    <a className="cursor-pointer rounded-xl border-none bg-[#FE5639] p-2 px-3 py-[5px] text-sm text-white outline-none">
                       Enquire Now
                     </a>
                   </div>
