@@ -6,7 +6,12 @@ import { officeLocations } from '../../data/office-locations';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import { useSignOutAccount } from '@/lib/react-query/queries';
-import { useNavigate } from 'react-router-dom';
+import {
+  useNavigate,
+  useParams,
+  useRoutes,
+  useSearchParams,
+} from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { formatPrice } from '@/lib/utilities';
 import { useEffect, useState } from 'react';
@@ -66,7 +71,7 @@ const Header = () => {
           <a href="#">
             <i className="fa fa-map-marker" aria-hidden="true"></i>
           </a>
-          <div className="cart-hover !right-[-70px] !w-[370px] rounded-xl !p-5">
+          <div className="cart-hover !right-[-70px] !w-[370px] rounded-xl !bg-gray-100 !p-5">
             <div className="select-items">
               <table>
                 <tbody>
@@ -128,7 +133,7 @@ const Header = () => {
               <a href="#">
                 <i className="fa fa-user"></i>
               </a>
-              <div className="cart-hover">
+              <div className="cart-hover !bg-gray-100">
                 <div className="select-items">
                   <table>
                     <tbody>
@@ -186,7 +191,7 @@ const Header = () => {
               ''
             )}
           </a>
-          <div className="cart-hover">
+          <div className="cart-hover !rounded-xl !bg-gray-100">
             <div className="select-items">
               <table>
                 <tbody>
@@ -284,6 +289,15 @@ const Header = () => {
     },
   ];
 
+  const url = window.location.href;
+  const path = url.split('/').pop()?.split('?')[0];
+
+  // const category = searchParams.get('category');
+
+  // const categoryInfo = categories.find(
+  //   (x) => x.value.toLowerCase() === category?.toLowerCase()
+  // );
+
   return (
     <header className="flex flex-col">
       <div className="inner-header flex flex-col md:flex-row md:justify-center md:gap-8">
@@ -301,40 +315,93 @@ const Header = () => {
               <nav className="nav-menu mobile-menu mt-0">
                 <ul className="mb-0">
                   <li>
-                    <a href="/products">Products</a>
-                    <ul className="dropdown">
-                      {categories.map((c, index) => (
-                        <li key={index}>
-                          <a href={`/products?category=${c.value}`}>{c.name}</a>
-                        </li>
-                      ))}
-                      <li>
-                        <a href={`/products`}>See All</a>
-                      </li>
-                      <li>
-                        <a href={`/products`}>Best Sellers</a>
-                      </li>
-                      <li>
-                        <a href={`/products`}>Package Deals</a>
-                      </li>
-                    </ul>
+                    <a
+                      onClick={() => navigate('/products')}
+                      className={cn(
+                        path == 'products' ? '!text-[#1d8aca]' : ''
+                      )}
+                    >
+                      Products
+                    </a>
+                    <div className="dropdown !min-w-[700px] rounded-xl !bg-gray-100 !p-5 md:!left-[-100px] lg:!left-0">
+                      <div className="select-items">
+                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+                          {categories.map((c, index) => (
+                            <div
+                              key={index}
+                              className="flex w-full cursor-pointer items-center justify-start gap-2 hover:text-[#1d8aca]"
+                              onClick={() =>
+                                navigate(`/products?category=${c.value}`)
+                              }
+                            >
+                              <div className="flex h-20 w-20 items-center justify-center overflow-hidden">
+                                <img
+                                  src={c.iconImageUrl}
+                                  alt=""
+                                  className="h-auto w-20 object-cover"
+                                />
+                              </div>
+                              <div className="w-full">{c.name}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   </li>
                   <li>
-                    <a href="#"> Services</a>
+                    <a
+                      className={cn(
+                        'cursor-pointer',
+                        path == 'services' ? '!text-[#1d8aca]' : ''
+                      )}
+                    >
+                      Services
+                    </a>
                   </li>
                   <li>
-                    <a href="#"> Brands</a>
+                    <a
+                      className={cn(
+                        'cursor-pointer',
+                        path == 'brands' ? '!text-[#1d8aca]' : ''
+                      )}
+                    >
+                      {' '}
+                      Brands
+                    </a>
                   </li>
 
                   <li>
-                    <a href="/solutions"> Solutions</a>
+                    <a
+                      onClick={() => navigate('/solutions')}
+                      className={cn(
+                        'cursor-pointer',
+                        path == 'solutions' ? '!text-[#1d8aca]' : ''
+                      )}
+                    >
+                      Solutions
+                    </a>
                   </li>
                   <li>
-                    <a href="/about-us">About</a>
+                    <a
+                      onClick={() => navigate('/about-us')}
+                      className={cn(
+                        'cursor-pointer',
+                        path == 'about-us' ? '!text-[#1d8aca]' : ''
+                      )}
+                    >
+                      About
+                    </a>
                   </li>
                   <li>
-                    <a href="#">Subsidary</a>
-                    <ul className="dropdown !right-[-70px] !w-[370px] rounded-xl !bg-white !p-5">
+                    <a
+                      className={cn(
+                        'cursor-pointer',
+                        path == 'subsidaries' ? '!text-[#1d8aca]' : ''
+                      )}
+                    >
+                      Subsidary
+                    </a>
+                    <ul className="dropdown !right-[-70px] !w-[370px] rounded-xl !bg-gray-100 !p-5">
                       <div className="select-items">
                         <table>
                           <tbody>

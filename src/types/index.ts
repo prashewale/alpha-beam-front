@@ -93,6 +93,7 @@ export type Category = {
   name: string;
   value: string;
   description: string;
+  iconImageUrl?: string;
   backgroundImage?: string;
 };
 

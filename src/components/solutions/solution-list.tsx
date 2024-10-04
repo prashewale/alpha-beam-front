@@ -5,7 +5,7 @@ const SolutionList = () => {
     <section className="product-shop spad productDeatils">
       <div className="container">
         {solutionDetails.map((item, index) => (
-          <>
+          <div key={index}>
             <div className="row">
               <div className="col-md-6">
                 <img src={item.imageUrl} />
@@ -32,7 +32,7 @@ const SolutionList = () => {
               </div>
             </div>
             <hr className="brd-line" />
-          </>
+          </div>
         ))}
       </div>
     </section>
