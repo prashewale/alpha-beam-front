@@ -54,7 +54,7 @@ const CreateUpdateProductForm = ({
       stock: product?.stock || 0,
       brand: product?.brand || '',
       category: product?.category || '',
-      // images: product?.images || [],
+      images: product?.images || [],
       price: product?.price || 0,
     },
   });
@@ -114,7 +114,7 @@ const CreateUpdateProductForm = ({
         onSubmit={form.handleSubmit(handleProductAddUpdate)}
         className="flex flex-col gap-4"
       >
-        {/* <div className="form-group">
+        <div className="form-group">
           <FormField
             control={form.control}
             name="images"
@@ -130,7 +130,7 @@ const CreateUpdateProductForm = ({
               </FormItem>
             )}
           />
-        </div> */}
+        </div>
         <FormField
           control={form.control}
           name="name"

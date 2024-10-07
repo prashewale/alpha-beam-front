@@ -99,9 +99,9 @@ export const ProductValidation = z.object({
   //     'Please enter a valid price (e.g., 10 or 10.99)'
   //   )
   //   .transform((value) => parseFloat(value)), // Transform to number for backend processing
-  // images: z.any().refine((images) => images && images.length > 0, {
-  //   message: 'At least one image is required.',
-  // }),
+  images: z.any().refine((images) => images && images.length > 0, {
+    message: 'At least one image is required.',
+  }),
   // images: z.custom<File[]>(),
   category: z.string().min(1, { message: 'Category is required.' }),
   brand: z.string({ message: 'Brand should be string' }),

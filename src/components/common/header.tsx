@@ -15,11 +15,19 @@ import { cn } from '@/lib/utils';
 import { formatPrice } from '@/lib/utilities';
 import { useEffect, useState } from 'react';
 
+type ProductWithQuantity = Product & {
+  quantity: number;
+};
+
 const Header = () => {
   const authUser = useAuthUser<User>();
   const signOut = useSignOut();
 
   const navigate = useNavigate();
+
+  const [productsFromCart, setProductsFromCart] = useState<
+    ProductWithQuantity[]
+  >([]);
 
   const { data: productsListResponse, isFetching: isProductsFetching } =
     useGetProducts();
@@ -36,38 +44,48 @@ const Header = () => {
     return { productId: key, quantity: cart[key] };
   });
 
-  const productsFromCart = cartLines.map((cartLine) => {
-    const product = productsList.find(
-      (p) => p._id.toString() === cartLine.productId
-    );
-    if (!product) {
-      throw new Error(`Product with id ${cartLine.productId} does not exist`);
-    }
-    return { ...product, quantity: cartLine.quantity };
-  });
-
-  const cartTotalPrice = productsFromCart.reduce(
-    (total, product) => total + product.price * product.quantity,
-    0
-  );
-
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
 
+  const handleCartProducts = () => {
+    const productsFromCart = cartLines.map((cartLine) => {
+      const product = productsList.find(
+        (p) => p._id.toString() === cartLine.productId
+      );
+
+      if (!product) {
+        throw new Error(`Product with id ${cartLine.productId} does not exist`);
+      }
+
+      return { ...product, quantity: cartLine.quantity };
+    });
+
+    setProductsFromCart(productsFromCart);
+  };
+
   useEffect(() => {
     window.addEventListener('resize', handleResize);
+    if (!isProductsFetching) {
+      handleCartProducts();
+    }
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [isProductsFetching]);
 
   let isMobile = false;
 
   if (windowWidth < 768) {
     isMobile = true;
   }
+
+  const cartTotalPrice = productsFromCart.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
   const generateNavIcons = () => {
     return (
       <ul className="nav-right">

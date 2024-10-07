@@ -4,7 +4,7 @@ import { Button } from '../ui/button';
 import { MultiUploader } from './multi-file-uploader';
 
 type Props = {
-  onChange: (url?: string) => void;
+  onChange: (imageUrls: string[]) => void;
   values: string[];
 };
 
@@ -25,7 +25,15 @@ const FileUpload = ({ onChange, values }: Props) => {
                 className="object-contain"
               />
             </div>
-            <Button onClick={() => onChange('')} variant="ghost" type="button">
+            <Button
+              onClick={(e) => {
+                // remove value from values
+                const newValues = values.filter((_, i) => i !== index);
+                onChange(newValues);
+              }}
+              variant="ghost"
+              type="button"
+            >
               <X className="h-4 w-4" />
               Remove Image
             </Button>
