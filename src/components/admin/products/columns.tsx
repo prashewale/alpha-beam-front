@@ -13,30 +13,31 @@ import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDown, Edit, Eye, MoreHorizontal, Trash2 } from 'lucide-react';
 import CreateUpdateProductDialog from './create-update-product';
 import { useState } from 'react';
+import { useDeleteProduct } from '@/lib/react-query/queries';
 
 export const columns: ColumnDef<Product>[] = [
-  //   {
-  //     id: 'select',
-  //     header: ({ table }) => (
-  //       <Checkbox
-  //         checked={
-  //           table.getIsAllPageRowsSelected() ||
-  //           (table.getIsSomePageRowsSelected() && 'indeterminate')
-  //         }
-  //         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-  //         aria-label="Select all"
-  //       />
-  //     ),
-  //     cell: ({ row }) => (
-  //       <Checkbox
-  //         checked={row.getIsSelected()}
-  //         onCheckedChange={(value) => row.toggleSelected(!!value)}
-  //         aria-label="Select row"
-  //       />
-  //     ),
-  //     enableSorting: false,
-  //     enableHiding: false,
-  //   },
+  // {
+  //   id: 'select',
+  //   header: ({ table }) => (
+  //     <Checkbox
+  //       checked={
+  //         table.getIsAllPageRowsSelected() ||
+  //         (table.getIsSomePageRowsSelected() && 'indeterminate')
+  //       }
+  //       onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+  //       aria-label="Select all"
+  //     />
+  //   ),
+  //   cell: ({ row }) => (
+  //     <Checkbox
+  //       checked={row.getIsSelected()}
+  //       onCheckedChange={(value) => row.toggleSelected(!!value)}
+  //       aria-label="Select row"
+  //     />
+  //   ),
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
 
   {
     id: 'actions',
@@ -44,6 +45,9 @@ export const columns: ColumnDef<Product>[] = [
     cell: ({ row }) => {
       const product = row.original;
       const [openUpdateProduct, setOpenUpdateProduct] = useState(false);
+
+      const { mutate: deleteProduct, isPending: isDeleteLoading } =
+        useDeleteProduct();
 
       return (
         <>
@@ -76,7 +80,16 @@ export const columns: ColumnDef<Product>[] = [
                 View
               </DropdownMenuItem>
 
-              <DropdownMenuItem className="cursor-pointer text-red-500">
+              <DropdownMenuItem
+                className="cursor-pointer text-red-500"
+                onClick={() => {
+                  if (
+                    confirm('Are you sure you want to delete this product?')
+                  ) {
+                    deleteProduct(product._id);
+                  }
+                }}
+              >
                 <Trash2 className="mr-2 h-3.5 w-3.5 text-red-500" />
                 Delete
               </DropdownMenuItem>

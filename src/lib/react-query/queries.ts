@@ -15,6 +15,7 @@ import {
 import {
   createAddress,
   createProduct,
+  deleteProduct,
   getProducts,
   updateAddress,
   updateProduct,
@@ -73,6 +74,19 @@ export const useUpdateProduct = () => {
 
   return useMutation({
     mutationFn: (request: UpdateProductRequest) => updateProduct(request),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_PRODUCTS],
+      });
+    },
+  });
+};
+
+export const useDeleteProduct = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: string) => deleteProduct(id),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_PRODUCTS],
