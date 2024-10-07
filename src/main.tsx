@@ -7,6 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import { BrowserRouter } from 'react-router-dom';
 import AuthProvider from './contexts/AuthContext.tsx';
 import { QueryProvider } from './lib/react-query/query-provider.tsx';
+import 'react-circular-progressbar/dist/styles.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -193,14 +193,14 @@ const CreateUpdateProductForm = ({
                   </span>
                 </FormLabel>
                 <FormControl>
-                  <div className="flex w-full items-center justify-between">
+                  <div className="flex w-full items-center">
                     <Slider
                       value={[sliderValue]} // Slider expects an array of values
                       min={0}
                       max={5}
                       step={0.5}
                       onValueChange={handleSliderChange}
-                      className="my-3 w-full"
+                      className="my-3 w-full rounded-full border"
                     />
                   </div>
                 </FormControl>

@@ -1,53 +1,85 @@
 import { useDropzone } from '@uploadthing/react';
 import { useCallback, useState } from 'react';
 import { generateClientDropzoneAccept } from 'uploadthing/client';
-
 import { useUploadThing } from '@/lib/uploadthing';
-import { ExpandedRouteConfig } from 'uploadthing/types';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '../ui/button';
 import { X } from 'lucide-react';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import { cn } from '@/lib/utils';
+
 type Props = {
   onChange: (imageUrls: string[]) => void;
   values: string[];
 };
+
+type ImageUpload = {
+  isUploaded: boolean;
+  imageUrl: string;
+  fileName: string;
+  progress?: number;
+};
+
 export function MultiUploader({ onChange, values }: Props) {
   const [fileUrls, setFileUrls] = useState<string[]>(values);
 
-  const [pendingUploads, setPendingUploads] = useState<string[]>([]);
+  const initialUploads = values.map((url) => ({
+    isUploaded: true,
+    imageUrl: url,
+    fileName: url,
+    progress: 100,
+  }));
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFileUrls([
-      ...fileUrls,
-      ...acceptedFiles.map((file) => URL.createObjectURL(file)),
-    ]);
-    startUpload(acceptedFiles);
-  }, []);
+  const [imageUploads, setImageUploads] =
+    useState<ImageUpload[]>(initialUploads);
 
   const { toast } = useToast();
-
   const { startUpload, routeConfig } = useUploadThing('imageUploader', {
     onClientUploadComplete: (res) => {
-      const newValues = [...fileUrls, ...(res?.map((r) => r.url) as string[])];
+      const uploadedUrls = res?.map((r) => r.url) || [];
+      const newValues = [...fileUrls, ...uploadedUrls];
       onChange(newValues);
       setFileUrls(newValues);
+
+      setImageUploads((prevUploads) =>
+        prevUploads.map((upload) => {
+          if (upload.isUploaded) return upload;
+          return { ...upload, isUploaded: true, progress: 100 };
+        })
+      );
 
       toast({ title: 'Image uploaded successfully' });
     },
     onUploadError: () => {
       toast({ title: 'Upload failed. Please try again.' });
     },
-
-    onUploadBegin: (fileName) => {
-      console.log('onUploadBegin', fileName);
+    onUploadProgress: (progress) => {
+      setImageUploads((prevUploads) =>
+        prevUploads.map((upload) =>
+          !upload.isUploaded ? { ...upload, progress } : upload
+        )
+      );
     },
   });
 
-  const generatePermittedFileTypes = () => {
-    return {
-      fileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
-    };
-  };
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      const newUploads = acceptedFiles.map((file) => ({
+        isUploaded: false,
+        imageUrl: URL.createObjectURL(file),
+        fileName: file.name,
+        progress: 0,
+      }));
+
+      setImageUploads((prevUploads) => [...prevUploads, ...newUploads]);
+      startUpload(acceptedFiles);
+    },
+    [startUpload]
+  );
+
+  const generatePermittedFileTypes = () => ({
+    fileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
+  });
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
@@ -56,30 +88,43 @@ export function MultiUploader({ onChange, values }: Props) {
     ),
   });
 
-  console.log(fileUrls);
   return (
     <div className="flex w-full cursor-pointer flex-col justify-center gap-2 rounded-xl border-2 border-dashed p-3">
-      {fileUrls.length > 0 && (
+      {imageUploads.length > 0 && (
         <div className="relative">
           <div className="grid grid-cols-3 gap-1">
-            {fileUrls.map((value, index) => (
+            {imageUploads.map((upload, index) => (
               <div
                 className="group relative flex flex-col items-center justify-center"
                 key={index}
               >
                 <div className="relative flex h-32 w-32 items-center justify-center rounded-xl border-2 p-4">
                   <img
-                    src={value}
+                    src={upload.imageUrl}
                     alt="uploaded image"
-                    className="object-contain"
+                    className={cn(
+                      'object-contain',
+                      !upload.isUploaded && 'blur-sm filter'
+                    )}
                   />
+                  {!upload.isUploaded && (
+                    <div className="absolute inset-0 flex h-full w-full items-center justify-center">
+                      <CircularProgressbar
+                        value={upload.progress || 0}
+                        text={`${upload.progress}%`}
+                        className="h-10 w-10"
+                      />
+                    </div>
+                  )}
                 </div>
                 <Button
-                  onClick={(e) => {
-                    // remove value from values
+                  onClick={() => {
                     const newValues = values.filter((_, i) => i !== index);
                     onChange(newValues);
                     setFileUrls(newValues);
+                    setImageUploads((prev) =>
+                      prev.filter((_, i) => i !== index)
+                    );
                   }}
                   variant="destructive"
                   type="button"
@@ -94,7 +139,7 @@ export function MultiUploader({ onChange, values }: Props) {
       )}
 
       <div
-        className="flex flex-col items-center justify-center active:outline-none"
+        className="bg-light-5 flex flex-col items-center justify-center rounded-xl p-3"
         {...getRootProps()}
       >
         <img
@@ -102,9 +147,10 @@ export function MultiUploader({ onChange, values }: Props) {
           width={96}
           height={77}
           alt="file upload"
+          className="mb-6"
         />
 
-        <h3 className="base-medium text-light-2 mb-2 mt-6">
+        <h3 className="text-light-2 mb-2 text-xl">
           <input {...getInputProps()} className="cursor-pointer" />
           Drag photo here
         </h3>
