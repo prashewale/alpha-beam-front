@@ -86,7 +86,7 @@ const CreateUpdateProductForm = ({
       const request: UpdateProductRequest = {
         ...values,
         _id: product._id,
-        images: product.images,
+        // images: product.images,
       };
 
       const res = await updateProduct(request);
@@ -100,7 +100,7 @@ const CreateUpdateProductForm = ({
       return;
     }
 
-    const res = await createProduct({ ...values, images: [] });
+    const res = await createProduct({ ...values });
     if (!res || !res.data || res.status !== 'SUCCESS') {
       toast({ title: 'Create failed. Please try again.' });
       return;
@@ -112,7 +112,7 @@ const CreateUpdateProductForm = ({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleProductAddUpdate)}
-        className="flex flex-col gap-4"
+        className="flex w-full flex-col gap-4"
       >
         <div className="form-group">
           <FormField
@@ -124,7 +124,10 @@ const CreateUpdateProductForm = ({
                   Product Images
                 </FormLabel>
                 <FormControl>
-                  <FileUpload onChange={field.onChange} values={field.value} />
+                  <MultiUploader
+                    onChange={field.onChange}
+                    values={field.value}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

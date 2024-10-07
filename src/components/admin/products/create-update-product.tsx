@@ -31,7 +31,7 @@ const CreateUpdateProductDialog = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{triggerNode}</DialogTrigger>
-      <DialogContent>
+      <DialogContent className="h-[800px] overflow-y-auto scroll-smooth">
         <DialogTitle>{product ? 'Update Product' : 'New Product'}</DialogTitle>
         <DialogDescription className="h-0 w-0"></DialogDescription>
 

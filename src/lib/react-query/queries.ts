@@ -6,7 +6,7 @@ import {
   UpdateAddressRequest,
   UpdateProductRequest,
 } from '@/types';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   createUserAccount,
   signInAccount,
@@ -56,14 +56,28 @@ export const useUpdateAddress = () => {
 };
 
 export const useCreateProduct = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (request: NewProductRequest) => createProduct(request),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_PRODUCTS],
+      });
+    },
   });
 };
 
 export const useUpdateProduct = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (request: UpdateProductRequest) => updateProduct(request),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_PRODUCTS],
+      });
+    },
   });
 };
 

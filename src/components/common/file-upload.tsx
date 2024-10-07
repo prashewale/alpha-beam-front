@@ -54,7 +54,7 @@ const FileUpload = ({ onChange, values }: Props) => {
           console.log(error);
         }}
       /> */}
-      <MultiUploader />
+      <MultiUploader values={values} onChange={onChange} />
     </div>
   );
 };

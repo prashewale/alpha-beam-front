@@ -85,13 +85,9 @@ export const AddressValidation = z.object({
 export const ProductValidation = z.object({
   name: z.string().min(1, { message: 'Name is required.' }),
   description: z.string().min(1, { message: 'Description is required.' }),
-  // stock: z
-  //   .string()
-  //   .regex(/^\d+$/, 'Please enter a valid stock (e.g., 10 or 25)')
-  //   .transform((value) => parseFloat(value)), // Transform to number for backend processing
   rating: z.number().min(0).max(5, 'Rating must be between 0 and 5'), // Ensure rating is between 0 and 5
-  price: z.number(),
-  stock: z.number(),
+  price: z.coerce.number(),
+  stock: z.coerce.number(),
   // price: z
   //   .string()
   //   .regex(
@@ -99,9 +95,18 @@ export const ProductValidation = z.object({
   //     'Please enter a valid price (e.g., 10 or 10.99)'
   //   )
   //   .transform((value) => parseFloat(value)), // Transform to number for backend processing
-  images: z.any().refine((images) => images && images.length > 0, {
-    message: 'At least one image is required.',
-  }),
+  // stock: z
+  //   .string()
+  //   .regex(/^\d+$/, 'Please enter a valid stock (e.g., 10 or 25)')
+  //   .transform((value) => parseFloat(value)), // Transform to number for backend processing
+
+  images: z
+    .any()
+    .refine((images) => images && images.length > 0, {
+      message: 'At least one image is required.',
+    })
+    .transform((images) => images as string[]),
+
   // images: z.custom<File[]>(),
   category: z.string().min(1, { message: 'Category is required.' }),
   brand: z.string({ message: 'Brand should be string' }),
