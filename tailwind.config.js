@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import { withUt } from '@uploadthing/react';
+
 export default {
   darkMode: ['class'],
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],

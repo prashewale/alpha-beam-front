@@ -48,12 +48,13 @@ export type User = {
 
 export enum Role {
   admin = 'ADMIN',
+  manager = 'MANAGER',
   user = 'USER',
   guest = 'GUEST',
 }
 
 export type Product = {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   price: number;
@@ -70,7 +71,7 @@ export type NewProductRequest = {
   name: string;
   description: string;
   price: number;
-  image: string;
+  images: string[];
   category: string;
   rating: number;
   brand: string;
@@ -78,15 +79,19 @@ export type NewProductRequest = {
 };
 
 export type UpdateProductRequest = {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   price: number;
-  image: string;
+  images: string[];
   category: string;
   rating: number;
   brand: string;
   stock: number;
+};
+
+export type GetProductRequest = {
+  _id?: string;
 };
 
 export type Category = {
@@ -114,7 +119,7 @@ export type BreadCrumbItem = {
 };
 
 export type Address = {
-  id: number;
+  _id: string;
   fullName: string;
   addressLine1: string;
   addressLine2?: string;
@@ -143,7 +148,7 @@ export type NewAddressRequest = {
 };
 
 export type UpdateAddressRequest = {
-  id: number;
+  _id: string;
   fullName: string;
   addressLine1: string;
   addressLine2?: string;
@@ -161,6 +166,7 @@ export type NavMenuItem = {
   imgURL: string;
   route: string;
   label: string;
+  roles: Role[];
 };
 
 export type OfficeLocation = {

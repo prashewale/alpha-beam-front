@@ -4,14 +4,18 @@ import Footer from '../../common/footer';
 import FeedbackSection from '../../common/feedback-section';
 import ProductBestBanner from '../../common/product-best-banner';
 import { useParams } from 'react-router-dom';
-import { productsList } from '../../../data/products';
+import { useGetProducts } from '@/lib/react-query/queries';
 
 const Product = () => {
   const { id } = useParams();
+  const { data: productsListResponse, isFetching: isProductsFetching } =
+    useGetProducts();
 
-  const product = productsList.find((x) => x.id.toString() === id);
+  const productsList = productsListResponse?.data || [];
+
+  const product = productsList.find((x) => x._id.toString() === id);
   const similarProducts = productsList
-    .filter((x) => x.id !== product?.id)
+    .filter((x) => x._id !== product?._id)
     .filter((x) => x.category === product?.category)
     .slice(0, 7);
 

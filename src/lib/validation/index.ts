@@ -44,26 +44,70 @@ export const AddressValidation = z.object({
   userId: z.string().min(1, { message: 'User id is required.' }),
 });
 
+// export const ProductValidation = z.object({
+//   name: z.string().min(1, { message: 'Name is required.' }),
+//   description: z.string().min(1, { message: 'Description is required.' }),
+//   // price: z.preprocess(
+//   //   (a) => parseInt(z.string().parse(a), 10),
+//   //   z.number().min(1, 'Price is required.').gte(0, 'Price should be positive')
+//   // ),
+//   rating: z.number().min(0).max(5, 'Rating must be between 0 and 5'), // Ensure rating is between 0 and 5
+//   // price: z.number().min(0, 'Price must be greater than 0'), // Ensure price is greater than 0
+
+//   // price: z
+//   //   .string()
+//   //   .regex(
+//   //     /^\d+(\.\d{1,2})?$/,
+//   //     'Please enter a valid price (e.g., 10 or 10.99)'
+//   //   )
+//   //   .transform((value) => parseFloat(value)), // Transform to number for backend processing
+
+//   // price: z.string().min(1, { message: 'Price is required.' }),
+//   // images: z.any().refine((images) => images && images.length > 0, {
+//   //   message: 'At least one image is required.',
+//   // }),
+//   // images: z.custom<File[]>(),
+//   category: z.string().min(1, { message: 'Category is required.' }),
+
+//   // rating: z.preprocess(
+//   //   (a) => parseInt(z.string().parse(a), 10),
+//   //   z.number().min(1, 'Rating is required.').gte(0, 'Rating should be positive')
+//   // ),
+//   brand: z.string({ message: 'Brand should be string' }),
+
+//   // stock: z.preprocess(
+//   //   (a) => parseInt(z.string().parse(a), 10),
+//   //   z.number().min(1, 'Stock is required.').gte(0, 'Stock should be positive')
+//   // ),
+//   // userId: z.string().min(1, { message: 'User id is required.' }),
+// });
+
 export const ProductValidation = z.object({
   name: z.string().min(1, { message: 'Name is required.' }),
   description: z.string().min(1, { message: 'Description is required.' }),
-  price: z.preprocess(
-    (a) => parseInt(z.string().parse(a), 10),
-    z.number().min(1, 'Price is required.').gte(0, 'Price should be positive')
-  ),
-
-  image: z.custom<File[]>(),
+  // stock: z
+  //   .string()
+  //   .regex(/^\d+$/, 'Please enter a valid stock (e.g., 10 or 25)')
+  //   .transform((value) => parseFloat(value)), // Transform to number for backend processing
+  rating: z.number().min(0).max(5, 'Rating must be between 0 and 5'), // Ensure rating is between 0 and 5
+  price: z.number(),
+  stock: z.number(),
+  // price: z
+  //   .string()
+  //   .regex(
+  //     /^\d+(\.\d{1,2})?$/,
+  //     'Please enter a valid price (e.g., 10 or 10.99)'
+  //   )
+  //   .transform((value) => parseFloat(value)), // Transform to number for backend processing
+  // images: z.any().refine((images) => images && images.length > 0, {
+  //   message: 'At least one image is required.',
+  // }),
+  // images: z.custom<File[]>(),
   category: z.string().min(1, { message: 'Category is required.' }),
-
-  rating: z.preprocess(
-    (a) => parseInt(z.string().parse(a), 10),
-    z.number().min(1, 'Rating is required.').gte(0, 'Rating should be positive')
-  ),
   brand: z.string({ message: 'Brand should be string' }),
-
-  stock: z.preprocess(
-    (a) => parseInt(z.string().parse(a), 10),
-    z.number().min(1, 'Stock is required.').gte(0, 'Stock should be positive')
-  ),
+  // stock: z.preprocess(
+  //   (a) => parseInt(z.string().parse(a), 10),
+  //   z.number().min(1, 'Stock is required.').gte(0, 'Stock should be positive')
+  // ),
   // userId: z.string().min(1, { message: 'User id is required.' }),
 });

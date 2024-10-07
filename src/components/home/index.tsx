@@ -15,7 +15,8 @@ import { useState } from 'react';
 import ModalPopup from '../common/modal-popup';
 import CouponModal from './coupon-modal';
 import EnquirySection from './enquiry-section';
-import { productsList } from '@/data/products';
+import { useGetProducts } from '@/lib/react-query/queries';
+import { Product } from '@/types';
 
 /**
  * The main entry point for the home page.
@@ -30,6 +31,11 @@ import { productsList } from '@/data/products';
  */
 
 const Home = () => {
+  const { data: productsListResponse, isFetching: isProductsFetching } =
+    useGetProducts();
+
+  const productsList = productsListResponse?.data || [];
+
   const similarProducts = productsList.slice(0, 7);
 
   return (

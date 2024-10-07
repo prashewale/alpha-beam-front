@@ -1,18 +1,29 @@
+import { Role } from '@/types';
+
 export const sidebarLinks = [
+  // {
+  //   imgURL: '/icons/collection.svg',
+  //   route: '/admin/collections',
+  //   label: 'Collections',
+  //   roles: [Role.admin, Role.manager],
+  // },
   {
-    imgURL: '/public/icons/package.svg',
+    imgURL: '/icons/package.svg',
     route: '/admin/products',
     label: 'Products',
+    roles: [Role.admin, Role.manager],
   },
   {
-    imgURL: '/public/icons/users.svg',
+    imgURL: '/icons/users.svg',
     route: '/admin/users',
     label: 'Users',
+    roles: [Role.admin],
   },
   {
-    imgURL: '/public/icons/cart.svg',
+    imgURL: '/icons/cart.svg',
     route: '/admin/orders',
     label: 'Orders',
+    roles: [Role.admin],
   },
 ];
 

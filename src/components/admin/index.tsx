@@ -11,10 +11,18 @@ const AdminDashboard = () => {
   const authUser = useAuthUser<User>();
   const navigate = useNavigate();
 
+  const allowedRoles = [Role.admin, Role.manager];
+
   useEffect(() => {
-    console.log(authUser);
-    if (!authUser || !authUser.roles.includes(Role.admin)) {
+    //console.log(authUser);
+
+    const isAllowed = authUser?.roles.some((role) =>
+      allowedRoles.includes(role)
+    );
+
+    if (!authUser || !isAllowed) {
       navigate('/');
+      return;
     }
   }, []);
 
@@ -31,6 +39,10 @@ const AdminDashboard = () => {
     },
   ];
 
+  if (!authUser) {
+    return null;
+  }
+
   return (
     <>
       <Header />
@@ -39,7 +51,7 @@ const AdminDashboard = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
-              <AdminSidebar />
+              <AdminSidebar user={authUser} />
             </div>
             <div className="col-lg-9">
               <Outlet />

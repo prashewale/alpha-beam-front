@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Select from 'react-select';
-import { productsList } from '../../data/products';
 import { Product } from '../../types';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '@/hooks/useCart';
 import { formatPrice } from '@/lib/utilities';
 import PaginationUI from './pagination-ui';
+import { useGetProducts } from '@/lib/react-query/queries';
 
 type ProductShopProps = {
   category?: string | null;
@@ -31,7 +31,12 @@ const ProductShop = ({ category }: ProductShopProps) => {
     label: string;
   } | null>({ value: '', label: 'All' });
 
-  const [products] = useState(productsList);
+  const { data: productsListResponse, isFetching: isProductsFetching } =
+    useGetProducts();
+
+  const products = productsListResponse?.data || [];
+
+  // const [products] = useState(productsList);
 
   const getProductsSorted = (productsList: Product[]) => {
     if (sortOption?.value === 'best-seller') {
@@ -136,11 +141,11 @@ const ProductShop = ({ category }: ProductShopProps) => {
               <div className="product-list shoplist">
                 <div className="row">
                   {productsOnPage.map((product) => (
-                    <div key={product.id} className="col-lg-4 col-md-6">
+                    <div key={product._id} className="col-lg-4 col-md-6">
                       <div className="product-item">
                         <div
                           className="pi-pic flex h-36 justify-center"
-                          onClick={() => navigate(`/products/${product.id}`)}
+                          onClick={() => navigate(`/products/${product._id}`)}
                         >
                           <img
                             src={product.images[0]}
@@ -153,7 +158,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
                           </div>
                         </div>
                         <div className="pi-text">
-                          <a href={`/products/${product.id}`}>
+                          <a href={`/products/${product._id}`}>
                             <h5 className="!text-start md:h-[100px]">
                               {product.name}
                             </h5>
@@ -169,14 +174,16 @@ const ProductShop = ({ category }: ProductShopProps) => {
                             <button
                               className="gradient-btn p-2 text-[12px] font-semibold"
                               onClick={() =>
-                                addToCart(product.id.toString(), 1)
+                                addToCart(product._id.toString(), 1)
                               }
                             >
                               ADD TO CART
                             </button>
                             <button
                               className="gradient-btn p-2 text-[12px] font-semibold"
-                              onClick={() => navigate(`/compare/${product.id}`)}
+                              onClick={() =>
+                                navigate(`/compare/${product._id}`)
+                              }
                             >
                               COMPARE
                             </button>

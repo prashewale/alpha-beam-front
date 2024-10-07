@@ -51,13 +51,13 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                     <div className="action mb-4 mt-4 flex gap-2">
                       <button
                         className="gradient-btn p-2 text-sm"
-                        onClick={() => addToCart(product.id.toString(), 1)}
+                        onClick={() => addToCart(product._id.toString(), 1)}
                       >
                         Add to Cart
                       </button>
                       <button
                         className="gradient-btn p-2 text-sm"
-                        onClick={() => navigate(`/compare/${product.id}`)}
+                        onClick={() => navigate(`/compare/${product._id}`)}
                       >
                         Compare
                       </button>

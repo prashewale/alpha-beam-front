@@ -59,7 +59,7 @@ const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
           <SwiperSlide className="product-item" key={index}>
             <div
               className="flex items-center justify-center"
-              onClick={() => navigate(`/products/${product.id}`)}
+              onClick={() => navigate(`/products/${product._id}`)}
             >
               <div className="pi-pic !max-w-60">
                 <div className="flex h-auto items-center justify-center">
@@ -82,7 +82,7 @@ const ProductBestBanner = ({ title, products }: ProductBannerProps) => {
               </div>
             </div>
             <div className="pi-text">
-              <a href={`/products/${product.id}`}>
+              <a href={`/products/${product._id}`}>
                 <h5>{product.name}</h5>
               </a>
             </div>

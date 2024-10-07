@@ -1,14 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-import { productsList } from '../../../data/products';
 import { Product } from '../../../types';
+import { useGetProducts } from '@/lib/react-query/queries';
 
 type CompareProductProps = {
   product: Product;
 };
 const CompareProductSection = ({ product }: CompareProductProps) => {
   const navigate = useNavigate();
+  const { data: productsListResponse, isFetching: isProductsFetching } =
+    useGetProducts();
+
+  const productsList = productsListResponse?.data || [];
   const similarProducts = productsList
-    .filter((p) => p.category === product.category && p.id !== product.id)
+    .filter((p) => p.category === product.category && p._id !== product._id)
     .slice(0, 7);
   return (
     <section className="product-shop spad productDeatils">
@@ -75,7 +79,7 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
                       <div
                         className="col-md-6 mt-10"
                         key={index}
-                        onClick={() => navigate(`/products/${product.id}`)}
+                        onClick={() => navigate(`/products/${product._id}`)}
                       >
                         <div className="product-item">
                           <div className="pi-pic">
@@ -86,14 +90,14 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
                             </div>
                             <ul>
                               <li className="quick-view">
-                                <a href={`/products/${product.id}`}>
+                                <a href={`/products/${product._id}`}>
                                   + Quick View
                                 </a>
                               </li>
                             </ul>
                           </div>
                           <div className="pi-text">
-                            <a href={`/products/${product.id}`}>
+                            <a href={`/products/${product._id}`}>
                               <h5>{product.name}</h5>
                             </a>
                           </div>

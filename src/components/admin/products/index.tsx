@@ -1,14 +1,19 @@
-import { productsList } from '@/data/products';
 import { columns } from './columns';
 import { DataTable } from './data-table';
 import CreateUpdateProductDialog from './create-update-product';
 import { Button } from '@/components/ui/button';
-import { Dialog } from '@/components/ui/dialog';
 import { useState } from 'react';
-import CreateUpdateProductForm from './create-update-product-form';
+import { Product } from '@/types';
+import { useGetProducts } from '@/lib/react-query/queries';
 
 const AdminProducts = () => {
   const [openCreateProduct, setOpenCreateProduct] = useState(false);
+
+  const { data: productsListResponse, isFetching: isProductsFetching } =
+    useGetProducts();
+
+  const productsList = productsListResponse?.data || ({} as Product[]);
+
   return (
     <div className="container mx-auto py-10">
       <CreateUpdateProductDialog

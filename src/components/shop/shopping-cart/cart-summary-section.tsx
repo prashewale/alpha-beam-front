@@ -1,9 +1,13 @@
-import { productsList } from '@/data/products';
 import { useCart } from '@/hooks/useCart';
+import { useGetProducts } from '@/lib/react-query/queries';
 import { Cart } from '@/types';
 
 const CartSummarySection = () => {
   const { cart, removeFromCart, changeCartQuantity, addToCart } = useCart();
+  const { data: productsListResponse, isFetching: isProductsFetching } =
+    useGetProducts();
+
+  const productsList = productsListResponse?.data || [];
 
   const cartLines: Cart[] = Object.keys(cart).map((key) => {
     return { productId: key, quantity: cart[key] };
@@ -11,7 +15,7 @@ const CartSummarySection = () => {
 
   const productsFromCart = cartLines.map((cartLine) => {
     const product = productsList.find(
-      (p) => p.id.toString() === cartLine.productId
+      (p) => p._id.toString() === cartLine.productId
     );
     if (!product) {
       throw new Error(`Product with id ${cartLine.productId} does not exist`);
@@ -58,7 +62,7 @@ const CartSummarySection = () => {
                             <div className="row">
                               <button
                                 onClick={() =>
-                                  removeFromCart(cartLine.id.toString())
+                                  removeFromCart(cartLine._id.toString())
                                 }
                                 type="button"
                                 className="btn btn-link col px-2"
@@ -77,7 +81,7 @@ const CartSummarySection = () => {
 
                                   if (quantity > 0) {
                                     changeCartQuantity(
-                                      cartLine.id.toString(),
+                                      cartLine._id.toString(),
                                       quantity
                                     );
                                   }
@@ -85,7 +89,7 @@ const CartSummarySection = () => {
                               />
                               <button
                                 onClick={() =>
-                                  addToCart(cartLine.id.toString())
+                                  addToCart(cartLine._id.toString())
                                 }
                                 type="button"
                                 className="btn btn-link col px-2"
@@ -102,7 +106,7 @@ const CartSummarySection = () => {
                           <i
                             className="ti-close"
                             onClick={() =>
-                              changeCartQuantity(cartLine.id.toString(), 0)
+                              changeCartQuantity(cartLine._id.toString(), 0)
                             }
                           ></i>
                         </td>

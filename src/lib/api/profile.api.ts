@@ -24,7 +24,7 @@ export const createAddress = async (request: NewAddressRequest) => {
 export const updateAddress = async (request: UpdateAddressRequest) => {
   try {
     const response = await axiosInstance.put<ApiResponse<Address>>(
-      `/api/address/${request.id}`,
+      `/api/address/${request._id}`,
       request
     );
     return response.data;
@@ -48,9 +48,19 @@ export const createProduct = async (request: NewProductRequest) => {
 export const updateProduct = async (request: UpdateProductRequest) => {
   try {
     const response = await axiosInstance.put<ApiResponse<Product>>(
-      `/api/product/${request.id}`,
+      `/api/product/${request._id}`,
       request
     );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getProducts = async () => {
+  try {
+    const response =
+      await axiosInstance.get<ApiResponse<Product[]>>(`/api/product`);
     return response.data;
   } catch (error) {
     console.log(error);

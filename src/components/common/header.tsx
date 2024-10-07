@@ -1,11 +1,10 @@
-import { Cart, OfficeLocation, User } from '../../types';
+import { Cart, OfficeLocation, Product, User } from '../../types';
 import { categories } from '../../data/categories';
 import { useCart } from '../../hooks/useCart';
-import { productsList } from '../../data/products';
 import { officeLocations } from '../../data/office-locations';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
-import { useSignOutAccount } from '@/lib/react-query/queries';
+import { useGetProducts, useSignOutAccount } from '@/lib/react-query/queries';
 import {
   useNavigate,
   useParams,
@@ -22,6 +21,11 @@ const Header = () => {
 
   const navigate = useNavigate();
 
+  const { data: productsListResponse, isFetching: isProductsFetching } =
+    useGetProducts();
+
+  const productsList = productsListResponse?.data || [];
+
   // Queries
   const { mutateAsync: signOutAccount, isPending: isSigningOut } =
     useSignOutAccount();
@@ -34,7 +38,7 @@ const Header = () => {
 
   const productsFromCart = cartLines.map((cartLine) => {
     const product = productsList.find(
-      (p) => p.id.toString() === cartLine.productId
+      (p) => p._id.toString() === cartLine.productId
     );
     if (!product) {
       throw new Error(`Product with id ${cartLine.productId} does not exist`);
@@ -228,7 +232,7 @@ const Header = () => {
                         <td
                           className="si-close"
                           onClick={() => {
-                            removeFromCart(cartLine.id.toString());
+                            removeFromCart(cartLine._id.toString());
                           }}
                         >
                           <i className="ti-close"></i>

@@ -12,7 +12,7 @@ import DeleteAddressDialog from './delete-address';
 const AddressSelection = () => {
   const sampleAddressList: Address[] = [
     {
-      id: 1,
+      _id: '1',
       fullName: 'Sneha Sarang',
       addressLine1: '1234 Street',
       addressLine2: 'House 456, 3rd Floor',
@@ -26,7 +26,7 @@ const AddressSelection = () => {
       userId: 'prashewale',
     },
     {
-      id: 2,
+      _id: '2',
       fullName: 'Pravin Shewale',
       addressLine1: '5678 Street',
       addressLine2: 'House 789, 2nd Floor',
@@ -43,11 +43,11 @@ const AddressSelection = () => {
 
   const [addressList, setAddressList] = useState<Address[]>(sampleAddressList);
 
-  const handleSelectAddress = (id: number) => {
+  const handleSelectAddress = (id: string) => {
     // TODO: update selected address
 
     const updatedAddressList = addressList.map((address) => {
-      if (address.id === id) {
+      if (address._id === id) {
         address.default = true;
         return address;
       } else {
@@ -70,21 +70,21 @@ const AddressSelection = () => {
             key={index}
             className={cn('w-full', address.default ? 'border-primary' : '')}
             onClick={() => {
-              handleSelectAddress(address.id);
+              handleSelectAddress(address._id);
             }}
           >
             <CardContent className="flex items-center justify-between space-x-4 rounded-md p-4">
               <div className="flex items-center space-x-4">
                 <RadioGroupItem
-                  value={address.id.toString()}
+                  value={address._id.toString()}
                   checked={address.default}
                 />
-                <Label htmlFor={address.id.toString()}>
+                <Label htmlFor={address._id.toString()}>
                   <div className="flex-1 space-y-1">
                     <p className="text-sm font-medium leading-none">
                       {address.fullName}
                     </p>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-sm text-muted-foreground">
                       {`${address.addressLine1} ${address.addressLine2} ${
                         address.landmark
                       } ${address.city} ${address.state} ${address.postalCode}`}

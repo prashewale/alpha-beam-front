@@ -76,7 +76,7 @@ const CreateUpdateAddressDialog = ({
     if (address && action === 'Update') {
       const request: UpdateAddressRequest = {
         ...values,
-        id: address.id,
+        _id: address._id,
       };
 
       const res = await updateAddress(request);

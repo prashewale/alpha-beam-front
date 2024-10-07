@@ -3,6 +3,7 @@
 import { useToast } from '@/hooks/use-toast';
 import React, { createContext, useState, ReactNode } from 'react';
 
+const localStorageCartKey = 'cart-data';
 // Define the shape of the cart state
 export type CartState = {
   [id: string]: number;
@@ -28,14 +29,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
   const { toast } = useToast();
 
   const [cart, setCart] = useState<CartState>(() =>
-    JSON.parse(localStorage.getItem('cart') || '{}')
+    JSON.parse(localStorage.getItem(localStorageCartKey) || '{}')
   );
 
   const addToCart = (id: string, quantity: number = 1) => {
     setCart((prevCart) => {
       const newCart = { ...prevCart };
       newCart[id] = (prevCart[id] || 0) + quantity;
-      localStorage.setItem('cart', JSON.stringify(newCart));
+      localStorage.setItem(localStorageCartKey, JSON.stringify(newCart));
       toast({
         title: 'Success',
         description: 'Product added to cart successfully.',
@@ -56,7 +57,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
 
       if (newCart[id] === 0) delete newCart[id];
 
-      localStorage.setItem('cart', JSON.stringify(newCart));
+      localStorage.setItem(localStorageCartKey, JSON.stringify(newCart));
       return newCart;
     });
   };
@@ -73,7 +74,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
 
       if (newCart[id] === 0) delete newCart[id];
 
-      localStorage.setItem('cart', JSON.stringify(newCart));
+      localStorage.setItem(localStorageCartKey, JSON.stringify(newCart));
       return newCart;
     });
   };

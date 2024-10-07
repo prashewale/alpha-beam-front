@@ -6,7 +6,7 @@ import {
   UpdateAddressRequest,
   UpdateProductRequest,
 } from '@/types';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   createUserAccount,
   signInAccount,
@@ -15,9 +15,11 @@ import {
 import {
   createAddress,
   createProduct,
+  getProducts,
   updateAddress,
   updateProduct,
 } from '../api/profile.api';
+import { QUERY_KEYS } from './query-keys';
 
 // ============================================================
 // AUTH QUERIES
@@ -62,5 +64,12 @@ export const useCreateProduct = () => {
 export const useUpdateProduct = () => {
   return useMutation({
     mutationFn: (request: UpdateProductRequest) => updateProduct(request),
+  });
+};
+
+export const useGetProducts = () => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_PRODUCTS],
+    queryFn: () => getProducts(),
   });
 };

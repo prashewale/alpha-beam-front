@@ -5,9 +5,14 @@ import AddressSelection from './address-selection';
 import { BreadCrumbItem, Cart } from '../../../types';
 import BreadCrumbSection from '../bread-crumb-section';
 import { useCart } from '@/hooks/useCart';
-import { productsList } from '@/data/products';
+import { useGetProducts } from '@/lib/react-query/queries';
 
 const Checkout = () => {
+  const { data: productsListResponse, isFetching: isProductsFetching } =
+    useGetProducts();
+
+  const productsList = productsListResponse?.data || [];
+
   const breadCrumbItems: BreadCrumbItem[] = [
     {
       title: 'Home',
@@ -33,7 +38,7 @@ const Checkout = () => {
 
   const productsFromCart = cartLines.map((cartLine) => {
     const product = productsList.find(
-      (p) => p.id.toString() === cartLine.productId
+      (p) => p._id.toString() === cartLine.productId
     );
     if (!product) {
       throw new Error(`Product with id ${cartLine.productId} does not exist`);

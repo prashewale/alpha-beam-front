@@ -1,15 +1,21 @@
 import { sidebarLinks } from '@/constants';
-import { NavMenuItem } from '@/types';
+import { NavMenuItem, User } from '@/types';
 import { NavLink, useLocation } from 'react-router-dom';
 
-const AdminSidebar = () => {
+const AdminSidebar = ({ user }: { user: User }) => {
   const { pathname } = useLocation();
+
+  const allowedSidebarLinks = sidebarLinks.filter((link) =>
+    user?.roles.some((role) => link.roles.includes(role))
+  );
+  console.log(user);
+  console.log(allowedSidebarLinks);
 
   return (
     <>
       <nav className="flex flex-col gap-11">
         <ul className="flex flex-col gap-2">
-          {sidebarLinks.map((link: NavMenuItem) => {
+          {allowedSidebarLinks.map((link: NavMenuItem) => {
             const isActive = pathname === link.route;
 
             return (
@@ -26,7 +32,7 @@ const AdminSidebar = () => {
                   <img
                     src={link.imgURL}
                     alt={link.label}
-                    className={`group-hover:invert-white ${
+                    className={`group-hover:invert-white h-auto w-6 ${
                       isActive && 'invert-white'
                     }`}
                   />
