@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Product } from '../../../types';
 import { useGetProducts } from '@/lib/react-query/queries';
+import { useState } from 'react';
 
 type CompareProductProps = {
   product: Product;
@@ -9,11 +10,13 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
   const navigate = useNavigate();
   const { data: productsListResponse, isFetching: isProductsFetching } =
     useGetProducts();
+  const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
   const productsList = productsListResponse?.data || [];
   const similarProducts = productsList
     .filter((p) => p.category === product.category && p._id !== product._id)
-    .slice(0, 7);
+    .slice(0, 4);
+
   return (
     <section className="product-shop spad productDeatils">
       <div className="container">
@@ -24,17 +27,26 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
                 <div className="col-md-6 prod-deat borderRight">
                   <div className="product-imgs">
                     <div className="img-display">
-                      <div className="img-showcase">
-                        {product.images.map((image, i) => (
-                          <img src={image} alt="product img" />
-                        ))}
+                      <div className="img-showcase md:px-28">
+                        <img
+                          src={selectedImage}
+                          alt="shoe image"
+                          className="px-20 md:px-0"
+                        />
                       </div>
                     </div>
-                    <div className="img-select">
+                    <div className="flex items-center justify-center gap-2">
                       {product.images.map((image, i) => (
-                        <div className="img-item" key={i}>
-                          <a href={image} data-id={i} target="_blank">
-                            <img src={image} alt="product img" />
+                        <div className="img-item rounded-xl border p-2" key={i}>
+                          <a
+                            data-id={i}
+                            onClick={() => setSelectedImage(image)}
+                          >
+                            <img
+                              src={image}
+                              alt="product img"
+                              className="h-24 cursor-pointer"
+                            />
                           </a>
                         </div>
                       ))}
@@ -64,7 +76,9 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
                       </p>
                     </div>
                     <div className="product-price">
-                      <p className="new-price">£{product.price} ex-VAT</p>
+                      <p className="new-price !font-bold">
+                        £{product.price.toFixed(2)} ex-VAT
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -82,19 +96,16 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
                         onClick={() => navigate(`/products/${product._id}`)}
                       >
                         <div className="product-item">
-                          <div className="pi-pic">
-                            <img src={product.images[0]} alt="" />
+                          <div className="pi-pic flex flex-col items-center">
+                            <img
+                              src={product.images[0]}
+                              alt=""
+                              className="!w-32"
+                            />
 
                             <div className="icon">
                               <i className="icon_heart_alt"></i>
                             </div>
-                            <ul>
-                              <li className="quick-view">
-                                <a href={`/products/${product._id}`}>
-                                  + Quick View
-                                </a>
-                              </li>
-                            </ul>
                           </div>
                           <div className="pi-text">
                             <a href={`/products/${product._id}`}>

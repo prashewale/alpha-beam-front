@@ -19,10 +19,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           <div className="card-wrapper">
             <div className="card !border-none">
               <div className="row">
-                <div className="col-md-6 prod-deat">
+                <div className="col-md-4 prod-deat">
                   <div className="product-imgs">
                     <div className="img-display">
-                      <div className="img-showcase">
+                      <div className="img-showcase md:px-10">
                         <img
                           src={selectedImage}
                           alt="shoe image"
@@ -30,21 +30,28 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                         />
                       </div>
                     </div>
-                    <div className="grid grid-cols-4 items-center gap-2">
+                    <div className="flex items-center justify-center gap-2">
                       {product.images.map((image, index) => (
-                        <div className="img-item" key={index}>
+                        <div
+                          className="img-item rounded-xl border p-2"
+                          key={index}
+                        >
                           <a
                             data-id={index}
                             onClick={() => setSelectedImage(image)}
                           >
-                            <img src={image} alt="shoe image" className="" />
+                            <img
+                              src={image}
+                              alt="shoe image"
+                              className="h-24 cursor-pointer"
+                            />
                           </a>
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-8 px-5 md:px-0">
                   <div className="product-content">
                     <h2 className="product-title">{product.name}</h2>
 

@@ -17,6 +17,7 @@ import {
   createProduct,
   deleteProduct,
   getProducts,
+  searchProducts,
   updateAddress,
   updateProduct,
 } from '../api/profile.api';
@@ -99,5 +100,13 @@ export const useGetProducts = () => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_PRODUCTS],
     queryFn: () => getProducts(),
+  });
+};
+
+export const useSearchProducts = (searchText: string) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_PRODUCTS, searchText],
+    queryFn: () => searchProducts(searchText),
+    enabled: !!searchText,
   });
 };

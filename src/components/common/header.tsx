@@ -4,8 +4,13 @@ import { useCart } from '../../hooks/useCart';
 import { officeLocations } from '../../data/office-locations';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
-import { useGetProducts, useSignOutAccount } from '@/lib/react-query/queries';
 import {
+  useGetProducts,
+  useSearchProducts,
+  useSignOutAccount,
+} from '@/lib/react-query/queries';
+import {
+  Link,
   useNavigate,
   useParams,
   useRoutes,
@@ -14,6 +19,81 @@ import {
 import { cn } from '@/lib/utils';
 import { formatPrice } from '@/lib/utilities';
 import { useEffect, useState } from 'react';
+import useDebounce from '@/hooks/use-debounce';
+import { Loader } from 'lucide-react';
+
+type GridProductListProps = {
+  products: Product[];
+};
+
+const GridProductList = ({ products }: GridProductListProps) => {
+  return products
+    .filter((_, i) => i < 7)
+    .map((product, index) => (
+      <div
+        key={index}
+        className="border-b p-2"
+        onClick={() => window.location.replace(`/products/${product._id}`)}
+      >
+        <div className="flex cursor-pointer items-center justify-start gap-2 rounded-xl p-1 hover:bg-gray-200">
+          <div className="flex h-12 items-center justify-center px-2">
+            <img src={product.images[0]} className="w-16" />
+          </div>
+          <div
+            className="flex w-full flex-col items-start justify-center gap-1"
+            style={{
+              textWrap: 'nowrap',
+            }}
+          >
+            <span className="text-base">
+              {product.name.length > 30
+                ? product.name.slice(0, 30) + '...'
+                : product.name}
+            </span>
+            <div className="text-sm">
+              <span className="text-muted-foreground">
+                {categories.find((c) => c.value === product.category)?.name}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    ));
+};
+
+export type SearchResultProps = {
+  isSearchFetching: boolean;
+  searchedProducts: Product[] | undefined | null;
+};
+
+const SearchResults = ({
+  isSearchFetching,
+  searchedProducts,
+}: SearchResultProps) => {
+  const generateItems = (products: Product[]) => {
+    if (isSearchFetching) {
+      return (
+        <div className="flex w-full items-center justify-center">
+          <Loader className="animate-spin" />
+        </div>
+      );
+    } else if (searchedProducts && searchedProducts.length > 0) {
+      return <GridProductList products={searchedProducts} />;
+    } else {
+      return (
+        <p className="text-light-4 mt-3 w-full text-center">No results found</p>
+      );
+    }
+  };
+
+  return (
+    <div className="absolute right-[-80px] top-20 z-[1000] !w-[370px] rounded-xl !bg-gray-100 !p-2 md:right-[-10px]">
+      <div className="select-items">
+        {generateItems(searchedProducts || [])}
+      </div>
+    </div>
+  );
+};
 
 type ProductWithQuantity = Product & {
   quantity: number;
@@ -25,12 +105,18 @@ const Header = () => {
 
   const navigate = useNavigate();
 
+  const [searchValue, setSearchValue] = useState('');
+  const debouncedSearch = useDebounce(searchValue, 500);
+  const { data: searchedProductsReponse, isFetching: isSearchFetching } =
+    useSearchProducts(debouncedSearch);
+
   const [productsFromCart, setProductsFromCart] = useState<
     ProductWithQuantity[]
   >([]);
 
   const { data: productsListResponse, isFetching: isProductsFetching } =
     useGetProducts();
+  const shouldShowSearchResults = searchValue !== '';
 
   const productsList = productsListResponse?.data || [];
 
@@ -86,6 +172,7 @@ const Header = () => {
     (total, product) => total + product.price * product.quantity,
     0
   );
+
   const generateNavIcons = () => {
     return (
       <ul className="nav-right">
@@ -155,7 +242,7 @@ const Header = () => {
               <a href="#">
                 <i className="fa fa-user"></i>
               </a>
-              <div className="cart-hover !bg-gray-100">
+              <div className="cart-hover rounded-xl !bg-gray-100">
                 <div className="select-items">
                   <table>
                     <tbody>
@@ -163,8 +250,8 @@ const Header = () => {
                         onClick={() => navigate('/admin/products')}
                         className="cursor-pointer"
                       >
-                        <td className="si-pic">
-                          <img src="/img/select-product-1.jpg" />
+                        <td className="h-auto w-10">
+                          <img src="/icons/user.png" />
                         </td>
                         <td className="si-text">
                           <div className="product-selected">
@@ -172,7 +259,7 @@ const Header = () => {
                               Welcome
                             </span>
                             <h6>
-                              {authUser.firstName + ' ' + authUser.lastName}{' '}
+                              {authUser.firstName + ' ' + authUser.lastName}
                             </h6>
                           </div>
                         </td>
@@ -184,7 +271,6 @@ const Header = () => {
                             }}
                             className="btn btn-outline-danger btn-sm"
                           >
-                            {' '}
                             Logout
                           </button>
                         </td>
@@ -332,7 +418,7 @@ const Header = () => {
           {isMobile && generateNavIcons()}
         </div>
         <div className="flex flex-col-reverse items-center md:flex-row md:items-end md:gap-8">
-          <div className="mb-3 flex flex-col items-center md:!mb-0 md:flex-row">
+          <div className="relative mb-3 flex flex-col items-center md:!mb-0 md:flex-row">
             <div className="nav-item">
               <nav className="nav-menu mobile-menu mt-0">
                 <ul className="mb-0">
@@ -340,6 +426,7 @@ const Header = () => {
                     <a
                       onClick={() => navigate('/products')}
                       className={cn(
+                        'cursor-pointer',
                         path == 'products' ? '!text-[#1d8aca]' : ''
                       )}
                     >
@@ -480,11 +567,24 @@ const Header = () => {
                   type="text"
                   placeholder="Search product"
                   className="!md:w-[200px] h-full w-full py-0 text-[#d1d1d1]"
+                  value={searchValue}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    setSearchValue(value);
+                  }}
                 />
                 <button type="button" className="mx-3">
                   <i className="ti-search"></i>
                 </button>
               </div>
+              {shouldShowSearchResults && (
+                <div className="card-hover">
+                  <SearchResults
+                    isSearchFetching={isSearchFetching}
+                    searchedProducts={searchedProductsReponse?.data}
+                  />
+                </div>
+              )}
             </div>
           </div>
           {!isMobile && generateNavIcons()}

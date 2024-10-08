@@ -18,6 +18,7 @@ export const createAddress = async (request: NewAddressRequest) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
@@ -30,6 +31,7 @@ export const updateAddress = async (request: UpdateAddressRequest) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
@@ -42,6 +44,7 @@ export const createProduct = async (request: NewProductRequest) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
@@ -54,6 +57,7 @@ export const updateProduct = async (request: UpdateProductRequest) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
@@ -65,6 +69,7 @@ export const deleteProduct = async (id: string) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
@@ -75,5 +80,18 @@ export const getProducts = async () => {
     return response.data;
   } catch (error) {
     console.log(error);
+    throw error;
+  }
+};
+
+export const searchProducts = async (searchText: string) => {
+  try {
+    const response = await axiosInstance.get<ApiResponse<Product[]>>(
+      `/api/product?name=${searchText}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };
