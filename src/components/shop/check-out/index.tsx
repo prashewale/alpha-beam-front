@@ -40,6 +40,7 @@ const Checkout = () => {
     const product = productsList.find(
       (p) => p._id.toString() === cartLine.productId
     );
+
     if (!product) {
       throw new Error(`Product with id ${cartLine.productId} does not exist`);
     }

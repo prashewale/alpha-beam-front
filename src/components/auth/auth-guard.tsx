@@ -1,5 +1,5 @@
-import React from "react";
-import AuthOutlet from "@auth-kit/react-router/AuthOutlet";
+import React from 'react';
+import AuthOutlet from '@auth-kit/react-router/AuthOutlet';
 
 interface AuthGuardProps {
   redirectPath?: string;

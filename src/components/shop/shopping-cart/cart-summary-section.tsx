@@ -13,7 +13,13 @@ const CartSummarySection = () => {
     return { productId: key, quantity: cart[key] };
   });
 
-  const productsFromCart = cartLines.map((cartLine) => {
+  const productListIds = productsList.map((p) => p._id.toString());
+
+  const filteredCartLines = cartLines.filter((cartLine) => {
+    return productListIds.includes(cartLine.productId);
+  });
+
+  const productsFromCart = filteredCartLines.map((cartLine) => {
     const product = productsList.find(
       (p) => p._id.toString() === cartLine.productId
     );

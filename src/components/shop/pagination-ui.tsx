@@ -52,14 +52,6 @@ const PaginationUI = ({
 
   paginationPages.push({ pageNumber: totalPages });
 
-  //   [
-  //     ...pages
-  //       .slice(currentPage - 2 > 1 ? currentPage - 2 : 1, currentPage + 1)
-  //       .map((pageNumber) => ({ pageNumber })),
-  //     { ellipsis: true },
-  //     ...pages.slice(-2).map((pageNumber) => ({ pageNumber })),
-  //   ];
-
   // Add ellipsis if there are more than 5 pages
 
   return (

@@ -136,7 +136,13 @@ const Header = () => {
   };
 
   const handleCartProducts = () => {
-    const productsFromCart = cartLines.map((cartLine) => {
+    const productListIds = productsList.map((p) => p._id.toString());
+
+    const filteredCartLines = cartLines.filter((cartLine) => {
+      return productListIds.includes(cartLine.productId);
+    });
+
+    let productsFromCart = filteredCartLines.map((cartLine) => {
       const product = productsList.find(
         (p) => p._id.toString() === cartLine.productId
       );
