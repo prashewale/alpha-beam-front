@@ -18,5 +18,5 @@ import env from './config';
 // export type OurFileRouter = typeof uploadRouter;
 
 export const { useUploadThing, uploadFiles } = generateReactHelpers({
-  url: env.VITE_SERVER_URL + '/api/uploadthing',
+  url: env.VITE_SERVER_URL + 'api/uploadthing',
 });
