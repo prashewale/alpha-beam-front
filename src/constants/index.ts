@@ -8,23 +8,29 @@ export const sidebarLinks = [
   //   roles: [Role.admin, Role.manager],
   // },
   {
+    imgURL: '/icons/photos-icon.svg',
+    route: '/admin/banners',
+    label: 'Banners',
+    roles: [Role.admin, Role.manager],
+  },
+  {
     imgURL: '/icons/package.svg',
     route: '/admin/products',
     label: 'Products',
     roles: [Role.admin, Role.manager],
   },
-  {
-    imgURL: '/icons/users.svg',
-    route: '/admin/users',
-    label: 'Users',
-    roles: [Role.admin],
-  },
-  {
-    imgURL: '/icons/cart.svg',
-    route: '/admin/orders',
-    label: 'Orders',
-    roles: [Role.admin],
-  },
+  // {
+  //   imgURL: '/icons/users.svg',
+  //   route: '/admin/users',
+  //   label: 'Users',
+  //   roles: [Role.admin],
+  // },
+  // {
+  //   imgURL: '/icons/cart.svg',
+  //   route: '/admin/orders',
+  //   label: 'Orders',
+  //   roles: [Role.admin],
+  // },
 ];
 
 export const testimonials = [

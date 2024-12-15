@@ -1,5 +1,9 @@
 import {
+  Banner,
+  BannerEntity,
   LoginRequest,
+  Logo,
+  LogoEntity,
   NewAddressRequest,
   NewProductRequest,
   RegisterRequest,
@@ -14,11 +18,19 @@ import {
 } from '../api/auth.api';
 import {
   createAddress,
+  createBanner,
+  createLogo,
   createProduct,
+  deleteBanner,
+  deleteLogo,
   deleteProduct,
+  getBanners,
+  getLogos,
   getProducts,
   searchProducts,
   updateAddress,
+  updateBanner,
+  updateLogo,
   updateProduct,
 } from '../api/profile.api';
 import { QUERY_KEYS } from './query-keys';
@@ -100,6 +112,98 @@ export const useGetProducts = () => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_PRODUCTS],
     queryFn: () => getProducts(),
+  });
+};
+
+export const useGetBanners = () => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_BANNERS],
+    queryFn: () => getBanners(),
+  });
+};
+
+export const useCreateBanner = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (request: Banner) => createBanner(request),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_BANNERS],
+      });
+    },
+  });
+};
+
+export const useUpdateBanner = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (request: BannerEntity) => updateBanner(request),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_BANNERS],
+      });
+    },
+  });
+};
+
+export const useDeleteBanner = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: string) => deleteBanner(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_BANNERS],
+      });
+    },
+  });
+};
+
+export const useGetLogos = () => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_LOGOS],
+    queryFn: () => getLogos(),
+  });
+};
+
+export const useCreateLogo = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (request: Logo) => createLogo(request),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_LOGOS],
+      });
+    },
+  });
+};
+
+export const useUpdateLogo = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (request: LogoEntity) => updateLogo(request),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_LOGOS],
+      });
+    },
+  });
+};
+
+export const useDeleteLogo = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: string) => deleteLogo(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_LOGOS],
+      });
+    },
   });
 };
 

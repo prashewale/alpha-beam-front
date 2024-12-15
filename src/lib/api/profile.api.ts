@@ -1,6 +1,10 @@
 import {
   Address,
   ApiResponse,
+  Banner,
+  BannerEntity,
+  Logo,
+  LogoEntity,
   NewAddressRequest,
   NewProductRequest,
   Product,
@@ -77,6 +81,104 @@ export const getProducts = async () => {
   try {
     const response =
       await axiosInstance.get<ApiResponse<Product[]>>(`/api/product`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const createBanner = async (request: Banner) => {
+  try {
+    const response = await axiosInstance.post<ApiResponse<BannerEntity>>(
+      '/api/banner',
+      request
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const updateBanner = async (request: BannerEntity) => {
+  try {
+    const response = await axiosInstance.put<ApiResponse<BannerEntity>>(
+      `/api/banner/${request._id}`,
+      request
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const deleteBanner = async (id: string) => {
+  try {
+    const response = await axiosInstance.delete<ApiResponse<BannerEntity>>(
+      `/api/banner/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const getBanners = async () => {
+  try {
+    const response =
+      await axiosInstance.get<ApiResponse<BannerEntity[]>>(`/api/banner`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const createLogo = async (request: Logo) => {
+  try {
+    const response = await axiosInstance.post<ApiResponse<LogoEntity>>(
+      '/api/logo',
+      request
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const updateLogo = async (request: LogoEntity) => {
+  try {
+    const response = await axiosInstance.put<ApiResponse<LogoEntity>>(
+      `/api/logo/${request._id}`,
+      request
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const deleteLogo = async (id: string) => {
+  try {
+    const response = await axiosInstance.delete<ApiResponse<LogoEntity>>(
+      `/api/logo/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const getLogos = async () => {
+  try {
+    const response =
+      await axiosInstance.get<ApiResponse<LogoEntity[]>>(`/api/logo`);
     return response.data;
   } catch (error) {
     console.log(error);

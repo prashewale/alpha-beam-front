@@ -25,6 +25,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Toaster } from './components/ui/toaster';
+import AdminBanners from './components/admin/banners';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route element={<AuthGuard />}>
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/admin" element={<AdminDashboard />}>
+              <Route path="banners" element={<AdminBanners />} />
               <Route path="products" element={<AdminProducts />} />
               <Route path="users" element={<AdminProducts />} />
               <Route path="orders" element={<AdminProducts />} />

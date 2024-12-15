@@ -1,3 +1,4 @@
+import { useGetBanners } from '@/lib/react-query/queries';
 import { useEffect, useState } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
@@ -29,6 +30,11 @@ const Hero = () => {
     isMobile = true;
   }
 
+  const { data: bannersListResponse, isFetching: isBannersFetching } =
+    useGetBanners();
+
+  const bannerList = bannersListResponse?.data || [];
+
   return (
     <section className="hero-section" style={{ position: 'relative' }}>
       <Swiper
@@ -41,28 +47,32 @@ const Hero = () => {
         }}
         loop
       >
-        <SwiperSlide className="flex items-center justify-center overflow-hidden">
-          <img
-            src={isMobile ? 'img/mobile-banner-1.jpg' : 'img/banner-1-1.jpg'}
-            alt=""
-            className="h-full w-full object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="flex items-center justify-center overflow-hidden">
-          <img
-            src={isMobile ? 'img/mobile-banner-3.jpg' : 'img/banner-3-1.jpg'}
-            alt=""
-            className="h-full w-full object-cover"
-          />
-        </SwiperSlide>
+        {!isBannersFetching &&
+          bannerList.map((banner) => {
+            let largeImage = '';
+            let mobileImage = '';
 
-        <SwiperSlide className="flex items-center justify-center overflow-hidden">
-          <img
-            src={isMobile ? 'img/mobile-banner-2.jpg' : 'img/banner-2-1.jpg'}
-            alt=""
-            className="h-full w-full object-cover"
-          />
-        </SwiperSlide>
+            if (banner.images.length > 0) {
+              largeImage = banner.images[0];
+
+              if (banner.images.length > 1) {
+                mobileImage = banner.images[1];
+              }
+            }
+
+            return (
+              <SwiperSlide
+                className="flex items-center justify-center overflow-hidden"
+                key={banner._id}
+              >
+                <img
+                  src={isMobile ? mobileImage : largeImage}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
     </section>
   );

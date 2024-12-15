@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 type Props = {
   onChange: (imageUrls: string[]) => void;
   values: string[];
+  uploadLimit?: number;
 };
 
 type ImageUpload = {
@@ -20,8 +21,10 @@ type ImageUpload = {
   progress?: number;
 };
 
-export function MultiUploader({ onChange, values }: Props) {
+export function MultiUploader({ onChange, values, uploadLimit }: Props) {
   const [fileUrls, setFileUrls] = useState<string[]>(values);
+
+  uploadLimit = uploadLimit || 20;
 
   const initialUploads = values.map((url) => ({
     isUploaded: true,
@@ -138,28 +141,30 @@ export function MultiUploader({ onChange, values }: Props) {
         </div>
       )}
 
-      <div
-        className="bg-light-5 flex flex-col items-center justify-center rounded-xl p-3"
-        {...getRootProps()}
-      >
-        <img
-          src="/icons/file-upload.svg"
-          width={96}
-          height={77}
-          alt="file upload"
-          className="mb-6"
-        />
+      {imageUploads.length < uploadLimit && (
+        <div
+          className="bg-light-5 flex flex-col items-center justify-center rounded-xl p-3"
+          {...getRootProps()}
+        >
+          <img
+            src="/icons/file-upload.svg"
+            width={96}
+            height={77}
+            alt="file upload"
+            className="mb-6"
+          />
 
-        <h3 className="text-light-2 mb-2 text-xl">
-          <input {...getInputProps()} className="cursor-pointer" />
-          Drag photo here
-        </h3>
-        <p className="text-light-4 small-regular mb-6">JPEG, PNG, JPG</p>
+          <h3 className="text-light-2 mb-2 text-xl">
+            <input {...getInputProps()} className="cursor-pointer" />
+            Drag photo here
+          </h3>
+          <p className="text-light-4 small-regular mb-6">JPEG, PNG, JPG</p>
 
-        <Button type="button" className="shad-button_dark_4">
-          Select from computer
-        </Button>
-      </div>
+          <Button type="button" className="shad-button_dark_4">
+            Select from computer
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

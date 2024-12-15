@@ -8,8 +8,8 @@ const AdminSidebar = ({ user }: { user: User }) => {
   const allowedSidebarLinks = sidebarLinks.filter((link) =>
     user?.roles.some((role) => link.roles.includes(role))
   );
-  console.log(user);
-  console.log(allowedSidebarLinks);
+  // console.log(user);
+  // console.log(allowedSidebarLinks);
 
   return (
     <>

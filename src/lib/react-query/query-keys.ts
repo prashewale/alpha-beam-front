@@ -8,5 +8,9 @@ export enum QUERY_KEYS {
   GET_USER_BY_ID = 'getUserById',
 
   // PRODUCT KEYS
-  GET_PRODUCTS = 'getProducts', 
+  GET_PRODUCTS = 'getProducts',
+
+  GET_BANNERS = 'getBanners',
+
+  GET_LOGOS = 'getLogos',
 }

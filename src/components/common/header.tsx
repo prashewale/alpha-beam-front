@@ -1,10 +1,11 @@
-import { Cart, OfficeLocation, Product, User } from '../../types';
+import { Cart, LogoEntity, OfficeLocation, Product, User } from '../../types';
 import { categories } from '../../data/categories';
 import { useCart } from '../../hooks/useCart';
 import { officeLocations } from '../../data/office-locations';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import {
+  useGetLogos,
   useGetProducts,
   useSearchProducts,
   useSignOutAccount,
@@ -104,6 +105,20 @@ const Header = () => {
   const signOut = useSignOut();
 
   const navigate = useNavigate();
+
+  const { data: logoListResponse, isFetching: isLogoFetching } = useGetLogos();
+  const logoList = logoListResponse?.data || ({} as LogoEntity[]);
+
+  const defaultLogo: LogoEntity = {
+    _id: '',
+    images: [],
+  };
+
+  const currentLogo = logoList.length > 0 ? logoList[0] : defaultLogo;
+  const currentLogoImage =
+    currentLogo.images && currentLogo.images.length > 0
+      ? currentLogo.images[0]
+      : '';
 
   const [searchValue, setSearchValue] = useState('');
   const debouncedSearch = useDebounce(searchValue, 500);
@@ -418,7 +433,7 @@ const Header = () => {
         <div className="mx-10 flex flex-row items-center justify-between">
           <div className="logo">
             <a href="/">
-              <img src="/img/logo.png" className="max-w-36" />
+              <img src={currentLogoImage} className="max-w-36" />
             </a>
           </div>
           {isMobile && generateNavIcons()}

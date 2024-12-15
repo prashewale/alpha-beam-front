@@ -116,3 +116,14 @@ export const ProductValidation = z.object({
   // ),
   // userId: z.string().min(1, { message: 'User id is required.' }),
 });
+
+export const BannerValidation = z.object({
+  name: z.string().min(1, { message: 'Name is required.' }),
+  description: z.string().min(1, { message: 'Description is required.' }),
+  images: z
+    .any()
+    .refine((images) => images && images.length > 0, {
+      message: 'At least one image is required.',
+    })
+    .transform((images) => images as string[]),
+});

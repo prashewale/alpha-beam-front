@@ -8,14 +8,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Product } from '@/types';
+import { BannerEntity } from '@/types';
 import { ColumnDef } from '@tanstack/react-table';
 import { ArrowUpDown, Edit, Eye, MoreHorizontal, Trash2 } from 'lucide-react';
-import CreateUpdateProductDialog from './create-update-product';
+import CreateUpdateBannerDialog from './create-update-banner';
 import { useState } from 'react';
-import { useDeleteProduct } from '@/lib/react-query/queries';
+import { useDeleteBanner } from '@/lib/react-query/queries';
 
-export const columns: ColumnDef<Product>[] = [
+export const columns: ColumnDef<BannerEntity>[] = [
   // {
   //   id: 'select',
   //   header: ({ table }) => (
@@ -44,10 +44,10 @@ export const columns: ColumnDef<Product>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const product = row.original;
-      const [openUpdateProduct, setOpenUpdateProduct] = useState(false);
+      const [openUpdate, setOpenUpdate] = useState(false);
 
-      const { mutate: deleteProduct, isPending: isDeleteLoading } =
-        useDeleteProduct();
+      const { mutate: deleteBanner, isPending: isDeleteLoading } =
+        useDeleteBanner();
 
       return (
         <>
@@ -64,7 +64,7 @@ export const columns: ColumnDef<Product>[] = [
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 className="cursor-pointer"
-                onClick={() => setOpenUpdateProduct(true)}
+                onClick={() => setOpenUpdate(true)}
               >
                 <Edit className="mr-2 h-3.5 w-3.5 text-slate-400" />
                 Edit
@@ -86,7 +86,7 @@ export const columns: ColumnDef<Product>[] = [
                   if (
                     confirm('Are you sure you want to delete this product?')
                   ) {
-                    deleteProduct(product._id);
+                    deleteBanner(product._id);
                   }
                 }}
               >
@@ -95,11 +95,11 @@ export const columns: ColumnDef<Product>[] = [
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <CreateUpdateProductDialog
-            product={product}
+          <CreateUpdateBannerDialog
+            item={product}
             action="Update"
-            setOpen={setOpenUpdateProduct}
-            open={openUpdateProduct}
+            setOpen={setOpenUpdate}
+            open={openUpdate}
           />
         </>
       );
@@ -150,75 +150,6 @@ export const columns: ColumnDef<Product>[] = [
           : description;
 
       return <div className="w-[300px] text-left">{shortDescription}</div>;
-    },
-  },
-  {
-    accessorKey: 'price',
-    header: () => <div className="text-right">Price</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue<string>('price'));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat('en-GB', {
-        style: 'currency',
-        currency: 'GBP',
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
-    },
-  },
-  {
-    accessorKey: 'category',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="text-left"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Category
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => {
-      return <div className="text-center">{row.getValue('category')}</div>;
-    },
-  },
-  {
-    accessorKey: 'rating',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="text-left"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Rating
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => {
-      return <div className="text-center">{row.getValue('rating')}</div>;
-    },
-  },
-  {
-    accessorKey: 'brand',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="text-left"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Brand
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => {
-      return <div className="text-center">{row.getValue('brand')}</div>;
     },
   },
 ];

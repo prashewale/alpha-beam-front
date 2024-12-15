@@ -67,6 +67,24 @@ export type Product = {
   shortDescription?: string;
 };
 
+export type Identity = {
+  _id: string;
+};
+
+export type Banner = {
+  name: string;
+  description: string;
+  images: string[];
+};
+
+export type BannerEntity = Identity & Banner;
+
+export type Logo = {
+  images: string[];
+};
+
+export type LogoEntity = Identity & Logo;
+
 export type NewProductRequest = {
   name: string;
   description: string;
