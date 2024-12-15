@@ -99,6 +99,10 @@ const CreateUpdateBannerForm = ({ item, action, setOpen, open }: Props) => {
         className="flex w-full flex-col gap-4"
       >
         <div className="form-group">
+          <div className="mb-2 text-red-500">* max 2 images allowed</div>
+          <div className="mb-2 text-red-500">
+            * 1st banner image will be for desktop and 2nd for mobile
+          </div>
           <FormField
             control={form.control}
             name="images"
