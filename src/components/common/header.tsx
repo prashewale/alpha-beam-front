@@ -181,7 +181,7 @@ const Header = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [isProductsFetching]);
+  }, [isProductsFetching, cart]);
 
   let isMobile = false;
 
@@ -357,6 +357,7 @@ const Header = () => {
                         <td
                           className="si-close"
                           onClick={() => {
+                            console.log(cartLine);
                             removeFromCart(cartLine._id.toString());
                           }}
                         >
