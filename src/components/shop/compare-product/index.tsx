@@ -10,7 +10,7 @@ const CompareProduct = () => {
   const { data: productsListResponse, isFetching: isProductsFetching } =
     useGetProducts();
 
-  const productsList = productsListResponse?.data || [];
+  const productsList = productsListResponse?.content || [];
   const product = productsList.find((x) => x._id.toString() === id);
   return (
     <>

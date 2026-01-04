@@ -90,7 +90,7 @@ const CreateUpdateProductForm = ({
       };
 
       const res = await updateProduct(request);
-      if (!res || !res.data || res.status !== 'SUCCESS') {
+      if (!res || !res.content || res.status !== 'SUCCESS') {
         toast({ title: 'Update failed. Please try again.' });
         return;
       }
@@ -101,7 +101,7 @@ const CreateUpdateProductForm = ({
     }
 
     const res = await createProduct({ ...values });
-    if (!res || !res.data || res.status !== 'SUCCESS') {
+    if (!res || !res.content || res.status !== 'SUCCESS') {
       toast({ title: 'Create failed. Please try again.' });
       return;
     }

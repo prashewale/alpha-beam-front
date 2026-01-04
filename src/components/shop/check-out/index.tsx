@@ -11,7 +11,7 @@ const Checkout = () => {
   const { data: productsListResponse, isFetching: isProductsFetching } =
     useGetProducts();
 
-  const productsList = productsListResponse?.data || [];
+  const productsList = productsListResponse?.content || [];
 
   const breadCrumbItems: BreadCrumbItem[] = [
     {

@@ -10,13 +10,7 @@ import {
   useSearchProducts,
   useSignOutAccount,
 } from '@/lib/react-query/queries';
-import {
-  Link,
-  useNavigate,
-  useParams,
-  useRoutes,
-  useSearchParams,
-} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { formatPrice } from '@/lib/utilities';
 import { useEffect, useState } from 'react';
@@ -71,7 +65,7 @@ const SearchResults = ({
   isSearchFetching,
   searchedProducts,
 }: SearchResultProps) => {
-  const generateItems = (products: Product[]) => {
+  const generateItems = () => {
     if (isSearchFetching) {
       return (
         <div className="flex w-full items-center justify-center">
@@ -89,9 +83,7 @@ const SearchResults = ({
 
   return (
     <div className="absolute right-[-80px] top-20 z-[1000] !w-[370px] rounded-xl !bg-gray-100 !p-2 md:right-[-10px]">
-      <div className="select-items">
-        {generateItems(searchedProducts || [])}
-      </div>
+      <div className="select-items">{generateItems()}</div>
     </div>
   );
 };
@@ -106,8 +98,8 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  const { data: logoListResponse, isFetching: isLogoFetching } = useGetLogos();
-  const logoList = logoListResponse?.data || ({} as LogoEntity[]);
+  const { data: logoListResponse } = useGetLogos();
+  const logoList = logoListResponse?.content || ({} as LogoEntity[]);
 
   const defaultLogo: LogoEntity = {
     _id: '',
@@ -133,11 +125,10 @@ const Header = () => {
     useGetProducts();
   const shouldShowSearchResults = searchValue !== '';
 
-  const productsList = productsListResponse?.data || [];
+  const productsList = productsListResponse?.content || [];
 
   // Queries
-  const { mutateAsync: signOutAccount, isPending: isSigningOut } =
-    useSignOutAccount();
+  const { mutateAsync: signOutAccount } = useSignOutAccount();
 
   const { cart, removeFromCart } = useCart();
 
@@ -157,7 +148,7 @@ const Header = () => {
       return productListIds.includes(cartLine.productId);
     });
 
-    let productsFromCart = filteredCartLines.map((cartLine) => {
+    const productsFromCart = filteredCartLines.map((cartLine) => {
       const product = productsList.find(
         (p) => p._id.toString() === cartLine.productId
       );
@@ -603,7 +594,7 @@ const Header = () => {
                 <div className="card-hover">
                   <SearchResults
                     isSearchFetching={isSearchFetching}
-                    searchedProducts={searchedProductsReponse?.data}
+                    searchedProducts={searchedProductsReponse?.content}
                   />
                 </div>
               )}

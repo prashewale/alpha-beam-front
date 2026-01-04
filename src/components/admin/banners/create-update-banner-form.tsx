@@ -74,7 +74,7 @@ const CreateUpdateBannerForm = ({ item, action, setOpen, open }: Props) => {
       };
 
       const res = await updateBanner(request);
-      if (!res || !res.data || res.status !== 'SUCCESS') {
+      if (!res || !res.content || res.status !== 'SUCCESS') {
         toast({ title: 'Update failed. Please try again.' });
         return;
       }
@@ -85,7 +85,7 @@ const CreateUpdateBannerForm = ({ item, action, setOpen, open }: Props) => {
     }
 
     const res = await createBanner({ ...values });
-    if (!res || !res.data || res.status !== 'SUCCESS') {
+    if (!res || !res.content || res.status !== 'SUCCESS') {
       toast({ title: 'Create failed. Please try again.' });
       return;
     }

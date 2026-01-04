@@ -80,7 +80,7 @@ const CreateUpdateAddressDialog = ({
       };
 
       const res = await updateAddress(request);
-      if (!res || !res.data || res.status !== 'SUCCESS') {
+      if (!res || !res.content || res.status !== 'SUCCESS') {
         toast({ title: 'Update failed. Please try again.' });
         return;
       }
@@ -91,7 +91,7 @@ const CreateUpdateAddressDialog = ({
     }
 
     const res = await createAddress(values);
-    if (!res || !res.data || res.status !== 'SUCCESS') {
+    if (!res || !res.content || res.status !== 'SUCCESS') {
       toast({ title: 'Create failed. Please try again.' });
       return;
     }

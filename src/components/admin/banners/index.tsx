@@ -22,14 +22,14 @@ const AdminBanners = () => {
   const { data: bannerListResponse, isFetching: isBannersFetching } =
     useGetBanners();
 
-  const bannerList = bannerListResponse?.data || ({} as BannerEntity[]);
+  const bannerList = bannerListResponse?.content || ({} as BannerEntity[]);
 
   const { mutateAsync: updateLogo } = useUpdateLogo();
 
   const { mutateAsync: createLogo } = useCreateLogo();
 
   const { data: logoListResponse, isFetching: isLogoFetching } = useGetLogos();
-  const logoList = logoListResponse?.data || ({} as LogoEntity[]);
+  const logoList = logoListResponse?.content || ({} as LogoEntity[]);
 
   const defaultLogo: LogoEntity = {
     _id: '',

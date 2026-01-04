@@ -1,5 +1,5 @@
 export type ApiResponse<T> = {
-  data: T | undefined | null;
+  content: T | undefined | null;
   errors: string[];
   status: Status;
 };
@@ -29,9 +29,14 @@ export type RegisterRequest = {
 };
 
 export type LoginResponse = {
-  accessToken: string;
-  refreshToken: string;
+  access: TokenInfo;
+  refresh: TokenInfo;
   user: User;
+};
+
+export type TokenInfo = {
+  expiresInMinutes: number;
+  token: string;
 };
 
 export type RegisterResponse = {

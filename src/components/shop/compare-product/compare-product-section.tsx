@@ -12,7 +12,7 @@ const CompareProductSection = ({ product }: CompareProductProps) => {
     useGetProducts();
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
-  const productsList = productsListResponse?.data || [];
+  const productsList = productsListResponse?.content || [];
   const similarProducts = productsList
     .filter((p) => p.category === product.category && p._id !== product._id)
     .slice(0, 4);

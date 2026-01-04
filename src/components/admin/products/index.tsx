@@ -12,7 +12,7 @@ const AdminProducts = () => {
   const { data: productsListResponse, isFetching: isProductsFetching } =
     useGetProducts();
 
-  const productsList = productsListResponse?.data || ({} as Product[]);
+  const productsList = productsListResponse?.content || ({} as Product[]);
 
   return (
     <div className="container mx-auto py-10">

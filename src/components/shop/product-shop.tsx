@@ -34,7 +34,7 @@ const ProductShop = ({ category }: ProductShopProps) => {
   const { data: productsListResponse, isFetching: isProductsFetching } =
     useGetProducts();
 
-  const products = productsListResponse?.data || [];
+  const products = productsListResponse?.content || [];
 
   // const [products] = useState(productsList);
 

@@ -93,7 +93,7 @@ export default function Register({ redirectPath }: RegisterProps) {
       if (
         !signInResponse ||
         signInResponse.status !== Status.SUCCESS ||
-        !signInResponse.data
+        !signInResponse.content
       ) {
         toast({
           title: 'Something went wrong. Please login your new account',
@@ -104,7 +104,7 @@ export default function Register({ redirectPath }: RegisterProps) {
         return;
       }
 
-      const { accessToken, refreshToken, user } = signInResponse.data;
+      const { accessToken, refreshToken, user } = signInResponse.content;
 
       const isSignedIn = signIn({
         auth: {

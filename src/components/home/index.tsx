@@ -34,7 +34,7 @@ const Home = () => {
   const { data: productsListResponse, isFetching: isProductsFetching } =
     useGetProducts();
 
-  const productsList = productsListResponse?.data || [];
+  const productsList = productsListResponse?.content || [];
 
   const similarProducts = productsList.slice(0, 7);
 

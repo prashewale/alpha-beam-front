@@ -7,7 +7,7 @@ const CartSummarySection = () => {
   const { data: productsListResponse, isFetching: isProductsFetching } =
     useGetProducts();
 
-  const productsList = productsListResponse?.data || [];
+  const productsList = productsListResponse?.content || [];
 
   const cartLines: Cart[] = Object.keys(cart).map((key) => {
     return { productId: key, quantity: cart[key] };

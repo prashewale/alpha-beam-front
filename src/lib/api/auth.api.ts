@@ -19,7 +19,7 @@ export async function getCurrentUser() {
 export const signInAccount = async (request: LoginRequest) => {
   try {
     const apiResonse = await axiosInstance.post<ApiResponse<LoginResponse>>(
-      '/api/login',
+      '/login',
       request
     );
 
@@ -41,7 +41,7 @@ export const signOutAccount = async () => {
 export const createUserAccount = async (request: RegisterRequest) => {
   try {
     const response = await axiosInstance.post<ApiResponse<RegisterResponse>>(
-      '/api/register',
+      '/register',
       request
     );
     return response.data;

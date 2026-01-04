@@ -33,7 +33,7 @@ const Hero = () => {
   const { data: bannersListResponse, isFetching: isBannersFetching } =
     useGetBanners();
 
-  const bannerList = bannersListResponse?.data || [];
+  const bannerList = bannersListResponse?.content || [];
 
   return (
     <section className="hero-section" style={{ position: 'relative' }}>

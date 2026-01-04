@@ -19,7 +19,6 @@ import {
 import { Input } from '../ui/input';
 
 import Loader from '@/components/common/Loader';
-import { Button } from '../ui/button';
 
 type LoginProps = {
   redirectPath?: string;
@@ -45,19 +44,19 @@ export default function Login({ redirectPath }: LoginProps) {
   const handleSignIn = async (loginUser: z.infer<typeof SigninValidation>) => {
     const request: LoginRequest = { ...loginUser, rememberMe: false };
     const res = await signInAccount(request);
-    if (!res || !res.data || res.status !== Status.SUCCESS) {
+    if (!res || !res.content || res.status !== Status.SUCCESS) {
       toast({ title: 'Login failed. Please try again.' });
       return;
     }
 
-    const { accessToken, refreshToken, user } = res.data;
+    const { access, refresh, user } = res.content;
 
     const isSignedIn = signIn({
       auth: {
-        token: accessToken,
+        token: access.token,
       },
       userState: user,
-      refresh: refreshToken,
+      refresh: refresh.token,
     });
 
     if (isSignedIn) {
