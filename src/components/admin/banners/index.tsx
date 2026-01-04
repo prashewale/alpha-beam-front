@@ -3,7 +3,7 @@ import { DataTable } from './data-table';
 import CreateUpdateBannerDialog from './create-update-banner';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
-import { BannerEntity, Logo, LogoEntity, Product } from '@/types';
+import { BannerEntity, Logo, LogoEntity } from '@/types';
 import {
   useCreateLogo,
   useGetBanners,
@@ -11,7 +11,6 @@ import {
   useUpdateLogo,
 } from '@/lib/react-query/queries';
 import { MultiUploader } from '@/components/common/multi-file-uploader';
-import { UploadButton } from '@uploadthing/react';
 import { useToast } from '@/hooks/use-toast';
 
 const AdminBanners = () => {
@@ -19,8 +18,7 @@ const AdminBanners = () => {
 
   const { toast } = useToast();
 
-  const { data: bannerListResponse, isFetching: isBannersFetching } =
-    useGetBanners();
+  const { data: bannerListResponse } = useGetBanners();
 
   const bannerList = bannerListResponse?.content || ({} as BannerEntity[]);
 
@@ -28,7 +26,7 @@ const AdminBanners = () => {
 
   const { mutateAsync: createLogo } = useCreateLogo();
 
-  const { data: logoListResponse, isFetching: isLogoFetching } = useGetLogos();
+  const { data: logoListResponse } = useGetLogos();
   const logoList = logoListResponse?.content || ({} as LogoEntity[]);
 
   const defaultLogo: LogoEntity = {

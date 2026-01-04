@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/common/header';
 import { LoginRequest, RegisterRequest, Status } from '@/types';
-import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import { useToast } from '@/hooks/use-toast';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -39,7 +38,6 @@ type RegisterProps = {
 export default function Register({ redirectPath }: RegisterProps) {
   const { toast } = useToast();
   const navigate = useNavigate();
-  const authUser = useAuthUser();
 
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
@@ -104,14 +102,14 @@ export default function Register({ redirectPath }: RegisterProps) {
         return;
       }
 
-      const { accessToken, refreshToken, user } = signInResponse.content;
+      const { access, refresh, user } = signInResponse.content;
 
       const isSignedIn = signIn({
         auth: {
-          token: accessToken,
+          token: access.token,
         },
         userState: user,
-        refresh: refreshToken,
+        refresh: refresh.token,
       });
 
       if (!isSignedIn) {
